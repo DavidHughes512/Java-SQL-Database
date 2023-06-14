@@ -5,12 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eafdf75b-a631-46be-98ec-b4048cb43867" name="Changes" comment="early setup of project">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/hughes/scheduleproject/Appointments.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/hughes/scheduleproject/Customers.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/hughes/scheduleproject/EditAppointments.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/hughes/scheduleproject/Home.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/hughes/scheduleproject/Login.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/AptController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/CustController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/EAptController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/models/Appointments.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/models/Contacts.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/models/Countries.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/models/Customers.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/models/Users.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/models/firstLvlDivisions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controller/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/helper/JDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/JDBC.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/hughes/scheduleproject/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hughes/scheduleproject/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/hughes/scheduleproject/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hughes/scheduleproject/main-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,13 +42,6 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
   <component name="ProjectId" id="2Qf4m8Ros5msBiTLgNrRfSVtEcL" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -52,10 +57,12 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/Trama/Desktop/Java Project resources/Lib/mysql-connector-j-8.0.33/mysql-connector-j-8.0.33.jar",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Owner/IdeaProjects/DAODemo2021",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Java"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -108,5 +115,9 @@
     <MESSAGE value="Uploading missing files for sharing between devices" />
     <MESSAGE value="early setup of project" />
     <option name="LAST_COMMIT_MESSAGE" value="early setup of project" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

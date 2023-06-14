@@ -6,6 +6,6 @@ module hughes.scheduleproject {
 
     opens hughes.scheduleproject to javafx.fxml;
     exports hughes.scheduleproject;
-    exports controller;
-    opens controller to javafx.fxml;
+    exports controllers;
+    opens controllers to javafx.fxml;
 }
