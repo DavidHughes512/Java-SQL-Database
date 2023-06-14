@@ -4,25 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eafdf75b-a631-46be-98ec-b4048cb43867" name="Changes" comment="early setup of project">
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/AptController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/CustController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/EAptController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/HomeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/Appointments.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/Contacts.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/Countries.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/Customers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/Users.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/models/firstLvlDivisions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/helper/JDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/JDBC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/hughes/scheduleproject/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hughes/scheduleproject/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hughes/scheduleproject/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hughes/scheduleproject/main-view.fxml" afterDir="false" />
+    <list default="true" id="eafdf75b-a631-46be-98ec-b4048cb43867" name="Changes" comment="New class packages and files made">
+      <change beforePath="$PROJECT_DIR$/src/main/java/hughes/scheduleproject/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/hughes/scheduleproject/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -95,7 +78,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686587477725</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="New class packages and files made">
+      <created>1686702479822</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1686702479822</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -114,7 +104,8 @@
     <MESSAGE value="Uploading Project for sharing between devices" />
     <MESSAGE value="Uploading missing files for sharing between devices" />
     <MESSAGE value="early setup of project" />
-    <option name="LAST_COMMIT_MESSAGE" value="early setup of project" />
+    <MESSAGE value="New class packages and files made" />
+    <option name="LAST_COMMIT_MESSAGE" value="New class packages and files made" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

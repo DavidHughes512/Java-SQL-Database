@@ -21,5 +21,6 @@ public class Main extends Application {
         launch();
     }
 
+    //Github testing blah blah blah
     //Locale.setDefault(new Locale("fr"));
 }
