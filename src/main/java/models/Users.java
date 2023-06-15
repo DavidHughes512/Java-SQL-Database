@@ -2,12 +2,12 @@ package models;
 public class Users {
 
     //Declaring Variables
-    int User_ID;
-    String User_Name;
-    String Password;
+    private int User_ID;
+    private String User_Name;
+    private String Password;
     //DateTime Create_Date
-    String Created_By;
+    private  String Created_By;
     //timestamp Last_Update
-    String Last_Updated_By;
+    private String Last_Updated_By;
 
 }

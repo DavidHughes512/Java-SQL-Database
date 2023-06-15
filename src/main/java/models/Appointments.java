@@ -4,20 +4,20 @@ public class Appointments {
 
     //Declaring Variables
 
-    int Appointment_ID;
-    String Title;
-    String Description;
-    String Location;
-    String Type;
+    private int Appointment_ID;
+    private String Title;
+    private String Description;
+    private String Location;
+    private String Type;
     //DATETIME Start;
     //DATETIME End;
     //DATETIME Create_Date;
-    String Created_By;
+    private String Created_By;
     //TIMESTAMP Last_updated;
-    String Last_Updated_By;
-    int Customer_ID;
-    int User_ID;
-    int Contact_ID;
+    private String Last_Updated_By;
+    private int Customer_ID;
+    private int User_ID;
+    private int Contact_ID;
 
 
 

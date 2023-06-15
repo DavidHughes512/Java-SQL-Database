@@ -2,9 +2,9 @@ package models;
 
 public class Contacts {
 
-    int Customer_ID;
-    String Contact_Name;
-    String Email;
+    private int Customer_ID;
+    private String Contact_Name;
+    private String Email;
 
 
 

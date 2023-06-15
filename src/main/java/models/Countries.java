@@ -2,12 +2,12 @@ package models;
 
 public class Countries {
 
-    int Country_ID;
-    String Country;
+    private int Country_ID;
+    private String Country;
     //DATETIME Create_Date
-    String Created_By;
+    private String Created_By;
     //TIMESTAMP Last_Update
-    String Last_Updated_By;
+    private String Last_Updated_By;
 
 
 

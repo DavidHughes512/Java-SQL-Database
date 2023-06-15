@@ -2,16 +2,16 @@ package models;
 
 public class Customers {
 
-    int Customer_ID;
-    String Customer_Name;
-    String Address;
-    String Postal_Code;
-    String Phone;
+    private int Customer_ID;
+    private String Customer_Name;
+    private String Address;
+    private String Postal_Code;
+    private String Phone;
     //DATETIME Create_Date;
-    String Created_By;
+    private String Created_By;
     //TIMESTAMP Last_Update;
-    String Last_Updated_By;
-    int Division_ID;
+    private String Last_Updated_By;
+    private int Division_ID;
 
 
 

@@ -2,13 +2,13 @@ package models;
 
 public class firstLvlDivisions {
 
-    int Division_ID;
-    String Division;
+    private int Division_ID;
+    private String Division;
     //DATETIME Create_Date;
-    String Created_By;
+    private String Created_By;
     //TIMESTAMP Last_Updated;
-    String Last_Updated_by;
-    int Country_ID;
+    private String Last_Updated_by;
+    private int Country_ID;
 
 
 }
