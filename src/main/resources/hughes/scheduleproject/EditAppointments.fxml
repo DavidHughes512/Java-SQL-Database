@@ -1,20 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField layoutX="77.0" layoutY="76.0" />
-      <ComboBox layoutX="226.0" layoutY="14.0" prefWidth="150.0" />
-      <TextField layoutX="376.0" layoutY="313.0" />
-      <TextField layoutX="376.0" layoutY="237.0" />
-      <TextField layoutX="376.0" layoutY="152.0" />
-      <TextField layoutX="376.0" layoutY="76.0" />
-      <TextField layoutX="77.0" layoutY="313.0" />
-      <TextField layoutX="77.0" layoutY="237.0" />
-      <TextField layoutX="77.0" layoutY="152.0" />
+      <TextField fx:id="appointmentIDTXT" disable="true" layoutX="37.0" layoutY="131.0" promptText="Appointment ID - Auto" />
+      <TextField fx:id="locationTXT" layoutX="37.0" layoutY="307.0" promptText="Location" />
+      <TextField fx:id="titleTXT" layoutX="37.0" layoutY="188.0" promptText="Title" />
+      <TextField fx:id="typeTXT" layoutX="404.0" layoutY="77.0" promptText="Type" />
+      <TextField layoutX="404.0" layoutY="131.0" promptText="Start Date and Time" />
+      <TextField fx:id="userIDTXT" disable="true" layoutX="404.0" layoutY="307.0" promptText="User ID - Auto" />
+      <TextField layoutX="404.0" layoutY="188.0" promptText="End Date and Time" />
+      <TextField fx:id="descriptionTXT" layoutX="37.0" layoutY="248.0" promptText="Description" />
+      <TextField fx:id="custIDTXT" disable="true" layoutX="404.0" layoutY="248.0" promptText="Customer ID - Auto" />
+      <ComboBox fx:id="contactCombo" layoutX="36.0" layoutY="77.0" onAction="#onActionContact" prefWidth="150.0" promptText="Contact" />
+      <Label alignment="CENTER" layoutX="232.0" layoutY="20.0" prefHeight="70.0" prefWidth="137.0" text="Appointment Info">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
-</AnchorPane>
+</Pane>
