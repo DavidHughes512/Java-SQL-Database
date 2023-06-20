@@ -9,16 +9,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
    <children>
-      <TableView layoutX="14.0" layoutY="100.0" prefHeight="200.0" prefWidth="262.0">
+      <TableView fx:id="custTableView" layoutX="14.0" layoutY="100.0" prefHeight="200.0" prefWidth="262.0">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
-      <Button layoutX="127.0" layoutY="326.0" mnemonicParsing="false" text="Edit" />
-      <Button layoutX="437.0" layoutY="326.0" mnemonicParsing="false" text="Edit" />
+      <Button fx:id="editCustButton" layoutX="127.0" layoutY="326.0" mnemonicParsing="false" onAction="#onActionEditCust" text="Edit" />
+      <Button fx:id="editAptButton" layoutX="437.0" layoutY="326.0" mnemonicParsing="false" onAction="#onActionEdirApt" text="Edit" />
       <Label alignment="CENTER" layoutX="85.0" layoutY="50.0" prefHeight="36.0" prefWidth="121.0" text="Customers">
          <font>
             <Font size="18.0" />
@@ -29,11 +29,11 @@
          </font></Label>
       <TabPane layoutX="324.0" layoutY="100.0" prefHeight="200.0" prefWidth="262.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-            <Tab text="All">
+            <Tab fx:id="allTab" text="All">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView prefHeight="171.0" prefWidth="262.0">
+                        <TableView fx:id="allAptTableView" prefHeight="171.0" prefWidth="262.0">
                           <columns>
                             <TableColumn prefWidth="75.0" text="C1" />
                             <TableColumn prefWidth="75.0" text="C2" />
@@ -43,11 +43,11 @@
                   </AnchorPane>
               </content>
             </Tab>
-          <Tab text="Month">
+          <Tab fx:id="monthTab" text="Month">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView prefHeight="173.0" prefWidth="262.0">
+                        <TableView fx:id="monthAptTableView" prefHeight="173.0" prefWidth="262.0">
                           <columns>
                             <TableColumn prefWidth="75.0" text="C1" />
                             <TableColumn prefWidth="75.0" text="C2" />
@@ -56,11 +56,11 @@
                      </children></AnchorPane>
             </content>
           </Tab>
-          <Tab text="Week">
+          <Tab fx:id="weekTab" text="Week">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView prefHeight="172.0" prefWidth="262.0">
+                        <TableView fx:id="weekAptTableView" prefHeight="172.0" prefWidth="262.0">
                           <columns>
                             <TableColumn prefWidth="75.0" text="C1" />
                             <TableColumn prefWidth="75.0" text="C2" />
@@ -71,9 +71,9 @@
           </Tab>
         </tabs>
       </TabPane>
-      <Button layoutX="49.0" layoutY="326.0" mnemonicParsing="false" text="Add" />
-      <Button layoutX="202.0" layoutY="326.0" mnemonicParsing="false" text="Delete" />
-      <Button layoutX="360.0" layoutY="326.0" mnemonicParsing="false" text="Add" />
-      <Button layoutX="512.0" layoutY="326.0" mnemonicParsing="false" text="Delete" />
+      <Button fx:id="addCustButton" layoutX="49.0" layoutY="326.0" mnemonicParsing="false" onAction="#onActionAddCust" text="Add" />
+      <Button fx:id="deleteCustButton" layoutX="202.0" layoutY="326.0" mnemonicParsing="false" onAction="#onActionDeleteCust" text="Delete" />
+      <Button fx:id="addAptButton" layoutX="360.0" layoutY="326.0" mnemonicParsing="false" onAction="#onActionAddApt" text="Add" />
+      <Button fx:id="deleteAptButton" layoutX="512.0" layoutY="326.0" mnemonicParsing="false" onAction="#onActionDeleteApt" text="Delete" />
    </children>
 </AnchorPane>

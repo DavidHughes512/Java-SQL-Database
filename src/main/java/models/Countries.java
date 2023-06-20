@@ -2,7 +2,7 @@ package models;
 
 public class Countries {
 
-    //==============================Declaring Variables==============================\\
+    //==============================Declaring Variables==============================
 
     private int Country_ID;
     private String Country;

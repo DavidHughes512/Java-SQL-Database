@@ -4,8 +4,12 @@ module hughes.scheduleproject {
     requires java.sql;
 
 
-    opens hughes.scheduleproject to javafx.fxml;
-    exports hughes.scheduleproject;
-    exports controllers;
+    opens Application to javafx.fxml;
     opens controllers to javafx.fxml;
+    opens models to javafx.fxml;
+    opens dao to javafx.fxml;
+    exports models;
+    exports controllers;
+    exports Application;
+    exports dao;
 }

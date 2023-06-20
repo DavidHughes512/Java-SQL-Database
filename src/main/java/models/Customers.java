@@ -82,4 +82,6 @@ public class Customers {
     public void setDivision_ID(int division_ID) {
         Division_ID = division_ID;
     }
+
+
 }
