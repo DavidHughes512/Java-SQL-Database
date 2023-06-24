@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -32,6 +33,16 @@ public class LoginController {
 
     @FXML
     void onActionLogin(ActionEvent event) throws IOException {
+
+        //Temp validation box. Replace with Credentials Check below
+
+        if (usernameTXT.getText().isEmpty() || passwordTXT.getText().isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning!");
+            alert.setContentText("Please enter correct Username and Password!");
+            alert.showAndWait();
+            return;
+        }
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/Views/Home.fxml"));
         stage.setScene(new Scene(scene));

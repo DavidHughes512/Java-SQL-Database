@@ -84,7 +84,17 @@ Parent scene;
 
     @FXML
     void onActionDeleteCust(ActionEvent event) throws IOException {
-
+       /*
+        try {
+         //Insert delete method
+        }
+        catch (NullPointerException e){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning!");
+            alert.setContentText("Please select a Customer to delete!");
+            alert.showAndWait();
+            return;
+        }*/
     }
 
 
@@ -117,18 +127,51 @@ Parent scene;
 
     //==============================Appointment Buttons Actions==============================\\
     @FXML
-    void onActionAddApt(ActionEvent event) {
+    void onActionAddApt(ActionEvent event) throws IOException {
+        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/Views/EditAppointments.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
 
     }
 
     @FXML
     void onActionDeleteApt(ActionEvent event) {
-
+        /*
+        try {
+         //Insert delete method
+        }
+        catch (NullPointerException e){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning!");
+            alert.setContentText("Please select a Customer to delete!");
+            alert.showAndWait();
+            return;
+        }*/
     }
 
     @FXML
-    void onActionEdirApt(ActionEvent event) {
+    void onActionEdirApt(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/Views/Customers.fxml"));
+            loader.load();
+
+            CustController ECustController = loader.getController();
+            ECustController.sendCust((Customers) custTableView.getSelectionModel().getSelectedItem());
+
+
+            stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(getClass().getResource("/Views/EditAppointments.fxml"));
+            stage.setScene(new Scene(scene));
+            stage.show();
+        } catch (NullPointerException e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning!");
+            alert.setContentText("Please select an appointment to edit!");
+            alert.showAndWait();
+            return;
+        }
 
     }
-
 }
