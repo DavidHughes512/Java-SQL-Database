@@ -9,12 +9,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
    <children>
-      <TableView fx:id="custTableView" layoutX="15.0" layoutY="100.0" prefHeight="557.0" prefWidth="561.0">
+      <TableView fx:id="custTableView" layoutX="15.0" layoutY="100.0" prefHeight="557.0" prefWidth="676.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn prefWidth="45.0" text="C1" />
+          <TableColumn prefWidth="71.0" text="C2" />
+            <TableColumn prefWidth="68.0" text="C1" />
+            <TableColumn prefWidth="73.0" text="C1" />
+            <TableColumn prefWidth="51.0" text="C1" />
+            <TableColumn prefWidth="46.0" text="C1" />
+            <TableColumn prefWidth="62.0" text="C1" />
+            <TableColumn prefWidth="72.0" text="C1" />
+            <TableColumn prefWidth="75.0" text="C1" />
+            <TableColumn prefWidth="112.0" text="C1" />
         </columns>
       </TableView>
       <Button fx:id="editCustButton" layoutX="277.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionEditCust" text="Edit" />
@@ -27,13 +35,13 @@
          <font>
             <Font size="18.0" />
          </font></Label>
-      <TabPane layoutX="600.0" layoutY="100.0" prefHeight="557.0" prefWidth="576.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="708.0" layoutY="101.0" prefHeight="566.0" prefWidth="676.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
             <Tab fx:id="allTab" text="All">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="allAptTableView" prefHeight="529.0" prefWidth="576.0">
+                        <TableView fx:id="allAptTableView" prefHeight="525.0" prefWidth="676.0">
                           <columns>
                             <TableColumn prefWidth="75.0" text="C1" />
                             <TableColumn prefWidth="75.0" text="C2" />
@@ -47,7 +55,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="monthAptTableView" prefHeight="528.0" prefWidth="576.0">
+                        <TableView fx:id="monthAptTableView" prefHeight="525.0" prefWidth="676.0">
                           <columns>
                             <TableColumn prefWidth="75.0" text="C1" />
                             <TableColumn prefWidth="75.0" text="C2" />
@@ -60,7 +68,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id="weekAptTableView" prefHeight="529.0" prefWidth="576.0">
+                        <TableView fx:id="weekAptTableView" prefHeight="525.0" prefWidth="676.0">
                           <columns>
                             <TableColumn prefWidth="75.0" text="C1" />
                             <TableColumn prefWidth="75.0" text="C2" />
