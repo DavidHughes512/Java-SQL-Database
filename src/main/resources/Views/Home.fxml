@@ -13,20 +13,17 @@
    <children>
       <TableView fx:id="custTableView" layoutX="15.0" layoutY="100.0" prefHeight="557.0" prefWidth="676.0">
         <columns>
-          <TableColumn prefWidth="45.0" text="C1" />
-          <TableColumn prefWidth="71.0" text="C2" />
-            <TableColumn prefWidth="68.0" text="C1" />
-            <TableColumn prefWidth="73.0" text="C1" />
-            <TableColumn prefWidth="51.0" text="C1" />
-            <TableColumn prefWidth="46.0" text="C1" />
-            <TableColumn prefWidth="62.0" text="C1" />
-            <TableColumn prefWidth="72.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="112.0" text="C1" />
+          <TableColumn fx:id="CustIdCol" prefWidth="45.0" text="ID" />
+          <TableColumn fx:id="CustNameCol" prefWidth="106.0" text="Name" />
+            <TableColumn fx:id="CustAddressCol" prefWidth="109.0" text="Address" />
+            <TableColumn fx:id="CustPostCol" prefWidth="85.0" text="Postal Code" />
+            <TableColumn fx:id="CustPhoneCol" prefWidth="91.0" text="Phone" />
+            <TableColumn fx:id="CustCountryCol" prefWidth="131.0" text="Country" />
+            <TableColumn fx:id="CustStateCol" prefWidth="108.0" text="State/Providence" />
         </columns>
       </TableView>
-      <Button fx:id="editCustButton" layoutX="277.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionEditCust" text="Edit" />
-      <Button fx:id="editAptButton" layoutX="870.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionEdirApt" text="Edit" />
+      <Button fx:id="editCustButton" layoutX="338.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionEditCust" text="Edit" />
+      <Button fx:id="editAptButton" layoutX="1028.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionEdirApt" text="Edit" />
       <Label alignment="CENTER" layoutX="235.0" layoutY="50.0" prefHeight="36.0" prefWidth="121.0" text="Customers">
          <font>
             <Font size="18.0" />
@@ -43,8 +40,16 @@
                      <children>
                         <TableView fx:id="allAptTableView" prefHeight="525.0" prefWidth="676.0">
                           <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
+                            <TableColumn fx:id="allAptIdCol" prefWidth="30.0" text="ID" />
+                            <TableColumn fx:id="allAptTitleCol" prefWidth="72.0" text="Title" />
+                              <TableColumn fx:id="allAptDescCol" prefWidth="78.0" text="Description" />
+                              <TableColumn fx:id="allAptLocationCol" prefWidth="67.0" text="Location" />
+                              <TableColumn fx:id="allAptContactCol" prefWidth="76.0" text="Contact" />
+                              <TableColumn fx:id="allAptTypeCol" prefWidth="42.0" text="Type" />
+                              <TableColumn fx:id="allAptStartCol" text="Start" />
+                              <TableColumn fx:id="allAptEndCol" text="End" />
+                              <TableColumn fx:id="allAptCustIdCol" prefWidth="83.0" text="Customer_ID" />
+                              <TableColumn fx:id="allAptUserIdCol" prefWidth="66.0" text="User_ID" />
                           </columns>
                         </TableView>
                      </children>
@@ -56,10 +61,18 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <TableView fx:id="monthAptTableView" prefHeight="525.0" prefWidth="676.0">
-                          <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
-                          </columns>
+                           <columns>
+                              <TableColumn fx:id="monthAptIdCol" prefWidth="30.0" text="ID" />
+                              <TableColumn fx:id="monthAptTitleCol" prefWidth="72.0" text="Title" />
+                              <TableColumn fx:id="monthAptDescCol" prefWidth="78.0" text="Description" />
+                              <TableColumn fx:id="monthAptLocationCol" prefWidth="67.0" text="Location" />
+                              <TableColumn fx:id="monthAptContactCol" prefWidth="76.0" text="Contact" />
+                              <TableColumn fx:id="monthAptTypeCol" prefWidth="42.0" text="Type" />
+                              <TableColumn fx:id="monthAptStartCol" text="Start" />
+                              <TableColumn fx:id="monthAptEndCol" text="End" />
+                              <TableColumn fx:id="monthAptCustIdCol" prefWidth="83.0" text="Customer_ID" />
+                              <TableColumn fx:id="monthAptUserIdCol" prefWidth="66.0" text="User_ID" />
+                           </columns>
                         </TableView>
                      </children></AnchorPane>
             </content>
@@ -69,19 +82,27 @@
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <TableView fx:id="weekAptTableView" prefHeight="525.0" prefWidth="676.0">
-                          <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
-                          </columns>
+                           <columns>
+                              <TableColumn fx:id="weekAptIdCol" prefWidth="30.0" text="ID" />
+                              <TableColumn fx:id="weekAptTitleCol" prefWidth="72.0" text="Title" />
+                              <TableColumn fx:id="weekAptDescCol" prefWidth="78.0" text="Description" />
+                              <TableColumn fx:id="weekAptLocationCol" prefWidth="67.0" text="Location" />
+                              <TableColumn fx:id="weekAptContactCol" prefWidth="76.0" text="Contact" />
+                              <TableColumn fx:id="weekAptTypeCol" prefWidth="42.0" text="Type" />
+                              <TableColumn fx:id="weekAptStartCol" text="Start" />
+                              <TableColumn fx:id="weekAptEndCol" text="End" />
+                              <TableColumn fx:id="weekAptCustIdCol" prefWidth="83.0" text="Customer_ID" />
+                              <TableColumn fx:id="weekAptUserIdCol" prefWidth="66.0" text="User_ID" />
+                           </columns>
                         </TableView>
                      </children></AnchorPane>
             </content>
           </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="addCustButton" layoutX="138.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionAddCust" text="Add" />
-      <Button fx:id="deleteCustButton" layoutX="423.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionDeleteCust" text="Delete" />
-      <Button fx:id="addAptButton" layoutX="711.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionAddApt" text="Add" />
-      <Button fx:id="deleteAptButton" layoutX="1022.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionDeleteApt" text="Delete" />
+      <Button fx:id="addCustButton" layoutX="249.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionAddCust" text="Add" />
+      <Button fx:id="deleteCustButton" layoutX="426.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionDeleteCust" text="Delete" />
+      <Button fx:id="addAptButton" layoutX="939.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionAddApt" text="Add" />
+      <Button fx:id="deleteAptButton" layoutX="1114.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionDeleteApt" text="Delete" />
    </children>
 </AnchorPane>

@@ -10,9 +10,9 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CustController">
    <children>
       <ComboBox fx:id="custCountry" layoutX="373.0" layoutY="106.0" prefHeight="45.0" prefWidth="171.0" />
-      <ComboBox fx:id="custState" layoutX="373.0" layoutY="247.0" prefHeight="45.0" prefWidth="171.0" />
+      <ComboBox fx:id="custState" layoutX="373.0" layoutY="233.0" prefHeight="45.0" prefWidth="171.0" />
       <Label layoutX="437.0" layoutY="85.0" text="Country" />
-      <Label layoutX="413.0" layoutY="225.0" text="State/Providence" />
+      <Label layoutX="413.0" layoutY="212.0" text="State/Providence" />
       <Label layoutX="10.0" layoutY="269.0" prefHeight="25.0" prefWidth="65.0" text="Postal Code" />
       <Label layoutX="21.0" layoutY="335.0" text="Phone" />
       <Label layoutX="21.0" layoutY="212.0" text="Address" />

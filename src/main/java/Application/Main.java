@@ -1,11 +1,14 @@
 package Application;
 
+import dao.CustomerQs;
+import dao.JDBC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class Main extends Application {
     @Override
@@ -17,8 +20,22 @@ public class Main extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
+        JDBC.openConnection();
         launch();
+
+        int rowsAffected = CustomerQs.insert("John","Texas","a123",5555555, null, "Tester", null, "Tester", 24);
+
+        if(rowsAffected > 0)
+        {
+            System.out.println("Insert Successful!");
+        }
+        else
+        {
+            System.out.println("Insert Failed!");
+        }
+
+        JDBC.closeConnection();
     }
 
     //Github testing blah blah blah
