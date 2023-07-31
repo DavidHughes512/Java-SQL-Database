@@ -1,14 +1,16 @@
 package models;
 
+import java.sql.Timestamp;
+
 public class Countries {
 
     //==============================Declaring Variables==============================
 
     private int Country_ID;
     private String Country;
-    //DATETIME Create_Date
+    private java.sql.Timestamp Create_Date;
     private String Created_By;
-    //TIMESTAMP Last_Update
+    private java.sql.Timestamp Last_Update;
     private String Last_Updated_By;
 
 
@@ -45,4 +47,22 @@ public class Countries {
     public void setLast_Updated_By(String last_Updated_By) {
         Last_Updated_By = last_Updated_By;
     }
+
+    public Timestamp getCreate_Date() {
+        return Create_Date;
+    }
+
+    public void setCreate_Date(Timestamp create_Date) {
+        Create_Date = create_Date;
+    }
+
+    public Timestamp getLast_Update() {
+        return Last_Update;
+    }
+
+    public void setLast_Update(Timestamp last_Update) {
+        Last_Update = last_Update;
+    }
 }
+
+

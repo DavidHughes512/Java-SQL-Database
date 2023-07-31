@@ -3,6 +3,7 @@ package controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -12,13 +13,17 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class LoginController {
 
+
     Stage stage;
     Parent scene;
-
-
+    ResourceBundle rb = ResourceBundle.getBundle("/Languages", Locale.getDefault());
+    @FXML
+    private Label currentRegion;
     @FXML
     private Label Region;
 
@@ -48,6 +53,11 @@ public class LoginController {
         stage.setScene(new Scene(scene));
         stage.show();
     }
-
-
+    @FXML
+    public void initialize(){
+        currentRegion.setText(String.valueOf(Locale.getDefault()));
+    }
 }
+
+
+

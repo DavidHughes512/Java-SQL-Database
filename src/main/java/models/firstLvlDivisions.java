@@ -1,14 +1,16 @@
 package models;
 
+import java.sql.Timestamp;
+
 public class firstLvlDivisions {
 
 
     //==============================Declaring Methods==============================
     private int Division_ID;
     private String Division;
-    //DATETIME Create_Date;
+    private java.sql.Timestamp Create_Date;
     private String Created_By;
-    //TIMESTAMP Last_Updated;
+    private java.sql.Timestamp Last_Updated;
     private String Last_Updated_by;
     private int Country_ID;
 
@@ -52,5 +54,21 @@ public class firstLvlDivisions {
 
     public void setCountry_ID(int country_ID) {
         Country_ID = country_ID;
+    }
+
+    public Timestamp getCreate_Date() {
+        return Create_Date;
+    }
+
+    public void setCreate_Date(Timestamp create_Date) {
+        Create_Date = create_Date;
+    }
+
+    public Timestamp getLast_Updated() {
+        return Last_Updated;
+    }
+
+    public void setLast_Updated(Timestamp last_Updated) {
+        Last_Updated = last_Updated;
     }
 }

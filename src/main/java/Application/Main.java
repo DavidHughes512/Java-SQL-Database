@@ -1,43 +1,55 @@
 package Application;
 
+import controllers.LoginController;
 import dao.CustomerQs;
 import dao.JDBC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import models.Customers;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader (Main.class.getResource("/Login.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader (Main.class.getResource("/Views/Login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        stage.setTitle("Hello!");
+        stage.setTitle("Omega Database Application");
         stage.setScene(scene);
         stage.show();
     }
 
-    public static void main(String[] args) throws SQLException {
-        JDBC.openConnection();
-        launch();
+    public static void main(String[] args) throws SQLException, InvocationTargetException {
 
-        int rowsAffected = CustomerQs.insert("John","Texas","a123",5555555, null, "Tester", null, "Tester", 24);
+        ResourceBundle rb = ResourceBundle.getBundle("/Languages", Locale.getDefault());
+        if (Locale.getDefault().getLanguage().equals("fr")) {
+            System.out.println(rb.getString("hello") + " " + rb.getString("world"));
 
-        if(rowsAffected > 0)
-        {
-            System.out.println("Insert Successful!");
         }
         else
         {
-            System.out.println("Insert Failed!");
+         System.out.println("ur in english gofy");
         }
+
+        JDBC.openConnection();
+        launch();
+
+        //System.out.println(System.currentTimeMillis());
+
+        CustomerQs.selectByDivision(29);
+
+        Customers.CustomerList.clear();
 
         JDBC.closeConnection();
     }
 
-    //Github testing blah blah blah
-    //Locale.setDefault(new Locale("fr"));
+        //Github testing blah blah blah
+        //Locale.setDefault(new Locale("fr"));
+
 }

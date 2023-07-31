@@ -1,6 +1,12 @@
 package controllers;
 
+import dao.CustomerQs;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import models.Appointments;
+import models.Contacts;
 import models.Customers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +17,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.StringReader;
+import java.sql.SQLException;
 
 public class HomeController {
 
@@ -20,29 +28,30 @@ Parent scene;
 
     //==============================Customer Tableview==============================\\
 
-    @FXML
-    private TableView<?> custTableView;
 
     @FXML
-    private TableColumn<?, ?> CustAddressCol;
+    private TableView<Customers> custTableView;
 
     @FXML
-    private TableColumn<?, ?> CustCountryCol;
+    private TableColumn<Customers, String> CustAddressCol;
 
     @FXML
-    private TableColumn<?, ?> CustIdCol;
+    private TableColumn<Customers, String> CustCountryCol;
 
     @FXML
-    private TableColumn<?, ?> CustNameCol;
+    private TableColumn<Customers, Integer> CustIdCol;
 
     @FXML
-    private TableColumn<?, ?> CustPhoneCol;
+    private TableColumn<Customers, String> CustNameCol;
 
     @FXML
-    private TableColumn<?, ?> CustPostCol;
+    private TableColumn<Customers, String> CustPhoneCol;
 
     @FXML
-    private TableColumn<?, ?> CustStateCol;
+    private TableColumn<Customers, String> CustPostCol;
+
+    @FXML
+    private TableColumn<Customers, String> CustStateCol;
 
 
     //==============================Customer Tableview Buttons==============================\\
@@ -66,80 +75,80 @@ Parent scene;
     private Tab weekTab;
 
     @FXML
-    private TableView<?> weekAptTableView;
+    private TableView<Appointments> weekAptTableView;
 
     @FXML
-    private TableView<?> monthAptTableView;
+    private TableView<Appointments> monthAptTableView;
 
     @FXML
-    private TableView<?> allAptTableView;
+    private TableView<Appointments> allAptTableView;
 
     //==============================All Appointments Tableview==============================\\
 
 
     @FXML
-    private TableColumn<?, ?> allAptContactCol;
+    private TableColumn<Appointments, ?> allAptContactCol;
 
     @FXML
-    private TableColumn<?, ?> allAptCustIdCol;
+    private TableColumn<Appointments, ?> allAptCustIdCol;
 
     @FXML
-    private TableColumn<?, ?> allAptDescCol;
+    private TableColumn<Appointments, ?> allAptDescCol;
 
     @FXML
-    private TableColumn<?, ?> allAptEndCol;
+    private TableColumn<Appointments, ?> allAptEndCol;
 
     @FXML
-    private TableColumn<?, ?> allAptIdCol;
+    private TableColumn<Appointments, ?> allAptIdCol;
 
     @FXML
-    private TableColumn<?, ?> allAptLocationCol;
+    private TableColumn<Appointments, ?> allAptLocationCol;
 
     @FXML
-    private TableColumn<?, ?> allAptStartCol;
+    private TableColumn<Appointments, ?> allAptStartCol;
 
     @FXML
-    private TableColumn<?, ?> allAptTitleCol;
+    private TableColumn<Appointments, ?> allAptTitleCol;
 
     @FXML
-    private TableColumn<?, ?> allAptTypeCol;
+    private TableColumn<Appointments, ?> allAptTypeCol;
 
     @FXML
-    private TableColumn<?, ?> allAptUserIdCol;
+    private TableColumn<Appointments, ?> allAptUserIdCol;
 
 
 
     //==============================Month Appointments Tableview==============================\\
 
     @FXML
-    private TableColumn<?, ?> monthAptContactCol;
+    private TableColumn<Appointments, ?> monthAptContactCol;
 
     @FXML
-    private TableColumn<?, ?> monthAptCustIdCol;
+    private TableColumn<Appointments, ?> monthAptCustIdCol;
 
     @FXML
-    private TableColumn<?, ?> monthAptDescCol;
+    private TableColumn<Appointments, ?> monthAptDescCol;
 
     @FXML
-    private TableColumn<?, ?> monthAptEndCol;
+    private TableColumn<Appointments, ?> monthAptEndCol;
 
     @FXML
-    private TableColumn<?, ?> monthAptIdCol;
+    private TableColumn<Appointments, ?> monthAptIdCol;
 
     @FXML
-    private TableColumn<?, ?> monthAptLocationCol;
+    private TableColumn<Appointments, ?> monthAptLocationCol;
 
     @FXML
-    private TableColumn<?, ?> monthAptStartCol;
+    private TableColumn<Appointments, ?> monthAptStartCol;
 
     @FXML
-    private TableColumn<?, ?> monthAptTitleCol;
+    private TableColumn<Appointments, ?> monthAptTitleCol;
 
     @FXML
-    private TableColumn<?, ?> monthAptTypeCol;
+    private TableColumn<Appointments, ?> monthAptTypeCol;
 
     @FXML
-    private TableColumn<?, ?> monthAptUserIdCol;
+    private TableColumn<Appointments, ?> monthAptUserIdCol;
 
 
 
@@ -148,34 +157,34 @@ Parent scene;
     //==============================Week Appointments Tableview==============================\\
 
     @FXML
-    private TableColumn<?, ?> weekAptContactCol;
+    private TableColumn<Appointments, ?> weekAptContactCol;
 
     @FXML
-    private TableColumn<?, ?> weekAptCustIdCol;
+    private TableColumn<Appointments, ?> weekAptCustIdCol;
 
     @FXML
-    private TableColumn<?, ?> weekAptDescCol;
+    private TableColumn<Appointments, ?> weekAptDescCol;
 
     @FXML
-    private TableColumn<?, ?> weekAptEndCol;
+    private TableColumn<Appointments, ?> weekAptEndCol;
 
     @FXML
-    private TableColumn<?, ?> weekAptIdCol;
+    private TableColumn<Appointments, ?> weekAptIdCol;
 
     @FXML
-    private TableColumn<?, ?> weekAptLocationCol;
+    private TableColumn<Appointments, ?> weekAptLocationCol;
 
     @FXML
-    private TableColumn<?, ?> weekAptStartCol;
+    private TableColumn<Appointments, ?> weekAptStartCol;
 
     @FXML
-    private TableColumn<?, ?> weekAptTitleCol;
+    private TableColumn<Appointments, ?> weekAptTitleCol;
 
     @FXML
-    private TableColumn<?, ?> weekAptTypeCol;
+    private TableColumn<Appointments, ?> weekAptTypeCol;
 
     @FXML
-    private TableColumn<?, ?> weekAptUserIdCol;
+    private TableColumn<Appointments, ?> weekAptUserIdCol;
 
 
 
@@ -295,4 +304,33 @@ Parent scene;
         }
 
     }
+
+    @FXML
+    void initialize() throws SQLException {
+        //======================= SETTING VALUES FOR CUSTOMERS TABLE =======================
+
+
+        custTableView.setItems(Customers.CustomerList);
+        CustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
+        CustNameCol.setCellValueFactory(new PropertyValueFactory<>("Customer_Name"));
+        CustAddressCol.setCellValueFactory(new PropertyValueFactory<>("Address"));
+        CustPostCol.setCellValueFactory(new PropertyValueFactory<>("Postal_Code"));
+        CustPhoneCol.setCellValueFactory(new PropertyValueFactory<>("Phone"));
+
+
+
+
+
+
+
+
+        //======================= SETTING VALUES FOR APPOINTMENTS TABLES =======================
+
+
+
+
+
+    }
+
+
 }

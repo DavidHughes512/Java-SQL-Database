@@ -1,5 +1,6 @@
 package controllers;
 
+import dao.AppointmentQs;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import models.Appointments;
 
 import java.io.IOException;
 
@@ -17,6 +19,8 @@ public class EAptController {
 
     Stage stage;
     Parent scene;
+
+    Appointments eAppointment;
 
     @FXML
     private TextField appointmentIDTXT;
@@ -64,6 +68,7 @@ public class EAptController {
 
     @FXML
     void onActionSaveApt(ActionEvent event) throws IOException{
+
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/Views/Home.fxml"));
         stage.setScene(new Scene(scene));

@@ -1,5 +1,12 @@
 package models;
 
+import dao.CustomerQs;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.sql.SQLException;
+import java.sql.Timestamp;
+
 public class Customers {
 
     //==============================Declaring Variables==============================
@@ -9,12 +16,17 @@ public class Customers {
     private String Address;
     private String Postal_Code;
     private String Phone;
-    //DATETIME Create_Date;
-    private String Created_By;
-    //TIMESTAMP Last_Update;
-    private String Last_Updated_By;
+    //private java.sql.Timestamp Create_Date;
+   // private String Created_By;
+    //private java.sql.Timestamp Last_Update;
+   // private String Last_Updated_By;
     private int Division_ID;
 
+    public static ObservableList<Customers> CustomerList = FXCollections.observableArrayList();
+
+    public Customers(int customerId, String customerName, String address, String postalCode, String phone, int divisionId) {
+
+    }
 
 
     //==============================Declaring Methods==============================
@@ -59,7 +71,7 @@ public class Customers {
         Phone = phone;
     }
 
-    public String getCreated_By() {
+    /*public String getCreated_By() {
         return Created_By;
     }
 
@@ -75,6 +87,25 @@ public class Customers {
         Last_Updated_By = last_Updated_By;
     }
 
+
+
+    public Timestamp getCreate_Date() {
+        return Create_Date;
+    }
+
+    public void setCreate_Date(Timestamp create_Date) {
+        Create_Date = create_Date;
+    }
+
+    public Timestamp getLast_Update() {
+        return Last_Update;
+    }
+
+    public void setLast_Update(Timestamp last_Update) {
+        Last_Update = last_Update;
+    }
+
+     */
     public int getDivision_ID() {
         return Division_ID;
     }
@@ -82,6 +113,7 @@ public class Customers {
     public void setDivision_ID(int division_ID) {
         Division_ID = division_ID;
     }
-
-
+    public void getAllCustomers() throws SQLException {
+        CustomerQs.select();
+    }
 }

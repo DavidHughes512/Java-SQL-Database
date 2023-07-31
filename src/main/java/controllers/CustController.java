@@ -19,6 +19,7 @@ public class CustController {
 
     Parent scene;
 
+    Customers eCustomer;
 
     @FXML
     private TextField custAddress;
