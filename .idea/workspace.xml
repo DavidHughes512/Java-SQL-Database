@@ -4,25 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eafdf75b-a631-46be-98ec-b4048cb43867" name="Changes" comment="Added JDBC Connections and insert method">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dao/AppointmentQs.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Languages.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Languages_en.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Languages_fr.properties" afterDir="false" />
+    <list default="true" id="eafdf75b-a631-46be-98ec-b4048cb43867" name="Changes" comment="Created Querey files. Uploading for test in Testing enviornment">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Application/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/CustController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/CustController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/EAptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/EAptController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/AppointmentQs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/AppointmentQs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dao/CustomerQs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/CustomerQs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dao/JDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/JDBC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/Countries.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Countries.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/Appointments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Appointments.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/models/Customers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Customers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Users.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/firstLvlDivisions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/firstLvlDivisions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Views/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Views/main-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/main-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Views/Home.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/Home.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,7 +153,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690256368584</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Created Querey files. Uploading for test in Testing enviornment">
+      <created>1690843773344</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1690843773344</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -187,7 +183,8 @@
     <MESSAGE value="Updated fxml files and project structure. Added button functionality and scene changes to Customer page" />
     <MESSAGE value="Added Home class and tableViews. Updated FXML files and screen functions" />
     <MESSAGE value="Added JDBC Connections and insert method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added JDBC Connections and insert method" />
+    <MESSAGE value="Created Querey files. Uploading for test in Testing enviornment" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created Querey files. Uploading for test in Testing enviornment" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

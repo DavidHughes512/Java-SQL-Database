@@ -1,5 +1,7 @@
 package dao;
 
+import models.Appointments;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -60,21 +62,25 @@ public class AppointmentQs {
         String sql = "SELECT * FROM APPOINTMENTS";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
-        while(rs.next()){
-            int appointmentID = rs.getInt("Appointment_ID");
-            String title = rs.getString("Title");
-            String description = rs.getString("Description");
-            String location = rs.getString("Location");
-            String type = rs.getString("Type");
-            java.sql.Timestamp start = rs.getTimestamp("Start");
-            java.sql.Timestamp end = rs.getTimestamp("End");
-            java.sql.Timestamp createdDate = rs.getTimestamp("Create_Date");
-            String createdBy = rs.getString("Created_By");
-            java.sql.Timestamp lastUpdateDate = rs.getTimestamp("Last_Update");
-            String lastUpdatedBy = rs.getString("Last_Updated_By");
-            int custId = rs.getInt("Customer_ID");
-            int userID = rs.getInt("User_ID");
-            int contactID = rs.getInt("Contact_ID");
+        while(rs.next()) {
+            Appointments.allApts.add(new Appointments(
+            rs.getInt("Appointment_ID"),
+            rs.getString("Title"),
+            rs.getString("Description"),
+            rs.getString("Location"),
+            rs.getString("Type"),
+            rs.getDate("Start"),
+            rs.getDate("End"),
+            rs.getDate("Create_Date"),
+            rs.getString("Created_By"),
+            rs.getTimestamp("Last_Update"),
+            rs.getString("Last_Updated_By"),
+            rs.getInt("Customer_ID"),
+            rs.getInt("User_ID"),
+            rs.getInt("Contact_ID")));
+
+
+            /*
             System.out.print(appointmentID + " | ");
             System.out.print(title + " | ");
             System.out.print(description + " | ");
@@ -89,43 +95,56 @@ public class AppointmentQs {
             System.out.print(custId + " | ");
             System.out.print(userID + " | ");
             System.out.print(contactID + "\n");
+
+             */
         }
     }
 
 
-    public static void selectByDivision(int divisonID) throws SQLException {
-        String sql = "SELECT * FROM CUSTOMERS WHERE Division_ID = ?";
+    public static void selectByWeek() throws SQLException {
+        String sql = "SELECT * FROM APPOINTMENTS WHERE Start BETWEEN GETDATE() and GETDATE() +7";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while(rs.next()) {
-            int appointmentID = rs.getInt("Appointment_ID");
-            String title = rs.getString("Title");
-            String description = rs.getString("Description");
-            String location = rs.getString("Location");
-            String type = rs.getString("Type");
-            java.sql.Timestamp start = rs.getTimestamp("Start");
-            java.sql.Timestamp end = rs.getTimestamp("End");
-            java.sql.Timestamp createdDate = rs.getTimestamp("Create_Date");
-            String createdBy = rs.getString("Created_By");
-            java.sql.Timestamp lastUpdateDate = rs.getTimestamp("Last_Update");
-            String lastUpdatedBy = rs.getString("Last_Updated_By");
-            int custId = rs.getInt("Customer_ID");
-            int userID = rs.getInt("User_ID");
-            int contactID = rs.getInt("Contact_ID");
-            System.out.print(appointmentID + " | ");
-            System.out.print(title + " | ");
-            System.out.print(description + " | ");
-            System.out.print(location + " | ");
-            System.out.print(type + " | ");
-            System.out.print(start + " | ");
-            System.out.print(end + " | ");
-            System.out.print(createdDate + " | ");
-            System.out.print(createdBy + " | ");
-            System.out.print(lastUpdateDate + " | ");
-            System.out.print(lastUpdatedBy + " | ");
-            System.out.print(custId + " | ");
-            System.out.print(userID + " | ");
-            System.out.print(contactID + "\n");
+            Appointments.weekApts.add(new Appointments(
+                    rs.getInt("Appointment_ID"),
+                    rs.getString("Title"),
+                    rs.getString("Description"),
+                    rs.getString("Location"),
+                    rs.getString("Type"),
+                    rs.getDate("Start"),
+                    rs.getDate("End"),
+                    rs.getDate("Create_Date"),
+                    rs.getString("Created_By"),
+                    rs.getTimestamp("Last_Update"),
+                    rs.getString("Last_Updated_By"),
+                    rs.getInt("Customer_ID"),
+                    rs.getInt("User_ID"),
+                    rs.getInt("Contact_ID")));
+        }
+    }
+
+
+    public static void selectByMonth() throws SQLException {
+        String sql = "SELECT * FROM APPOINTMENTS WHERE Start BETWEEN GETDATE() and GETDATE() +31";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()) {
+            Appointments.monthApts.add(new Appointments(
+                    rs.getInt("Appointment_ID"),
+                    rs.getString("Title"),
+                    rs.getString("Description"),
+                    rs.getString("Location"),
+                    rs.getString("Type"),
+                    rs.getDate("Start"),
+                    rs.getDate("End"),
+                    rs.getDate("Create_Date"),
+                    rs.getString("Created_By"),
+                    rs.getTimestamp("Last_Update"),
+                    rs.getString("Last_Updated_By"),
+                    rs.getInt("Customer_ID"),
+                    rs.getInt("User_ID"),
+                    rs.getInt("Contact_ID")));
         }
     }
 

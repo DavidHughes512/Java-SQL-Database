@@ -1,5 +1,6 @@
 package controllers;
 
+import dao.AppointmentQs;
 import dao.CustomerQs;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,6 +20,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.io.StringReader;
 import java.sql.SQLException;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 public class HomeController {
 
@@ -87,68 +90,68 @@ Parent scene;
 
 
     @FXML
-    private TableColumn<Appointments, ?> allAptContactCol;
+    private TableColumn<Appointments, Integer> allAptContactCol;
 
     @FXML
-    private TableColumn<Appointments, ?> allAptCustIdCol;
+    private TableColumn<Appointments, Integer> allAptCustIdCol;
 
     @FXML
-    private TableColumn<Appointments, ?> allAptDescCol;
+    private TableColumn<Appointments, String> allAptDescCol;
 
     @FXML
-    private TableColumn<Appointments, ?> allAptEndCol;
+    private TableColumn<Appointments, java.sql.Date> allAptEndCol;
 
     @FXML
-    private TableColumn<Appointments, ?> allAptIdCol;
+    private TableColumn<Appointments, Integer> allAptIdCol;
 
     @FXML
-    private TableColumn<Appointments, ?> allAptLocationCol;
+    private TableColumn<Appointments, String> allAptLocationCol;
 
     @FXML
-    private TableColumn<Appointments, ?> allAptStartCol;
+    private TableColumn<Appointments, java.sql.Date> allAptStartCol;
 
     @FXML
-    private TableColumn<Appointments, ?> allAptTitleCol;
+    private TableColumn<Appointments, String> allAptTitleCol;
 
     @FXML
-    private TableColumn<Appointments, ?> allAptTypeCol;
+    private TableColumn<Appointments, String> allAptTypeCol;
 
     @FXML
-    private TableColumn<Appointments, ?> allAptUserIdCol;
+    private TableColumn<Appointments, Integer> allAptUserIdCol;
 
 
 
     //==============================Month Appointments Tableview==============================\\
 
     @FXML
-    private TableColumn<Appointments, ?> monthAptContactCol;
+    private TableColumn<Appointments, String> monthAptContactCol;
 
     @FXML
-    private TableColumn<Appointments, ?> monthAptCustIdCol;
+    private TableColumn<Appointments, Integer> monthAptCustIdCol;
 
     @FXML
-    private TableColumn<Appointments, ?> monthAptDescCol;
+    private TableColumn<Appointments, String> monthAptDescCol;
 
     @FXML
-    private TableColumn<Appointments, ?> monthAptEndCol;
+    private TableColumn<Appointments, Timestamp> monthAptEndCol;
 
     @FXML
-    private TableColumn<Appointments, ?> monthAptIdCol;
+    private TableColumn<Appointments, Integer> monthAptIdCol;
 
     @FXML
-    private TableColumn<Appointments, ?> monthAptLocationCol;
+    private TableColumn<Appointments, String> monthAptLocationCol;
 
     @FXML
-    private TableColumn<Appointments, ?> monthAptStartCol;
+    private TableColumn<Appointments, Timestamp> monthAptStartCol;
 
     @FXML
-    private TableColumn<Appointments, ?> monthAptTitleCol;
+    private TableColumn<Appointments, String> monthAptTitleCol;
 
     @FXML
-    private TableColumn<Appointments, ?> monthAptTypeCol;
+    private TableColumn<Appointments, String> monthAptTypeCol;
 
     @FXML
-    private TableColumn<Appointments, ?> monthAptUserIdCol;
+    private TableColumn<Appointments, Integer> monthAptUserIdCol;
 
 
 
@@ -157,34 +160,34 @@ Parent scene;
     //==============================Week Appointments Tableview==============================\\
 
     @FXML
-    private TableColumn<Appointments, ?> weekAptContactCol;
+    private TableColumn<Appointments, String> weekAptContactCol;
 
     @FXML
-    private TableColumn<Appointments, ?> weekAptCustIdCol;
+    private TableColumn<Appointments, Integer> weekAptCustIdCol;
 
     @FXML
-    private TableColumn<Appointments, ?> weekAptDescCol;
+    private TableColumn<Appointments, String> weekAptDescCol;
 
     @FXML
-    private TableColumn<Appointments, ?> weekAptEndCol;
+    private TableColumn<Appointments, Timestamp> weekAptEndCol;
 
     @FXML
-    private TableColumn<Appointments, ?> weekAptIdCol;
+    private TableColumn<Appointments, Integer> weekAptIdCol;
 
     @FXML
-    private TableColumn<Appointments, ?> weekAptLocationCol;
+    private TableColumn<Appointments, String> weekAptLocationCol;
 
     @FXML
-    private TableColumn<Appointments, ?> weekAptStartCol;
+    private TableColumn<Appointments, Timestamp> weekAptStartCol;
 
     @FXML
-    private TableColumn<Appointments, ?> weekAptTitleCol;
+    private TableColumn<Appointments, String> weekAptTitleCol;
 
     @FXML
-    private TableColumn<Appointments, ?> weekAptTypeCol;
+    private TableColumn<Appointments, String> weekAptTypeCol;
 
     @FXML
-    private TableColumn<Appointments, ?> weekAptUserIdCol;
+    private TableColumn<Appointments, Integer> weekAptUserIdCol;
 
 
 
@@ -305,11 +308,14 @@ Parent scene;
 
     }
 
+
+
+
     @FXML
     void initialize() throws SQLException {
         //======================= SETTING VALUES FOR CUSTOMERS TABLE =======================
 
-
+        CustomerQs.select();
         custTableView.setItems(Customers.CustomerList);
         CustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
         CustNameCol.setCellValueFactory(new PropertyValueFactory<>("Customer_Name"));
@@ -323,10 +329,25 @@ Parent scene;
 
 
 
-
         //======================= SETTING VALUES FOR APPOINTMENTS TABLES =======================
 
+        AppointmentQs.select();
+        //AppointmentQs.selectByMonth();
+        //AppointmentQs.selectByWeek();
+        allAptTableView.setItems(Appointments.allApts);
+        allAptIdCol.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
+        allAptTitleCol.setCellValueFactory(new PropertyValueFactory<>("Title"));
+        allAptDescCol.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        allAptLocationCol.setCellValueFactory(new PropertyValueFactory<>("Location"));
+        allAptContactCol.setCellValueFactory(new PropertyValueFactory<>("Contact_ID"));
+        allAptTypeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
+        allAptStartCol.setCellValueFactory(new PropertyValueFactory<>("Start"));
+        allAptEndCol.setCellValueFactory(new PropertyValueFactory<>("End"));
+        allAptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
+        allAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
 
+        weekAptTableView.setItems(Appointments.weekApts);
+        monthAptTableView.setItems(Appointments.monthApts);
 
 
 

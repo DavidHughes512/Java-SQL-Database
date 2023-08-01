@@ -57,28 +57,16 @@ public abstract class CustomerQs {
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while(rs.next()){
-            Customers.CustomerList.add(new Customers(
-            rs.getInt("Customer_ID"),
-            rs.getString("Customer_Name"),
-            rs.getString("Address"),
-            rs.getString("Postal_Code"),
-            rs.getString("Phone"),
-            rs.getInt("Division_ID")));
+            Customers.CustomerList.add(new Customers(rs.getInt("Customer_ID"),
+                    rs.getString("Customer_Name"),
+                    rs.getString("Address"),
+                    rs.getString("Postal_Code"),
+                    rs.getString("Phone"),
+                    rs.getInt("Division_ID")));
+
         }
     }
-  /*
-            System.out.print(custID + " | ");
-            System.out.print(address + " | ");
-            System.out.print(postCode + " | ");
-            System.out.print(phone + " | ");
-            System.out.print(createdDate + " | ");
-            System.out.print(createdBy + " | ");
-            System.out.print(lastUpdateDate + " | ");
-            System.out.print(lastUpdatedBy + " | ");
-            System.out.print(division + " | ");
-            System.out.print(name + "\n");
 
-              */
 
     public static void selectByDivision(int divisonID) throws SQLException {
         String sql = "SELECT * FROM CUSTOMERS WHERE Division_ID = ?";

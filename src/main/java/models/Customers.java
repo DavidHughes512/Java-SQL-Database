@@ -25,7 +25,12 @@ public class Customers {
     public static ObservableList<Customers> CustomerList = FXCollections.observableArrayList();
 
     public Customers(int customerId, String customerName, String address, String postalCode, String phone, int divisionId) {
-
+        Customer_ID = customerId;
+        Customer_Name = customerName;
+        Address = address;
+        Postal_Code = postalCode;
+        Phone = phone;
+        Division_ID = divisionId;
     }
 
 

@@ -1,5 +1,10 @@
 package models;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.sql.Timestamp;
+
 public class Appointments {
 
     //==============================Declaring Variables==============================
@@ -9,16 +14,38 @@ public class Appointments {
     private String Description;
     private String Location;
     private String Type;
-    //DATETIME Start;
-    //DATETIME End;
-    //DATETIME Create_Date;
+    java.sql.Date Start;
+    java.sql.Date End;
+    java.sql.Date Create_Date;
     private String Created_By;
-    //TIMESTAMP Last_updated;
+    java.sql.Timestamp Last_updated;
     private String Last_Updated_By;
     private int Customer_ID;
     private int User_ID;
     private int Contact_ID;
 
+    public static ObservableList<Appointments> allApts = FXCollections.observableArrayList();
+
+    public static ObservableList<Appointments> weekApts= FXCollections.observableArrayList();
+
+    public static ObservableList<Appointments> monthApts = FXCollections.observableArrayList();
+
+    public Appointments(int appointment_ID, String title, String description, String location, String type, java.sql.Date start, java.sql.Date end, java.sql.Date create_Date, String created_By, java.sql.Timestamp last_updated, String last_Updated_By, int customer_ID, int user_ID, int contact_ID) {
+        Appointment_ID = appointment_ID;
+        Title = title;
+        Description = description;
+        Location = location;
+        Type = type;
+        Start = start;
+        End = end;
+        Create_Date = create_Date;
+        Created_By = created_By;
+        Last_updated = last_updated;
+        Last_Updated_By = last_Updated_By;
+        Customer_ID = customer_ID;
+        User_ID = user_ID;
+        Contact_ID = contact_ID;
+    }
 
     //==============================Declaring Methods==============================
 
