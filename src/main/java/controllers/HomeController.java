@@ -314,14 +314,24 @@ Parent scene;
     @FXML
     void initialize() throws SQLException {
         //======================= SETTING VALUES FOR CUSTOMERS TABLE =======================
+        if(Appointments.allApts.isEmpty()){
+            CustomerQs.select();
+            custTableView.setItems(Customers.CustomerList);
+            CustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
+            CustNameCol.setCellValueFactory(new PropertyValueFactory<>("Customer_Name"));
+            CustAddressCol.setCellValueFactory(new PropertyValueFactory<>("Address"));
+            CustPostCol.setCellValueFactory(new PropertyValueFactory<>("Postal_Code"));
+            CustPhoneCol.setCellValueFactory(new PropertyValueFactory<>("Phone"));
+        }
+        else{
+            custTableView.setItems(Customers.CustomerList);
+            CustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
+            CustNameCol.setCellValueFactory(new PropertyValueFactory<>("Customer_Name"));
+            CustAddressCol.setCellValueFactory(new PropertyValueFactory<>("Address"));
+            CustPostCol.setCellValueFactory(new PropertyValueFactory<>("Postal_Code"));
+            CustPhoneCol.setCellValueFactory(new PropertyValueFactory<>("Phone"));
+        }
 
-        CustomerQs.select();
-        custTableView.setItems(Customers.CustomerList);
-        CustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
-        CustNameCol.setCellValueFactory(new PropertyValueFactory<>("Customer_Name"));
-        CustAddressCol.setCellValueFactory(new PropertyValueFactory<>("Address"));
-        CustPostCol.setCellValueFactory(new PropertyValueFactory<>("Postal_Code"));
-        CustPhoneCol.setCellValueFactory(new PropertyValueFactory<>("Phone"));
 
 
 
@@ -331,20 +341,37 @@ Parent scene;
 
         //======================= SETTING VALUES FOR APPOINTMENTS TABLES =======================
 
-        AppointmentQs.select();
+        if(Appointments.allApts.isEmpty()){
+            AppointmentQs.select();
+            allAptTableView.setItems(Appointments.allApts);
+            allAptIdCol.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
+            allAptTitleCol.setCellValueFactory(new PropertyValueFactory<>("Title"));
+            allAptDescCol.setCellValueFactory(new PropertyValueFactory<>("Description"));
+            allAptLocationCol.setCellValueFactory(new PropertyValueFactory<>("Location"));
+            allAptContactCol.setCellValueFactory(new PropertyValueFactory<>("Contact_ID"));
+            allAptTypeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
+            allAptStartCol.setCellValueFactory(new PropertyValueFactory<>("Start"));
+            allAptEndCol.setCellValueFactory(new PropertyValueFactory<>("End"));
+            allAptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
+            allAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
+        }
+        else{
+            allAptTableView.setItems(Appointments.allApts);
+            allAptIdCol.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
+            allAptTitleCol.setCellValueFactory(new PropertyValueFactory<>("Title"));
+            allAptDescCol.setCellValueFactory(new PropertyValueFactory<>("Description"));
+            allAptLocationCol.setCellValueFactory(new PropertyValueFactory<>("Location"));
+            allAptContactCol.setCellValueFactory(new PropertyValueFactory<>("Contact_ID"));
+            allAptTypeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
+            allAptStartCol.setCellValueFactory(new PropertyValueFactory<>("Start"));
+            allAptEndCol.setCellValueFactory(new PropertyValueFactory<>("End"));
+            allAptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
+            allAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
+        }
+
         //AppointmentQs.selectByMonth();
         //AppointmentQs.selectByWeek();
-        allAptTableView.setItems(Appointments.allApts);
-        allAptIdCol.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
-        allAptTitleCol.setCellValueFactory(new PropertyValueFactory<>("Title"));
-        allAptDescCol.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        allAptLocationCol.setCellValueFactory(new PropertyValueFactory<>("Location"));
-        allAptContactCol.setCellValueFactory(new PropertyValueFactory<>("Contact_ID"));
-        allAptTypeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
-        allAptStartCol.setCellValueFactory(new PropertyValueFactory<>("Start"));
-        allAptEndCol.setCellValueFactory(new PropertyValueFactory<>("End"));
-        allAptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
-        allAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
+
 
         weekAptTableView.setItems(Appointments.weekApts);
         monthAptTableView.setItems(Appointments.monthApts);

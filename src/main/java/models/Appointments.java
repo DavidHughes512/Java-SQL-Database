@@ -3,6 +3,7 @@ package models;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 public class Appointments {
@@ -14,11 +15,11 @@ public class Appointments {
     private String Description;
     private String Location;
     private String Type;
-    java.sql.Date Start;
-    java.sql.Date End;
-    java.sql.Date Create_Date;
+    private java.sql.Timestamp Start;
+    private java.sql.Timestamp End;
+    private java.sql.Date Create_Date;
     private String Created_By;
-    java.sql.Timestamp Last_updated;
+    private java.sql.Timestamp Last_updated;
     private String Last_Updated_By;
     private int Customer_ID;
     private int User_ID;
@@ -30,7 +31,7 @@ public class Appointments {
 
     public static ObservableList<Appointments> monthApts = FXCollections.observableArrayList();
 
-    public Appointments(int appointment_ID, String title, String description, String location, String type, java.sql.Date start, java.sql.Date end, java.sql.Date create_Date, String created_By, java.sql.Timestamp last_updated, String last_Updated_By, int customer_ID, int user_ID, int contact_ID) {
+    public Appointments(int appointment_ID, String title, String description, String location, String type, java.sql.Timestamp start, java.sql.Timestamp end, java.sql.Date create_Date, String created_By, java.sql.Timestamp last_updated, String last_Updated_By, int customer_ID, int user_ID, int contact_ID) {
         Appointment_ID = appointment_ID;
         Title = title;
         Description = description;
@@ -49,6 +50,39 @@ public class Appointments {
 
     //==============================Declaring Methods==============================
 
+
+    public Timestamp getStart() {
+        return Start;
+    }
+
+    public void setStart(Timestamp start) {
+        Start = start;
+    }
+
+    public Timestamp getEnd() {
+        return End;
+    }
+
+    public void setEnd(Timestamp end) {
+        End = end;
+    }
+
+
+    public Date getCreate_Date() {
+        return Create_Date;
+    }
+
+    public void setCreate_Date(Date create_Date) {
+        Create_Date = create_Date;
+    }
+
+    public Timestamp getLast_updated() {
+        return Last_updated;
+    }
+
+    public void setLast_updated(Timestamp last_updated) {
+        Last_updated = last_updated;
+    }
 
     public int getAppointment_ID() {
         return Appointment_ID;

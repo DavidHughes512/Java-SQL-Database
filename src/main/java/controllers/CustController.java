@@ -25,7 +25,7 @@ public class CustController {
     private TextField custAddress;
 
     @FXML
-    private ComboBox<?> custCountry;
+    private ComboBox<String> custCountry;
 
     @FXML
     private TextField custID;
@@ -40,7 +40,7 @@ public class CustController {
     private TextField custPostal;
 
     @FXML
-    private ComboBox<?> custState;
+    private ComboBox<String> custState;
 
     @FXML
     private Button backHome;

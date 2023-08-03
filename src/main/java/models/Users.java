@@ -1,16 +1,13 @@
 package models;
-
-import java.sql.Timestamp;
-
 public class Users {
 
     //==============================Declaring Variables==============================
     private int User_ID;
     private String User_Name;
     private String Password;
-    private java.sql.Timestamp Create_Date;
+    //DateTime Create_Date
     private  String Created_By;
-    private java.sql.Timestamp Last_Update;
+    //timestamp Last_Update
     private String Last_Updated_By;
 
     //==============================Declaring Methods==============================
@@ -53,21 +50,5 @@ public class Users {
 
     public void setLast_Updated_By(String last_Updated_By) {
         Last_Updated_By = last_Updated_By;
-    }
-
-    public Timestamp getCreate_Date() {
-        return Create_Date;
-    }
-
-    public void setCreate_Date(Timestamp create_Date) {
-        Create_Date = create_Date;
-    }
-
-    public Timestamp getLast_Update() {
-        return Last_Update;
-    }
-
-    public void setLast_Update(Timestamp last_Update) {
-        Last_Update = last_Update;
     }
 }

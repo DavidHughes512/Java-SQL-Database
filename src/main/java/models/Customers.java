@@ -7,6 +7,8 @@ import javafx.collections.ObservableList;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+import javafx.collections.ObservableList;
+
 public class Customers {
 
     //==============================Declaring Variables==============================
@@ -32,6 +34,7 @@ public class Customers {
         Phone = phone;
         Division_ID = divisionId;
     }
+
 
 
     //==============================Declaring Methods==============================
