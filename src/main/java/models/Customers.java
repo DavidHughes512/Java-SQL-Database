@@ -25,6 +25,7 @@ public class Customers {
     private int Division_ID;
 
     public static ObservableList<Customers> CustomerList = FXCollections.observableArrayList();
+    public static ObservableList<Customers> DivisionList = FXCollections.observableArrayList();
 
     public Customers(int customerId, String customerName, String address, String postalCode, String phone, int divisionId) {
         Customer_ID = customerId;
@@ -123,5 +124,10 @@ public class Customers {
     }
     public void getAllCustomers() throws SQLException {
         CustomerQs.select();
+    }
+
+    @Override
+    public String toString(){
+        return (Customer_Name);
     }
 }

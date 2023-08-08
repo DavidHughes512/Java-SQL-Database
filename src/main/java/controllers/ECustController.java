@@ -1,5 +1,9 @@
 package controllers;
 
+import dao.CustomerQs;
+import dao.LvLDivisionQs;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,11 +13,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import models.Countries;
 import models.Customers;
+import models.FirstLvlDivisions;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
-public class CustController {
+public class ECustController {
 
     Stage stage;
 
@@ -25,7 +32,7 @@ public class CustController {
     private TextField custAddress;
 
     @FXML
-    private ComboBox<String> custCountry;
+    private ComboBox<Countries> custCountry;
 
     @FXML
     private TextField custID;
@@ -40,7 +47,7 @@ public class CustController {
     private TextField custPostal;
 
     @FXML
-    private ComboBox<String> custState;
+    private ComboBox<FirstLvlDivisions> custState;
 
     @FXML
     private Button backHome;
@@ -68,6 +75,18 @@ public class CustController {
 
     }
 
+    @FXML
+    void onCountrySel(ActionEvent event) throws SQLException {
+        custState.getItems().clear();
+        int divisionID = custCountry.getSelectionModel().getSelectedItem().getCountry_ID();
+        LvLDivisionQs.selectByCountry(divisionID);
+        custState.setItems(FirstLvlDivisions.Divisions);
+    }
+
+    @FXML
+    void onStateSel(ActionEvent event){
+
+    }
 
     public void sendCust(Customers eCust){
         custID.setText(String.valueOf(eCust.getCustomer_ID()));
@@ -75,5 +94,12 @@ public class CustController {
         custAddress.setText(String.valueOf(eCust.getAddress()));
         custPostal.setText(String.valueOf(eCust.getPostal_Code()));
         custPhone.setText(String.valueOf(eCust.getPhone()));
+    }
+
+
+
+    @FXML
+    void initialize(){
+        custCountry.setItems(Countries.Countries);
     }
 }

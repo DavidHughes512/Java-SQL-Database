@@ -8,24 +8,25 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EAptController">
+<Pane maxHeight="400" maxWidth="600" minHeight="400" minWidth="600" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EAptController">
    <children>
-      <TextField fx:id="appointmentIDTXT" disable="true" layoutX="37.0" layoutY="131.0" promptText="Appointment ID - Auto" />
-      <TextField fx:id="locationTXT" layoutX="37.0" layoutY="307.0" promptText="Location" />
-      <TextField fx:id="titleTXT" layoutX="37.0" layoutY="188.0" promptText="Title" />
-      <TextField fx:id="typeTXT" layoutX="404.0" layoutY="77.0" promptText="Type" />
-      <TextField fx:id="userIDTXT" disable="true" layoutX="404.0" layoutY="307.0" promptText="User ID - Auto" />
-      <TextField fx:id="descriptionTXT" layoutX="37.0" layoutY="248.0" promptText="Description" />
-      <TextField fx:id="custIDTXT" disable="true" layoutX="404.0" layoutY="248.0" promptText="Customer ID - Auto" />
-      <ComboBox fx:id="contactCombo" layoutX="36.0" layoutY="77.0" onAction="#onActionContact" prefWidth="150.0" promptText="Contact" />
-      <Label alignment="CENTER" layoutX="232.0" layoutY="20.0" prefHeight="70.0" prefWidth="137.0" text="Appointment Info">
+      <TextField fx:id="appointmentIDTXT" disable="true" layoutX="226.0" layoutY="72.0" promptText="Appointment ID - Auto" />
+      <TextField fx:id="locationTXT" layoutX="226.0" layoutY="170.0" promptText="Location" />
+      <TextField fx:id="titleTXT" layoutX="226.0" layoutY="119.0" promptText="Title" />
+      <TextField fx:id="typeTXT" layoutX="226.0" layoutY="224.0" promptText="Type" />
+      <TextField fx:id="descriptionTXT" layoutX="226.0" layoutY="274.0" promptText="Description" />
+      <ComboBox fx:id="contactCombo" layoutX="36.0" layoutY="77.0" onAction="#onActionContactSel" prefWidth="150.0" promptText="Contact" />
+      <Label alignment="CENTER" layoutX="232.0" layoutY="14.0" prefHeight="70.0" prefWidth="137.0" text="Appointment Info">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <DatePicker fx:id="setAptDate" layoutX="391.0" layoutY="131.0" promptText="Select Date" />
-      <ComboBox fx:id="setAptTime" layoutX="403.0" layoutY="188.0" prefWidth="150.0" promptText="Select Time" />
+      <DatePicker fx:id="setAptDate" layoutX="403.0" layoutY="77.0" promptText="Select Date" />
+      <ComboBox fx:id="setAptStartTime" layoutX="415.0" layoutY="157.0" onAction="#onActionTimeStartSel" prefWidth="150.0" promptText="Select Start Time" />
       <Button fx:id="saveApt" layoutX="206.0" layoutY="348.0" mnemonicParsing="false" onAction="#onActionSaveApt" text="Save" />
       <Button fx:id="aptBack" layoutX="343.0" layoutY="348.0" mnemonicParsing="false" onAction="#onActionAptBack" text="Back" />
+      <ComboBox fx:id="custCombo" layoutX="36.0" layoutY="157.0" onAction="#onActionCustSel" prefWidth="150.0" promptText="Customer" />
+      <ComboBox fx:id="userCombo" layoutX="36.0" layoutY="237.0" onAction="#onActionUserSel" prefWidth="150.0" promptText="User" />
+      <ComboBox fx:id="setAptEndTime" layoutX="415.0" layoutY="236.0" onAction="#onActionTimeEndSel" prefWidth="150.0" promptText="Select End Time" />
    </children>
 </Pane>

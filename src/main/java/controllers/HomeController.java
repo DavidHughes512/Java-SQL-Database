@@ -1,26 +1,19 @@
 package controllers;
 
-import dao.AppointmentQs;
-import dao.CustomerQs;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import dao.*;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Appointments;
-import models.Contacts;
 import models.Customers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.io.StringReader;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.sql.Timestamp;
 
 public class HomeController {
@@ -239,12 +232,12 @@ Parent scene;
             loader.setLocation(getClass().getResource("/Views/Customers.fxml"));
             loader.load();
 
-            CustController ECustController = loader.getController();
-            ECustController.sendCust((Customers) custTableView.getSelectionModel().getSelectedItem());
+            ECustController eCustController = loader.getController();
+            eCustController.sendCust(custTableView.getSelectionModel().getSelectedItem());
 
 
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-            scene = FXMLLoader.load(getClass().getResource("/Views/Home.fxml"));
+            Parent scene = loader.getRoot();
             stage.setScene(new Scene(scene));
             stage.show();
         }
@@ -287,17 +280,18 @@ Parent scene;
     void onActionEdirApt(ActionEvent event) throws IOException {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/Views/Customers.fxml"));
+            loader.setLocation(getClass().getResource("/Views/EditAppointments.fxml"));
             loader.load();
 
-            CustController ECustController = loader.getController();
-            ECustController.sendCust((Customers) custTableView.getSelectionModel().getSelectedItem());
+            EAptController EditAppointmentController = loader.getController();
+            EditAppointmentController.sendApt(allAptTableView.getSelectionModel().getSelectedItem());
 
 
             stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-            scene = FXMLLoader.load(getClass().getResource("/Views/EditAppointments.fxml"));
+            Parent scene = loader.getRoot();
             stage.setScene(new Scene(scene));
             stage.show();
+
         } catch (NullPointerException e) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning!");
@@ -311,10 +305,30 @@ Parent scene;
 
 
 
+
+
+
+
+
+
+
     @FXML
     void initialize() throws SQLException {
+
+        //======================= GETTING VALUES FOR COMBO BOXES =======================
+        ContactQs.select();
+        CountryQs.select();
+        LvLDivisionQs.select();
+        UserQs.select();
+
+        //=========TEST VALUES FOR QUERIES=====================
+        java.sql.Timestamp now = new Timestamp(System.currentTimeMillis());
+        AppointmentQs.insert(3, "Title", "test", "home", "test", now, now, now, "me", now, "Me", 1, 1, 1);
+
+
+
         //======================= SETTING VALUES FOR CUSTOMERS TABLE =======================
-        if(Appointments.allApts.isEmpty()){
+        if(Customers.CustomerList.isEmpty()){
             CustomerQs.select();
             custTableView.setItems(Customers.CustomerList);
             CustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
@@ -369,12 +383,67 @@ Parent scene;
             allAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
         }
 
-        //AppointmentQs.selectByMonth();
-        //AppointmentQs.selectByWeek();
+
+        //======================= SETTING VALUES FOR WEEK TABLE VIEW ==================================
+        if(Appointments.weekApts.isEmpty()){
+            AppointmentQs.selectByWeek();
+            weekAptTableView.setItems(Appointments.weekApts);
+            weekAptIdCol.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
+            weekAptTitleCol.setCellValueFactory(new PropertyValueFactory<>("Title"));
+            weekAptDescCol.setCellValueFactory(new PropertyValueFactory<>("Description"));
+            weekAptLocationCol.setCellValueFactory(new PropertyValueFactory<>("Location"));
+            weekAptContactCol.setCellValueFactory(new PropertyValueFactory<>("Contact_ID"));
+            weekAptTypeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
+            weekAptStartCol.setCellValueFactory(new PropertyValueFactory<>("Start"));
+            weekAptEndCol.setCellValueFactory(new PropertyValueFactory<>("End"));
+            weekAptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
+            weekAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
+        }
+        else{
+            weekAptTableView.setItems(Appointments.weekApts);
+            weekAptIdCol.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
+            weekAptTitleCol.setCellValueFactory(new PropertyValueFactory<>("Title"));
+            weekAptDescCol.setCellValueFactory(new PropertyValueFactory<>("Description"));
+            weekAptLocationCol.setCellValueFactory(new PropertyValueFactory<>("Location"));
+            weekAptContactCol.setCellValueFactory(new PropertyValueFactory<>("Contact_ID"));
+            weekAptTypeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
+            weekAptStartCol.setCellValueFactory(new PropertyValueFactory<>("Start"));
+            weekAptEndCol.setCellValueFactory(new PropertyValueFactory<>("End"));
+            weekAptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
+            weekAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
+        }
 
 
-        weekAptTableView.setItems(Appointments.weekApts);
-        monthAptTableView.setItems(Appointments.monthApts);
+
+        //======================= SETTING VALUES FOR MONTH TABLE VIEW ==================================
+
+        if(Appointments.monthApts.isEmpty()){
+            AppointmentQs.selectByMonth();
+            monthAptTableView.setItems(Appointments.monthApts);
+            monthAptIdCol.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
+            monthAptTitleCol.setCellValueFactory(new PropertyValueFactory<>("Title"));
+            monthAptDescCol.setCellValueFactory(new PropertyValueFactory<>("Description"));
+            monthAptLocationCol.setCellValueFactory(new PropertyValueFactory<>("Location"));
+            monthAptContactCol.setCellValueFactory(new PropertyValueFactory<>("Contact_ID"));
+            monthAptTypeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
+            monthAptStartCol.setCellValueFactory(new PropertyValueFactory<>("Start"));
+            monthAptEndCol.setCellValueFactory(new PropertyValueFactory<>("End"));
+            monthAptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
+            monthAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
+        }else{
+            monthAptTableView.setItems(Appointments.monthApts);
+            monthAptIdCol.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
+            monthAptTitleCol.setCellValueFactory(new PropertyValueFactory<>("Title"));
+            monthAptDescCol.setCellValueFactory(new PropertyValueFactory<>("Description"));
+            monthAptLocationCol.setCellValueFactory(new PropertyValueFactory<>("Location"));
+            monthAptContactCol.setCellValueFactory(new PropertyValueFactory<>("Contact_ID"));
+            monthAptTypeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
+            monthAptStartCol.setCellValueFactory(new PropertyValueFactory<>("Start"));
+            monthAptEndCol.setCellValueFactory(new PropertyValueFactory<>("End"));
+            monthAptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
+            monthAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
+        }
+
 
 
 

@@ -1,17 +1,20 @@
 package Application;
 
 import controllers.LoginController;
+import dao.AppointmentQs;
 import dao.CustomerQs;
 import dao.JDBC;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import models.Appointments;
 import models.Customers;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -38,7 +41,13 @@ public class Main extends Application {
         }
 
         JDBC.openConnection();
+
+
+
         launch();
+
+
+
 
         //System.out.println(System.currentTimeMillis());
 

@@ -1,8 +1,11 @@
 package models;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.Timestamp;
 
-public class firstLvlDivisions {
+public class FirstLvlDivisions {
 
 
     //==============================Declaring Methods==============================
@@ -13,6 +16,19 @@ public class firstLvlDivisions {
     private java.sql.Timestamp Last_Updated;
     private String Last_Updated_by;
     private int Country_ID;
+
+    public static ObservableList<FirstLvlDivisions> States = FXCollections.observableArrayList();
+    public static ObservableList<FirstLvlDivisions> Divisions = FXCollections.observableArrayList();
+
+    public FirstLvlDivisions(int division_ID, String division, Timestamp create_Date, String created_By, Timestamp last_Updated, String last_Updated_by, int country_ID) {
+        Division_ID = division_ID;
+        Division = division;
+        Create_Date = create_Date;
+        Created_By = created_By;
+        Last_Updated = last_Updated;
+        Last_Updated_by = last_Updated_by;
+        Country_ID = country_ID;
+    }
 
     //==============================Declaring Methods==============================
 
@@ -70,5 +86,10 @@ public class firstLvlDivisions {
 
     public void setLast_Updated(Timestamp last_Updated) {
         Last_Updated = last_Updated;
+    }
+
+    @Override
+    public String toString(){
+        return (Division);
     }
 }

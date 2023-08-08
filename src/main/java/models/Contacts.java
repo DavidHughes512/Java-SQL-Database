@@ -1,5 +1,8 @@
 package models;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class Contacts {
 
     //==============================Declaring Variables==============================
@@ -8,6 +11,13 @@ public class Contacts {
     private String Contact_Name;
     private String Email;
 
+    public static ObservableList<Contacts> Contacts = FXCollections.observableArrayList();
+
+    public Contacts(int customer_ID, String contact_Name, String email) {
+        Customer_ID = customer_ID;
+        Contact_Name = contact_Name;
+        Email = email;
+    }
 
     //==============================Declaring Methods==============================
 
@@ -33,5 +43,10 @@ public class Contacts {
 
     public void setEmail(String email) {
         Email = email;
+    }
+
+    @Override
+    public String toString(){
+        return (Contact_Name);
     }
 }

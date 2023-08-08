@@ -1,14 +1,32 @@
 package models;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+import java.sql.Timestamp;
+
 public class Users {
 
     //==============================Declaring Variables==============================
     private int User_ID;
     private String User_Name;
     private String Password;
-    //DateTime Create_Date
+    java.sql.Timestamp Create_Date;
     private  String Created_By;
-    //timestamp Last_Update
+    java.sql.Timestamp Last_Update;
     private String Last_Updated_By;
+
+    public static ObservableList<Users> users = FXCollections.observableArrayList();
+
+    public Users(int user_ID, String user_Name, String password, Timestamp create_Date, String created_By, Timestamp last_Update, String last_Updated_By) {
+        User_ID = user_ID;
+        User_Name = user_Name;
+        Password = password;
+        Create_Date = create_Date;
+        Created_By = created_By;
+        Last_Update = last_Update;
+        Last_Updated_By = last_Updated_By;
+    }
 
     //==============================Declaring Methods==============================
 
@@ -51,4 +69,10 @@ public class Users {
     public void setLast_Updated_By(String last_Updated_By) {
         Last_Updated_By = last_Updated_By;
     }
+
+    @Override
+    public String toString(){
+        return (User_Name);
+    }
+
 }
