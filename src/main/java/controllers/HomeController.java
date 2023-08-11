@@ -1,6 +1,7 @@
 package controllers;
 
 import dao.*;
+import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import models.Appointments;
@@ -262,18 +263,45 @@ Parent scene;
     }
 
     @FXML
-    void onActionDeleteApt(ActionEvent event) {
-        /*
+    void onActionDeleteApt(ActionEvent event) throws SQLException{
+
         try {
-         //Insert delete method
-        }
-        catch (NullPointerException e){
+            int allID = allAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID();
+            int weekID = weekAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID();
+            int monthID = monthAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID();
+            int deleteID = -1;
+
+            if(allID > 0){
+                deleteID = allID;
+            }else if(weekID > 0){
+                deleteID = weekID;
+            }else{
+                deleteID = monthID;
+            }
+            AppointmentQs.delete(deleteID);
+            refreshAllApt();
+            for (int i = 0; i < Appointments.allApts.size(); i++) {
+                int currentID = Appointments.allApts.get(i).getAppointment_ID();
+                if (currentID == deleteID) {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning!");
+                    alert.setContentText("Appointment failed to delete!");
+                    alert.showAndWait();
+                    return;
+                    }
+                }
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning!");
-            alert.setContentText("Please select a Customer to delete!");
+            alert.setContentText("Appointment deleted!");
+            alert.showAndWait();
+        }
+        catch (NullPointerException e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning!");
+            alert.setContentText("Please select an Appointment to delete!");
             alert.showAndWait();
             return;
-        }*/
+        }
     }
 
     @FXML
@@ -302,6 +330,26 @@ Parent scene;
 
     }
 
+    public static void refreshAllApt() throws SQLException {
+        Appointments.allApts.clear();
+        AppointmentQs.select();
+    }
+
+    public static void refreshWeekApt() throws SQLException {
+        Appointments.allApts.clear();
+        AppointmentQs.select();
+    }
+
+    public static void refreshMonthApt() throws SQLException {
+        Appointments.allApts.clear();
+        AppointmentQs.select();
+    }
+
+    public static void refreshCustomers() throws SQLException {
+        Customers.CustomerList.clear();
+        CustomerQs.select();
+    }
+
 
 
 
@@ -324,27 +372,29 @@ Parent scene;
         //=========TEST VALUES FOR QUERIES=====================
         java.sql.Timestamp now = new Timestamp(System.currentTimeMillis());
         AppointmentQs.insert(3, "Title", "test", "home", "test", now, now, now, "me", now, "Me", 1, 1, 1);
-
+        AppointmentQs.insert(4, "Title", "test", "home", "test", now, now, now, "me", now, "Me", 1, 1, 1);
+        AppointmentQs.insert(5, "Title", "test", "home", "test", now, now, now, "me", now, "Me", 1, 1, 1);
 
 
         //======================= SETTING VALUES FOR CUSTOMERS TABLE =======================
-        if(Customers.CustomerList.isEmpty()){
-            CustomerQs.select();
+        //if(Customers.CustomerList.isEmpty()){
+            refreshCustomers();
             custTableView.setItems(Customers.CustomerList);
             CustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
             CustNameCol.setCellValueFactory(new PropertyValueFactory<>("Customer_Name"));
             CustAddressCol.setCellValueFactory(new PropertyValueFactory<>("Address"));
             CustPostCol.setCellValueFactory(new PropertyValueFactory<>("Postal_Code"));
             CustPhoneCol.setCellValueFactory(new PropertyValueFactory<>("Phone"));
-        }
-        else{
+            // }
+        /*else{
+
             custTableView.setItems(Customers.CustomerList);
             CustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
             CustNameCol.setCellValueFactory(new PropertyValueFactory<>("Customer_Name"));
             CustAddressCol.setCellValueFactory(new PropertyValueFactory<>("Address"));
             CustPostCol.setCellValueFactory(new PropertyValueFactory<>("Postal_Code"));
             CustPhoneCol.setCellValueFactory(new PropertyValueFactory<>("Phone"));
-        }
+        }*/
 
 
 
@@ -355,7 +405,8 @@ Parent scene;
 
         //======================= SETTING VALUES FOR APPOINTMENTS TABLES =======================
 
-        if(Appointments.allApts.isEmpty()){
+        //if(Appointments.allApts.isEmpty()){
+            Appointments.allApts.clear();
             AppointmentQs.select();
             allAptTableView.setItems(Appointments.allApts);
             allAptIdCol.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
@@ -368,7 +419,7 @@ Parent scene;
             allAptEndCol.setCellValueFactory(new PropertyValueFactory<>("End"));
             allAptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
             allAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
-        }
+        /*}
         else{
             allAptTableView.setItems(Appointments.allApts);
             allAptIdCol.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
@@ -381,11 +432,12 @@ Parent scene;
             allAptEndCol.setCellValueFactory(new PropertyValueFactory<>("End"));
             allAptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
             allAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
-        }
+        }*/
 
 
         //======================= SETTING VALUES FOR WEEK TABLE VIEW ==================================
-        if(Appointments.weekApts.isEmpty()){
+        //if(Appointments.weekApts.isEmpty()){
+            Appointments.weekApts.clear();
             AppointmentQs.selectByWeek();
             weekAptTableView.setItems(Appointments.weekApts);
             weekAptIdCol.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
@@ -398,7 +450,7 @@ Parent scene;
             weekAptEndCol.setCellValueFactory(new PropertyValueFactory<>("End"));
             weekAptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
             weekAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
-        }
+        /*}
         else{
             weekAptTableView.setItems(Appointments.weekApts);
             weekAptIdCol.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
@@ -411,13 +463,14 @@ Parent scene;
             weekAptEndCol.setCellValueFactory(new PropertyValueFactory<>("End"));
             weekAptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
             weekAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
-        }
+        }*/
 
 
 
         //======================= SETTING VALUES FOR MONTH TABLE VIEW ==================================
 
-        if(Appointments.monthApts.isEmpty()){
+        //if(Appointments.monthApts.isEmpty()){
+            Appointments.monthApts.clear();
             AppointmentQs.selectByMonth();
             monthAptTableView.setItems(Appointments.monthApts);
             monthAptIdCol.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
@@ -430,7 +483,7 @@ Parent scene;
             monthAptEndCol.setCellValueFactory(new PropertyValueFactory<>("End"));
             monthAptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
             monthAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
-        }else{
+        /*}else{
             monthAptTableView.setItems(Appointments.monthApts);
             monthAptIdCol.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
             monthAptTitleCol.setCellValueFactory(new PropertyValueFactory<>("Title"));
@@ -442,7 +495,7 @@ Parent scene;
             monthAptEndCol.setCellValueFactory(new PropertyValueFactory<>("End"));
             monthAptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
             monthAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
-        }
+        }*/
 
 
 
