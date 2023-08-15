@@ -11,15 +11,14 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.HomeController">
    <children>
-      <TableView fx:id="custTableView" layoutX="15.0" layoutY="100.0" prefHeight="557.0" prefWidth="676.0">
+      <TableView fx:id="custTableView" layoutX="19.0" layoutY="101.0" prefHeight="557.0" prefWidth="676.0">
         <columns>
           <TableColumn fx:id="CustIdCol" prefWidth="45.0" text="ID" />
-          <TableColumn fx:id="CustNameCol" prefWidth="106.0" text="Name" />
-            <TableColumn fx:id="CustAddressCol" prefWidth="109.0" text="Address" />
-            <TableColumn fx:id="CustPostCol" prefWidth="85.0" text="Postal Code" />
-            <TableColumn fx:id="CustPhoneCol" prefWidth="91.0" text="Phone" />
-            <TableColumn fx:id="CustCountryCol" prefWidth="118.0" text="Country" />
-            <TableColumn fx:id="CustStateCol" prefWidth="121.0" text="State/Providence" />
+          <TableColumn fx:id="CustNameCol" prefWidth="126.0" text="Name" />
+            <TableColumn fx:id="CustAddressCol" prefWidth="104.0" text="Address" />
+            <TableColumn fx:id="CustPostCol" prefWidth="149.0" text="Postal Code" />
+            <TableColumn fx:id="CustPhoneCol" prefWidth="102.0" text="Phone" />
+            <TableColumn fx:id="CustStateCol" prefWidth="149.0" text="State/Providence" />
         </columns>
       </TableView>
       <Button fx:id="editCustButton" layoutX="338.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionEditCust" text="Edit" />

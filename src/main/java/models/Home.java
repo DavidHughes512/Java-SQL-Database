@@ -40,10 +40,6 @@ public class Home {
 
 
 
-    //==============================Declaring Apt TableView Methods==============================
-
-
-
 
 
 

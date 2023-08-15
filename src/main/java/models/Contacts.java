@@ -7,26 +7,26 @@ public class Contacts {
 
     //==============================Declaring Variables==============================
 
-    private int Customer_ID;
+    private int Contact_ID;
     private String Contact_Name;
     private String Email;
 
     public static ObservableList<Contacts> Contacts = FXCollections.observableArrayList();
 
     public Contacts(int customer_ID, String contact_Name, String email) {
-        Customer_ID = customer_ID;
+        Contact_ID = customer_ID;
         Contact_Name = contact_Name;
         Email = email;
     }
 
     //==============================Declaring Methods==============================
 
-    public int getCustomer_ID() {
-        return Customer_ID;
+    public int getContact_ID() {
+        return Contact_ID;
     }
 
-    public void setCustomer_ID(int customer_ID) {
-        Customer_ID = customer_ID;
+    public void setContact_ID(int customer_ID) {
+        Contact_ID = customer_ID;
     }
 
     public String getContact_Name() {

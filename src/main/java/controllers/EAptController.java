@@ -1,6 +1,7 @@
 package controllers;
 
 import dao.AppointmentQs;
+import dao.CustomerQs;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,10 @@ import models.Customers;
 import models.Users;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 public class EAptController {
@@ -105,23 +110,156 @@ public class EAptController {
     }
 
     @FXML
-    void onActionSaveApt(ActionEvent event) throws IOException {
+    void onActionSaveApt(ActionEvent event) throws IOException, SQLException {
+
+        Appointments apt = Appointments.allApts.get(Appointments.allApts.size() - 1);
+        int lastId = apt.getAppointment_ID();
+
+        try {
+            java.sql.Timestamp now = new Timestamp(System.currentTimeMillis());
+
+            if (setAptStartTime.getSelectionModel().getSelectedItem() == null) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("WARNING!");
+                alert.setContentText("Please select a Start Time");
+                alert.showAndWait();
+                return;
+            }
+            if (setAptEndTime.getSelectionModel().getSelectedItem() == null) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("WARNING!");
+                alert.setContentText("Please select a End Time");
+                alert.showAndWait();
+                return;
+            }
+            if (setAptDate.getValue() == null) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("WARNING!");
+                alert.setContentText("Please select a Date");
+                alert.showAndWait();
+                return;
+            }
+
+            if (contactCombo.getSelectionModel().getSelectedItem() == null) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("WARNING!");
+                alert.setContentText("Please select a Contact");
+                alert.showAndWait();
+                return;
+            }
+            if (custCombo.getSelectionModel().getSelectedItem() == null) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("WARNING!");
+                alert.setContentText("Please select a Customer");
+                alert.showAndWait();
+                return;
+            }
+            if (userCombo.getSelectionModel().getSelectedItem() == null) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("WARNING!");
+                alert.setContentText("Please select a User");
+                alert.showAndWait();
+                return;
+            }
+//======================Getting Date and Times ========================================
+            LocalDate aptDate = setAptDate.getValue();
+            LocalTime start = setAptStartTime.getSelectionModel().getSelectedItem();
+            LocalTime end = setAptEndTime.getSelectionModel().getSelectedItem();
+            LocalDateTime ldtS = LocalDateTime.of(aptDate, start);
+            LocalDateTime ldtE = LocalDateTime.of(aptDate, end);
 
 
 
-        stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/Views/Home.fxml"));
-        stage.setScene(new Scene(scene));
-        stage.show();
+//=================================Setting Values ============================================
+            int id = Integer.parseInt(appointmentIDTXT.getText());
+            String title = titleTXT.getText();
+            String location = locationTXT.getText();
+            String type = typeTXT.getText();
+            String description = descriptionTXT.getText();
+            java.sql.Timestamp time = now;
+            String create = "Admin";
+            String aptstart = ldtS.toString();
+            String aptend = ldtE.toString();
+            int cust = custCombo.getSelectionModel().getSelectedItem().getCustomer_ID();
+            int contact = contactCombo.getSelectionModel().getSelectedItem().getContact_ID();
+            int user = userCombo.getSelectionModel().getSelectedItem().getUser_ID();
+
+//==================Checking overlap==============================================================
+            /*for(Appointments appointments : Appointments.allApts){
+                if(appointments.getStartDateTime(appointments.getStart()) == ldtS){
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning!");
+                    alert.setContentText("Appointments Can't be Overlapping!");
+                    alert.showAndWait();
+                    return;
+                }
+            }*/
+
+            if(id > lastId ){
+                AppointmentQs.insert(id,title,description,location, type, aptstart, aptend, now, create, now, create, cust, user, contact);
+            }
+            else{
+                AppointmentQs.update(id, title, description, location, type, aptstart, aptend, now, create, now, create, cust, user, contact);
+            }
+
+            HomeController.refreshAllApt();
+            HomeController.refreshMonthApt();
+            HomeController.refreshWeekApt();
+
+            stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(getClass().getResource("/Views/Home.fxml"));
+            stage.setScene(new Scene(scene));
+            stage.show();
+
+
+        }
+        catch (NumberFormatException e){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("WARNING!");
+            alert.setContentText("Please Fill Out All Fields!");
+            alert.showAndWait();
+        }
+
     }
 
 
-    public void sendApt(Appointments appointment) {
+    public void sendApt(Appointments appointment) throws SQLException {
+        HomeController.refreshUsers();
+        HomeController.refreshContacts();
+        HomeController.refreshCustomers();
+
         appointmentIDTXT.setText(String.valueOf(appointment.getAppointment_ID()));
         descriptionTXT.setText(String.valueOf(appointment.getDescription()));
         locationTXT.setText(String.valueOf(appointment.getLocation()));
         titleTXT.setText(String.valueOf(appointment.getTitle()));
         typeTXT.setText(String.valueOf(appointment.getType()));
+
+        //contactCombo.setValue(Contacts.Contacts.get(appointment.getContact_ID()));
+        for(Contacts contact : contactCombo.getItems()){
+            if(appointment.getContact_ID() == contact.getContact_ID()){
+                contactCombo.setValue(contact);
+                break;
+            }
+        }
+        //custCombo.setValue(Customers.CustomerList.get(appointment.getCustomer_ID()));
+        for(Customers cust : custCombo.getItems()){
+            if(appointment.getCustomer_ID() == cust.getCustomer_ID()){
+                custCombo.setValue(cust);
+                break;
+            }
+        }
+        //userCombo.setValue(Users.users.get(appointment.getUser_ID()));
+        for(Users user : userCombo.getItems()){
+            if(appointment.getUser_ID() == user.getUser_ID()){
+               userCombo.setValue(user);
+                break;
+            }
+        }
+
+        setAptDate.setValue(appointment.getStartDateTime(appointment.getStart()).toLocalDate());
+        setAptStartTime.setValue(appointment.getStartDateTime(appointment.getStart()).toLocalTime());
+        setAptEndTime.setValue(appointment.getEndDateTime(appointment.getEnd()).toLocalTime());
+
     }
 
     @FXML
@@ -129,8 +267,6 @@ public class EAptController {
         custCombo.setItems(Customers.CustomerList);
         contactCombo.setItems(Contacts.Contacts);
         userCombo.setItems(Users.users);
-
-
         LocalTime start = LocalTime.of(8, 0);
         LocalTime end = LocalTime.of(22, 0);
 
@@ -138,6 +274,13 @@ public class EAptController {
             setAptStartTime.getItems().add(start);
             start = start.plusMinutes(15);
         }
+
+        Appointments apts = Appointments.allApts.get(Appointments.allApts.size() - 1);
+        int aptId = apts.getAppointment_ID();
+        aptId++;
+        appointmentIDTXT.setText(String.valueOf(aptId));
+
+
     }
 }
 

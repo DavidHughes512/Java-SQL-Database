@@ -4,7 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.Date;
+import java.sql.SQLRecoverableException;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class Appointments {
 
@@ -15,8 +20,8 @@ public class Appointments {
     private String Description;
     private String Location;
     private String Type;
-    private java.sql.Timestamp Start;
-    private java.sql.Timestamp End;
+    private String Start;
+    private String End;
     private java.sql.Date Create_Date;
     private String Created_By;
     private java.sql.Timestamp Last_updated;
@@ -31,7 +36,7 @@ public class Appointments {
 
     public static ObservableList<Appointments> monthApts = FXCollections.observableArrayList();
 
-    public Appointments(int appointment_ID, String title, String description, String location, String type, java.sql.Timestamp start, java.sql.Timestamp end, java.sql.Date create_Date, String created_By, java.sql.Timestamp last_updated, String last_Updated_By, int customer_ID, int user_ID, int contact_ID) {
+    public Appointments(int appointment_ID, String title, String description, String location, String type, String start, String end, java.sql.Date create_Date, String created_By, java.sql.Timestamp last_updated, String last_Updated_By, int customer_ID, int user_ID, int contact_ID) {
         Appointment_ID = appointment_ID;
         Title = title;
         Description = description;
@@ -51,22 +56,31 @@ public class Appointments {
     //==============================Declaring Methods==============================
 
 
-    public Timestamp getStart() {
-        return Start;
+    public String getStart() {return Start;}
+
+    public LocalDateTime getStartDateTime(String startDate){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime dateTime = LocalDateTime.parse(startDate, dtf);
+        return dateTime;
     }
 
-    public void setStart(Timestamp start) {
+    public void setStart(String start) {
         Start = start;
     }
 
-    public Timestamp getEnd() {
+    public LocalDateTime getEndDateTime(String endDate){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime endDateTime = LocalDateTime.parse(endDate, dtf);
+        return endDateTime;
+    }
+
+    public String getEnd() {
         return End;
     }
 
-    public void setEnd(Timestamp end) {
+    public void setEnd(String end) {
         End = end;
     }
-
 
     public Date getCreate_Date() {
         return Create_Date;
@@ -158,7 +172,7 @@ public class Appointments {
 
     public int getContact_ID() {
         return Contact_ID;
-    }
+}
 
     public void setContact_ID(int contact_ID) {
         Contact_ID = contact_ID;

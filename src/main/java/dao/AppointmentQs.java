@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 
 public class AppointmentQs {
 
-    public static void insert(int appointmentID, String title, String description, String location, String type, java.sql.Timestamp start, java.sql.Timestamp end, java.sql.Timestamp createDate, String createdBy, java.sql.Timestamp lastUpdate, String lastUpdatedBy, int custID, int userID, int contactID) throws SQLException {
+    public static void insert(int appointmentID, String title, String description, String location, String type, String start, String end, java.sql.Timestamp createDate, String createdBy, java.sql.Timestamp lastUpdate, String lastUpdatedBy, int custID, int userID, int contactID) throws SQLException {
         String sql = "INSERT INTO APPOINTMENTS (Appointment_ID, Title, Description, Location, Type, Start, End, Create_Date, Created_By, Last_Update, Last_Updated_By, Customer_ID, User_ID, Contact_ID) VALUES(?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setInt(1, appointmentID);
@@ -17,8 +17,8 @@ public class AppointmentQs {
         ps.setString(3, description);
         ps.setString(4,location);
         ps.setString(5,type);
-        ps.setTimestamp(6,start);
-        ps.setTimestamp(7, end);
+        ps.setString(6,start);
+        ps.setString(7, end);
         ps.setTimestamp(8,createDate);
         ps.setString(9,createdBy);
         ps.setTimestamp(10,lastUpdate);
@@ -30,22 +30,23 @@ public class AppointmentQs {
     }
 
 
-    public static void update(int appointmentID, String title, String location, String type, java.sql.Timestamp start, java.sql.Timestamp end, java.sql.Timestamp createDate, String createdBy, java.sql.Timestamp lastUpdate, String lastUpdatedBy, int custID, int userID, int contactID) throws SQLException {
+    public static void update(int appointmentID, String title, String description, String location, String type, String start, String end, java.sql.Timestamp createDate, String createdBy, java.sql.Timestamp lastUpdate, String lastUpdatedBy, int custID, int userID, int contactID) throws SQLException {
         String sql = "UPDATE APPOINTMENTS SET Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Create_Date = ?, Created_By = ?, Last_Update = ?, Last_Updated_By = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-        ps.setInt(13,appointmentID);
         ps.setString(1,title);
-        ps.setString(2,location);
-        ps.setString(3,type);
-        ps.setTimestamp(4,start);
-        ps.setTimestamp(5, end);
-        ps.setTimestamp(6,createDate);
-        ps.setString(7,createdBy);
-        ps.setTimestamp(8,lastUpdate);
-        ps.setString(9,lastUpdatedBy);
-        ps.setInt(10, custID);
-        ps.setInt(11, userID);
-        ps.setInt(12, contactID);
+        ps.setString(2, description);
+        ps.setString(3,location);
+        ps.setString(4,type);
+        ps.setString(5,start);
+        ps.setString(6, end);
+        ps.setTimestamp(7,createDate);
+        ps.setString(8,createdBy);
+        ps.setTimestamp(9,lastUpdate);
+        ps.setString(10,lastUpdatedBy);
+        ps.setInt(11, custID);
+        ps.setInt(12, userID);
+        ps.setInt(13, contactID);
+        ps.setInt(14, appointmentID);
         ps.executeUpdate();
     }
 
@@ -70,8 +71,8 @@ public class AppointmentQs {
             rs.getString("Description"),
             rs.getString("Location"),
             rs.getString("Type"),
-            rs.getTimestamp("Start"),
-            rs.getTimestamp("End"),
+            rs.getString("Start"),
+            rs.getString("End"),
             rs.getDate("Create_Date"),
             rs.getString("Created_By"),
             rs.getTimestamp("Last_Update"),
@@ -84,7 +85,7 @@ public class AppointmentQs {
 
 
     public static void selectByWeek() throws SQLException {
-        String sql = "SELECT * FROM APPOINTMENTS WHERE Start BETWEEN NOW() AND NOW() +7";
+        String sql = "select * from appointments where Start between current_date() and current_date() + interval 1 week";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while(rs.next()) {
@@ -94,8 +95,8 @@ public class AppointmentQs {
                     rs.getString("Description"),
                     rs.getString("Location"),
                     rs.getString("Type"),
-                    rs.getTimestamp("Start"),
-                    rs.getTimestamp("End"),
+                    rs.getString("Start"),
+                    rs.getString("End"),
                     rs.getDate("Create_Date"),
                     rs.getString("Created_By"),
                     rs.getTimestamp("Last_Update"),
@@ -108,7 +109,7 @@ public class AppointmentQs {
 
 
     public static void selectByMonth() throws SQLException {
-        String sql = "SELECT * FROM APPOINTMENTS WHERE Start BETWEEN NOW() AND NOW() +31";
+        String sql = "select * from appointments where Start between current_date() and current_date() + interval 1 month";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while(rs.next()) {
@@ -118,8 +119,8 @@ public class AppointmentQs {
                     rs.getString("Description"),
                     rs.getString("Location"),
                     rs.getString("Type"),
-                    rs.getTimestamp("Start"),
-                    rs.getTimestamp("End"),
+                    rs.getString("Start"),
+                    rs.getString("End"),
                     rs.getDate("Create_Date"),
                     rs.getString("Created_By"),
                     rs.getTimestamp("Last_Update"),
@@ -128,10 +129,6 @@ public class AppointmentQs {
                     rs.getInt("User_ID"),
                     rs.getInt("Contact_ID")));
         }
-    }
-    public static java.sql.Timestamp getTime(){
-        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        return timestamp;
     }
 
 

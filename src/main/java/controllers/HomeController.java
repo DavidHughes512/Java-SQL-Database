@@ -4,8 +4,7 @@ import dao.*;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import models.Appointments;
-import models.Customers;
+import models.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,12 +14,49 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.sql.SQLWarning;
 import java.sql.Timestamp;
 
 public class HomeController {
 
 Stage stage;
 Parent scene;
+
+    public static void refreshAllApt() throws SQLException {
+        Appointments.allApts.clear();
+        AppointmentQs.select();
+    }
+
+    public static void refreshWeekApt() throws SQLException {
+        Appointments.weekApts.clear();
+        AppointmentQs.selectByWeek();
+    }
+
+    public static void refreshMonthApt() throws SQLException {
+        Appointments.monthApts.clear();
+        AppointmentQs.selectByMonth();
+    }
+
+    public static void refreshContacts() throws SQLException {
+        Contacts.Contacts.clear();
+        ContactQs.select();
+    }
+    public static void refreshCountries() throws SQLException {
+        Countries.Countries.clear();
+        CountryQs.select();
+    }
+    public static void refreshCLvLDs() throws SQLException {
+        FirstLvlDivisions.States.clear();
+        LvLDivisionQs.select();
+    }
+    public static void refreshUsers() throws SQLException {
+        Users.users.clear();
+        UserQs.select();
+    }
+    public static void refreshCustomers() throws SQLException{
+        Customers.CustomerList.clear();
+        CustomerQs.select();
+    }
 
 
     //==============================Customer Tableview==============================\\
@@ -31,9 +67,6 @@ Parent scene;
 
     @FXML
     private TableColumn<Customers, String> CustAddressCol;
-
-    @FXML
-    private TableColumn<Customers, String> CustCountryCol;
 
     @FXML
     private TableColumn<Customers, Integer> CustIdCol;
@@ -210,23 +243,25 @@ Parent scene;
 
 
     @FXML
-    void onActionDeleteCust(ActionEvent event) throws IOException {
-       /*
+    void onActionDeleteCust(ActionEvent event) throws IOException, SQLException {
+
         try {
-         //Insert delete method
+            CustomerQs.delete(custTableView.getSelectionModel().getSelectedItem().getCustomer_ID());
+            refreshCustomers();
         }
-        catch (NullPointerException e){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning!");
-            alert.setContentText("Please select a Customer to delete!");
-            alert.showAndWait();
-            return;
-        }*/
-    }
+        catch(NullPointerException e){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning!");
+                alert.setContentText("Please select a Customer to delete!");
+                alert.showAndWait();
+
+            }
+        }
+
 
 
     @FXML
-    void onActionEditCust(ActionEvent event) throws IOException {
+    void onActionEditCust(ActionEvent event) throws IOException, SQLException {
 
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -263,31 +298,33 @@ Parent scene;
     }
 
     @FXML
-    void onActionDeleteApt(ActionEvent event) throws SQLException{
+    void onActionDeleteApt(ActionEvent event) throws SQLException, IOException{
 
         try {
-            int allID = allAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID();
-            int weekID = weekAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID();
-            int monthID = monthAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID();
             int deleteID = -1;
 
-            if(allID > 0){
-                deleteID = allID;
-            }else if(weekID > 0){
-                deleteID = weekID;
-            }else{
-                deleteID = monthID;
+            if(allAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID() != -1){
+                deleteID = allAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID();
             }
+            if(weekAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID() != -1){
+                deleteID = weekAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID();
+            }
+            if(weekAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID() != -1){
+                deleteID = weekAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID();
+            }
+
             AppointmentQs.delete(deleteID);
+            deleteID = -1;
             refreshAllApt();
-            for (int i = 0; i < Appointments.allApts.size(); i++) {
-                int currentID = Appointments.allApts.get(i).getAppointment_ID();
-                if (currentID == deleteID) {
+            refreshWeekApt();
+            refreshMonthApt();
+            for (Appointments appointments : Appointments.allApts) {
+                if (appointments.getAppointment_ID() == deleteID) {
                     Alert alert = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Warning!");
                     alert.setContentText("Appointment failed to delete!");
                     alert.showAndWait();
-                    return;
+                    break;
                     }
                 }
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -305,7 +342,7 @@ Parent scene;
     }
 
     @FXML
-    void onActionEdirApt(ActionEvent event) throws IOException {
+    void onActionEdirApt(ActionEvent event) throws IOException, SQLException {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("/Views/EditAppointments.fxml"));
@@ -330,25 +367,7 @@ Parent scene;
 
     }
 
-    public static void refreshAllApt() throws SQLException {
-        Appointments.allApts.clear();
-        AppointmentQs.select();
-    }
 
-    public static void refreshWeekApt() throws SQLException {
-        Appointments.allApts.clear();
-        AppointmentQs.select();
-    }
-
-    public static void refreshMonthApt() throws SQLException {
-        Appointments.allApts.clear();
-        AppointmentQs.select();
-    }
-
-    public static void refreshCustomers() throws SQLException {
-        Customers.CustomerList.clear();
-        CustomerQs.select();
-    }
 
 
 
@@ -364,20 +383,22 @@ Parent scene;
     void initialize() throws SQLException {
 
         //======================= GETTING VALUES FOR COMBO BOXES =======================
-        ContactQs.select();
-        CountryQs.select();
-        LvLDivisionQs.select();
-        UserQs.select();
-
+        refreshContacts();
+        if(Countries.Countries.isEmpty()){
+            refreshCountries();
+        }
+        refreshUsers();
+        if(FirstLvlDivisions.States.isEmpty()) {
+            refreshCLvLDs();
+        }
         //=========TEST VALUES FOR QUERIES=====================
         java.sql.Timestamp now = new Timestamp(System.currentTimeMillis());
-        AppointmentQs.insert(3, "Title", "test", "home", "test", now, now, now, "me", now, "Me", 1, 1, 1);
+        /*AppointmentQs.insert(3, "Title", "test", "home", "test", now, now, now, "me", now, "Me", 1, 1, 1);
         AppointmentQs.insert(4, "Title", "test", "home", "test", now, now, now, "me", now, "Me", 1, 1, 1);
-        AppointmentQs.insert(5, "Title", "test", "home", "test", now, now, now, "me", now, "Me", 1, 1, 1);
+        AppointmentQs.insert(5, "Title", "test", "home", "test", now, now, now, "me", now, "Me", 1, 1, 1);*/
 
 
         //======================= SETTING VALUES FOR CUSTOMERS TABLE =======================
-        //if(Customers.CustomerList.isEmpty()){
             refreshCustomers();
             custTableView.setItems(Customers.CustomerList);
             CustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
@@ -385,29 +406,13 @@ Parent scene;
             CustAddressCol.setCellValueFactory(new PropertyValueFactory<>("Address"));
             CustPostCol.setCellValueFactory(new PropertyValueFactory<>("Postal_Code"));
             CustPhoneCol.setCellValueFactory(new PropertyValueFactory<>("Phone"));
-            // }
-        /*else{
-
-            custTableView.setItems(Customers.CustomerList);
-            CustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
-            CustNameCol.setCellValueFactory(new PropertyValueFactory<>("Customer_Name"));
-            CustAddressCol.setCellValueFactory(new PropertyValueFactory<>("Address"));
-            CustPostCol.setCellValueFactory(new PropertyValueFactory<>("Postal_Code"));
-            CustPhoneCol.setCellValueFactory(new PropertyValueFactory<>("Phone"));
-        }*/
+            CustStateCol.setCellValueFactory(new PropertyValueFactory<>("Division_ID"));
 
 
 
 
-
-
-
-
-        //======================= SETTING VALUES FOR APPOINTMENTS TABLES =======================
-
-        //if(Appointments.allApts.isEmpty()){
-            Appointments.allApts.clear();
-            AppointmentQs.select();
+        //======================= SETTING VALUES FOR APPOINTMENTS TABLE =======================
+           refreshAllApt();
             allAptTableView.setItems(Appointments.allApts);
             allAptIdCol.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
             allAptTitleCol.setCellValueFactory(new PropertyValueFactory<>("Title"));
@@ -419,26 +424,10 @@ Parent scene;
             allAptEndCol.setCellValueFactory(new PropertyValueFactory<>("End"));
             allAptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
             allAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
-        /*}
-        else{
-            allAptTableView.setItems(Appointments.allApts);
-            allAptIdCol.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
-            allAptTitleCol.setCellValueFactory(new PropertyValueFactory<>("Title"));
-            allAptDescCol.setCellValueFactory(new PropertyValueFactory<>("Description"));
-            allAptLocationCol.setCellValueFactory(new PropertyValueFactory<>("Location"));
-            allAptContactCol.setCellValueFactory(new PropertyValueFactory<>("Contact_ID"));
-            allAptTypeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
-            allAptStartCol.setCellValueFactory(new PropertyValueFactory<>("Start"));
-            allAptEndCol.setCellValueFactory(new PropertyValueFactory<>("End"));
-            allAptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
-            allAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
-        }*/
 
 
         //======================= SETTING VALUES FOR WEEK TABLE VIEW ==================================
-        //if(Appointments.weekApts.isEmpty()){
-            Appointments.weekApts.clear();
-            AppointmentQs.selectByWeek();
+            refreshWeekApt();
             weekAptTableView.setItems(Appointments.weekApts);
             weekAptIdCol.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
             weekAptTitleCol.setCellValueFactory(new PropertyValueFactory<>("Title"));
@@ -450,28 +439,9 @@ Parent scene;
             weekAptEndCol.setCellValueFactory(new PropertyValueFactory<>("End"));
             weekAptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
             weekAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
-        /*}
-        else{
-            weekAptTableView.setItems(Appointments.weekApts);
-            weekAptIdCol.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
-            weekAptTitleCol.setCellValueFactory(new PropertyValueFactory<>("Title"));
-            weekAptDescCol.setCellValueFactory(new PropertyValueFactory<>("Description"));
-            weekAptLocationCol.setCellValueFactory(new PropertyValueFactory<>("Location"));
-            weekAptContactCol.setCellValueFactory(new PropertyValueFactory<>("Contact_ID"));
-            weekAptTypeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
-            weekAptStartCol.setCellValueFactory(new PropertyValueFactory<>("Start"));
-            weekAptEndCol.setCellValueFactory(new PropertyValueFactory<>("End"));
-            weekAptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
-            weekAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
-        }*/
-
-
 
         //======================= SETTING VALUES FOR MONTH TABLE VIEW ==================================
-
-        //if(Appointments.monthApts.isEmpty()){
-            Appointments.monthApts.clear();
-            AppointmentQs.selectByMonth();
+            refreshMonthApt();
             monthAptTableView.setItems(Appointments.monthApts);
             monthAptIdCol.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
             monthAptTitleCol.setCellValueFactory(new PropertyValueFactory<>("Title"));
@@ -483,23 +453,9 @@ Parent scene;
             monthAptEndCol.setCellValueFactory(new PropertyValueFactory<>("End"));
             monthAptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
             monthAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
-        /*}else{
-            monthAptTableView.setItems(Appointments.monthApts);
-            monthAptIdCol.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
-            monthAptTitleCol.setCellValueFactory(new PropertyValueFactory<>("Title"));
-            monthAptDescCol.setCellValueFactory(new PropertyValueFactory<>("Description"));
-            monthAptLocationCol.setCellValueFactory(new PropertyValueFactory<>("Location"));
-            monthAptContactCol.setCellValueFactory(new PropertyValueFactory<>("Contact_ID"));
-            monthAptTypeCol.setCellValueFactory(new PropertyValueFactory<>("Type"));
-            monthAptStartCol.setCellValueFactory(new PropertyValueFactory<>("Start"));
-            monthAptEndCol.setCellValueFactory(new PropertyValueFactory<>("End"));
-            monthAptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
-            monthAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
-        }*/
 
 
-
-
+            System.out.println(FirstLvlDivisions.States.size());
     }
 
 

@@ -1,6 +1,7 @@
 package models;
 
 import dao.CustomerQs;
+import dao.LvLDivisionQs;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -125,6 +126,16 @@ public class Customers {
     public void getAllCustomers() throws SQLException {
         CustomerQs.select();
     }
+  /*  public Countries getCountry(FirstLvlDivisions state){
+        int countryID = 0;
+        for(FirstLvlDivisions states : FirstLvlDivisions.States) {
+            if(state.getDivision_ID() == states.getDivision_ID()){
+                countryID = states.getCountry_ID();
+                break;
+            }
+        }
+       return Countries.Countries.get(countryID);
+    }*/
 
     @Override
     public String toString(){
