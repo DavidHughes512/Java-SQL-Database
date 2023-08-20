@@ -131,5 +131,74 @@ public class AppointmentQs {
         }
     }
 
+    public static void selectForAnika() throws SQLException {
+        String sql = "select * from appointments where Contact_ID = 1 ";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()) {
+            Appointments.anikaApts.add(new Appointments(
+                    rs.getInt("Appointment_ID"),
+                    rs.getString("Title"),
+                    rs.getString("Description"),
+                    rs.getString("Location"),
+                    rs.getString("Type"),
+                    rs.getString("Start"),
+                    rs.getString("End"),
+                    rs.getDate("Create_Date"),
+                    rs.getString("Created_By"),
+                    rs.getTimestamp("Last_Update"),
+                    rs.getString("Last_Updated_By"),
+                    rs.getInt("Customer_ID"),
+                    rs.getInt("User_ID"),
+                    rs.getInt("Contact_ID")));
+        }
+    }
+
+    public static void selectForDaniel() throws SQLException {
+        String sql = "select * from appointments where Contact_ID = 2 ";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()) {
+            Appointments.danielApts.add(new Appointments(
+                    rs.getInt("Appointment_ID"),
+                    rs.getString("Title"),
+                    rs.getString("Description"),
+                    rs.getString("Location"),
+                    rs.getString("Type"),
+                    rs.getString("Start"),
+                    rs.getString("End"),
+                    rs.getDate("Create_Date"),
+                    rs.getString("Created_By"),
+                    rs.getTimestamp("Last_Update"),
+                    rs.getString("Last_Updated_By"),
+                    rs.getInt("Customer_ID"),
+                    rs.getInt("User_ID"),
+                    rs.getInt("Contact_ID")));
+        }
+    }
+
+    public static void selectForLi() throws SQLException {
+        String sql = "select * from appointments where Contact_ID = 3 ";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while(rs.next()) {
+            Appointments.liApts.add(new Appointments(
+                    rs.getInt("Appointment_ID"),
+                    rs.getString("Title"),
+                    rs.getString("Description"),
+                    rs.getString("Location"),
+                    rs.getString("Type"),
+                    rs.getString("Start"),
+                    rs.getString("End"),
+                    rs.getDate("Create_Date"),
+                    rs.getString("Created_By"),
+                    rs.getTimestamp("Last_Update"),
+                    rs.getString("Last_Updated_By"),
+                    rs.getInt("Customer_ID"),
+                    rs.getInt("User_ID"),
+                    rs.getInt("Contact_ID")));
+        }
+    }
+
 
 }

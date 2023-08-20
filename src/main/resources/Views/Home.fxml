@@ -22,7 +22,7 @@
         </columns>
       </TableView>
       <Button fx:id="editCustButton" layoutX="338.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionEditCust" text="Edit" />
-      <Button fx:id="editAptButton" layoutX="1028.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionEdirApt" text="Edit" />
+      <Button fx:id="editAptButton" layoutX="932.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionEdirApt" text="Edit" />
       <Label alignment="CENTER" layoutX="235.0" layoutY="50.0" prefHeight="36.0" prefWidth="121.0" text="Customers">
          <font>
             <Font size="18.0" />
@@ -101,7 +101,13 @@
       </TabPane>
       <Button fx:id="addCustButton" layoutX="249.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionAddCust" text="Add" />
       <Button fx:id="deleteCustButton" layoutX="426.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionDeleteCust" text="Delete" />
-      <Button fx:id="addAptButton" layoutX="939.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionAddApt" text="Add" />
-      <Button fx:id="deleteAptButton" layoutX="1114.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionDeleteApt" text="Delete" />
+      <Button fx:id="addAptButton" layoutX="851.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionAddApt" text="Add" />
+      <Button fx:id="deleteMonthAptButton" layoutX="1145.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionDeleteMonthApt" text="Delete" />
+      <Button fx:id="deleteWeekAptButton" layoutX="1272.0" layoutY="714.0" mnemonicParsing="false" onAction="#onActionDeleteWeekApt" text="Delete" />
+      <Button fx:id="deleteAllAptButton" layoutX="1010.0" layoutY="714.0" mnemonicParsing="false" onAction="#onActionDeleteAllApt" text="Delete" />
+      <Label layoutX="996.0" layoutY="693.0" text="Delete from All" />
+      <Label layoutX="1117.0" layoutY="693.0" text="Delete from Months" />
+      <Label layoutX="1247.0" layoutY="693.0" text="Delete from Weeks" />
+      <Button fx:id="AptReportsButton" layoutX="733.0" layoutY="713.0" mnemonicParsing="false" onAction="#onActionReports" text="APT Reports" />
    </children>
 </AnchorPane>

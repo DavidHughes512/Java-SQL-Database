@@ -36,6 +36,10 @@ public class Appointments {
 
     public static ObservableList<Appointments> monthApts = FXCollections.observableArrayList();
 
+    public static ObservableList<Appointments> anikaApts = FXCollections.observableArrayList();
+    public static ObservableList<Appointments> danielApts = FXCollections.observableArrayList();
+    public static ObservableList<Appointments> liApts = FXCollections.observableArrayList();
+
     public Appointments(int appointment_ID, String title, String description, String location, String type, String start, String end, java.sql.Date create_Date, String created_By, java.sql.Timestamp last_updated, String last_Updated_By, int customer_ID, int user_ID, int contact_ID) {
         Appointment_ID = appointment_ID;
         Title = title;

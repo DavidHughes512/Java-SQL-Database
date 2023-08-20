@@ -16,6 +16,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.SQLWarning;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
+
 
 public class HomeController {
 
@@ -227,8 +232,13 @@ Parent scene;
     private Button addAptButton;
 
     @FXML
-    private Button deleteAptButton;
-
+    private Button deleteAllAptButton;
+    @FXML
+    private Button deleteWeekAptButton;
+    @FXML
+    private Button deleteMonthAptButton;
+    @FXML
+    private Button AptReportsButton;
 
     //==============================Customer Buttons Actions==============================\\
 
@@ -240,6 +250,8 @@ Parent scene;
         stage.show();
 
     }
+
+
 
 
     @FXML
@@ -288,6 +300,15 @@ Parent scene;
     }
 
     //==============================Appointment Buttons Actions==============================\\
+
+    @FXML
+    void onActionReports(ActionEvent event) throws SQLException, IOException{
+        stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/Views/aptReports.fxml"));
+        stage.setScene(new Scene(scene));
+        stage.show();
+    }
+
     @FXML
     void onActionAddApt(ActionEvent event) throws IOException {
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
@@ -298,10 +319,10 @@ Parent scene;
     }
 
     @FXML
-    void onActionDeleteApt(ActionEvent event) throws SQLException, IOException{
+    void onActionDeleteAllApt(ActionEvent event) throws SQLException, IOException{
 
         try {
-            int deleteID = -1;
+            /*int deleteID = -1;
 
             if(allAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID() != -1){
                 deleteID = allAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID();
@@ -330,15 +351,58 @@ Parent scene;
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning!");
             alert.setContentText("Appointment deleted!");
-            alert.showAndWait();
+            alert.showAndWait();*/
+            AppointmentQs.delete(allAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
+            refreshAllApt();
+            refreshMonthApt();
+            refreshWeekApt();
+
         }
         catch (NullPointerException e) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning!");
-            alert.setContentText("Please select an Appointment to delete!");
+            alert.setContentText("Please select an Appointment from Proper Tab to delete!");
             alert.showAndWait();
             return;
         }
+    }
+
+    @FXML
+    void onActionDeleteMonthApt(ActionEvent event) throws SQLException, IOException{
+
+        try {
+        AppointmentQs.delete(monthAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
+        refreshAllApt();
+        refreshMonthApt();
+        refreshWeekApt();
+
+    }
+        catch (NullPointerException e) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning!");
+        alert.setContentText("Please select an Appointment from Proper Tab to delete!");
+        alert.showAndWait();
+        return;
+    }
+    }
+
+    @FXML
+    void onActionDeleteWeekApt(ActionEvent event) throws SQLException, IOException{
+
+        try {
+        AppointmentQs.delete(weekAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
+        refreshAllApt();
+        refreshMonthApt();
+        refreshWeekApt();
+
+    }
+        catch (NullPointerException e) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning!");
+                alert.setContentText("Please select an Appointment from Proper Tab to delete!");
+                alert.showAndWait();
+                return;
+                }
     }
 
     @FXML
@@ -454,9 +518,42 @@ Parent scene;
             monthAptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
             monthAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
 
+        int loopLength = 0;
+        int flag = 0;
+        for(Appointments appointments : Appointments.allApts) {
+            LocalDateTime listAptDT = appointments.getStartDateTime(appointments.getStart().toString());
+            LocalTime listAptT = listAptDT.toLocalTime();
+            DateTimeFormatter DTF = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+            LocalDateTime nowoclockBF = LocalDateTime.now();
+            LocalTime nowoclock= nowoclockBF.toLocalTime();
 
-            System.out.println(FirstLvlDivisions.States.size());
+
+            if(listAptT.isAfter(nowoclock) && listAptT.isBefore(nowoclock.plusMinutes(15))){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Upcoming Appointment!");
+                alert.setContentText("Apointment ID: " + appointments.getAppointment_ID() + "   " + "Date: " + listAptDT.toLocalDate().toString() + "    " + "Time: " + listAptDT.toLocalTime().toString());
+                alert.showAndWait();
+                loopLength++;
+                flag++;
+
+            }
+            else{
+                loopLength++;
+                System.out.println("This is looplength: " + loopLength);
+            }
+
+            if(loopLength == Appointments.allApts.size() && flag != 1){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning!");
+                alert.setContentText("No Upcoming Appointments!");
+                alert.showAndWait();
+            }
+
+        }
+
     }
 
-
 }
+
+
+

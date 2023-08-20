@@ -114,9 +114,11 @@ public class EAptController {
 
         Appointments apt = Appointments.allApts.get(Appointments.allApts.size() - 1);
         int lastId = apt.getAppointment_ID();
+        java.sql.Timestamp now = new Timestamp(System.currentTimeMillis());
+
 
         try {
-            java.sql.Timestamp now = new Timestamp(System.currentTimeMillis());
+
 
             if (setAptStartTime.getSelectionModel().getSelectedItem() == null) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -163,8 +165,8 @@ public class EAptController {
             }
 //======================Getting Date and Times ========================================
             LocalDate aptDate = setAptDate.getValue();
-            LocalTime start = setAptStartTime.getSelectionModel().getSelectedItem();
-            LocalTime end = setAptEndTime.getSelectionModel().getSelectedItem();
+            LocalTime start = setAptStartTime.getValue();
+            LocalTime end = setAptEndTime.getValue();
             LocalDateTime ldtS = LocalDateTime.of(aptDate, start);
             LocalDateTime ldtE = LocalDateTime.of(aptDate, end);
 
@@ -185,15 +187,18 @@ public class EAptController {
             int user = userCombo.getSelectionModel().getSelectedItem().getUser_ID();
 
 //==================Checking overlap==============================================================
-            /*for(Appointments appointments : Appointments.allApts){
-                if(appointments.getStartDateTime(appointments.getStart()) == ldtS){
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("Warning!");
-                    alert.setContentText("Appointments Can't be Overlapping!");
-                    alert.showAndWait();
-                    return;
-                }
-            }*/
+
+            for(Appointments appointments : Appointments.allApts) {
+               LocalDateTime listAptDT = appointments.getStartDateTime(appointments.getStart().toString());
+               if(listAptDT.isEqual(ldtS)){
+                   Alert alert = new Alert(Alert.AlertType.WARNING);
+                   alert.setTitle("Warning!");
+                   alert.setContentText("Appointments Can't be Overlapping!");
+                   alert.showAndWait();
+                   return;
+               }
+
+            }
 
             if(id > lastId ){
                 AppointmentQs.insert(id,title,description,location, type, aptstart, aptend, now, create, now, create, cust, user, contact);
@@ -272,7 +277,7 @@ public class EAptController {
 
         while (start.isBefore(end)) {
             setAptStartTime.getItems().add(start);
-            start = start.plusMinutes(15);
+            start = start.plusMinutes(30);
         }
 
         Appointments apts = Appointments.allApts.get(Appointments.allApts.size() - 1);
