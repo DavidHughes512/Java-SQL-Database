@@ -1,14 +1,42 @@
 package dao;
 
+import Interfaces.TimeConversions;
 import models.Appointments;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
-public class AppointmentQs {
+/**This Class contains the methods required for connecting to the SQL Database and pulling required data*/
 
+public class AppointmentQs{
+
+    public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+    /** This is A lambda for Converting the Time of Appointments pulled from the database. This Lambda Provides a clean execute for Appointment data to be manipulated and helps cut down on clutter when refreshing Lists*/
+    static TimeConversions convert = timeToConvert -> {
+        LocalDateTime sDateTime = LocalDateTime.parse(timeToConvert, dtf);
+        ZonedDateTime zSDateTIme = ZonedDateTime.of(sDateTime, ZoneId.of("UTC"));
+        ZonedDateTime lzSDateTime = ZonedDateTime.ofInstant(zSDateTIme.toInstant(), ZoneId.systemDefault());
+        String zdtStartS = lzSDateTime.format(dtf).toString();
+        LocalDateTime startDT = LocalDateTime.parse(zdtStartS, dtf);
+        return startDT.format(dtf).toString();
+    };
+
+    /*public static String convertEndTime(String timeToConvert){
+        LocalDateTime eDateTime = LocalDateTime.parse(timeToConvert, dtf);
+        ZonedDateTime zEDateTIme = ZonedDateTime.of(eDateTime, ZoneId.of("UTC"));
+        ZonedDateTime lzEDateTime = ZonedDateTime.ofInstant(zEDateTIme.toInstant(), ZoneId.systemDefault());
+        String zdtEndS = lzEDateTime.format(dtf).toString();
+        LocalDateTime endDT = LocalDateTime.parse(zdtEndS, dtf);
+        return endDT.format(dtf).toString();
+    }*/
+    /** This is the insert method. This method inserts data into the SQL Database*/
     public static void insert(int appointmentID, String title, String description, String location, String type, String start, String end, java.sql.Timestamp createDate, String createdBy, java.sql.Timestamp lastUpdate, String lastUpdatedBy, int custID, int userID, int contactID) throws SQLException {
         String sql = "INSERT INTO APPOINTMENTS (Appointment_ID, Title, Description, Location, Type, Start, End, Create_Date, Created_By, Last_Update, Last_Updated_By, Customer_ID, User_ID, Contact_ID) VALUES(?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -29,7 +57,7 @@ public class AppointmentQs {
         ps.executeUpdate();
     }
 
-
+    /** This is the update method. This method updates data in the SQL Database*/
     public static void update(int appointmentID, String title, String description, String location, String type, String start, String end, java.sql.Timestamp createDate, String createdBy, java.sql.Timestamp lastUpdate, String lastUpdatedBy, int custID, int userID, int contactID) throws SQLException {
         String sql = "UPDATE APPOINTMENTS SET Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Create_Date = ?, Created_By = ?, Last_Update = ?, Last_Updated_By = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -50,7 +78,7 @@ public class AppointmentQs {
         ps.executeUpdate();
     }
 
-
+    /** This is the delete method. This method deletes data from the SQL Database*/
     public static int delete(int appointmentID) throws SQLException {
         String sql = "DELETE FROM APPOINTMENTS WHERE Appointment_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -59,7 +87,7 @@ public class AppointmentQs {
         return rowsAffected;
     }
 
-
+    /** This is the select method. This method selects data from the SQL Database*/
     public static void select() throws SQLException {
         String sql = "SELECT * FROM APPOINTMENTS";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -71,8 +99,10 @@ public class AppointmentQs {
             rs.getString("Description"),
             rs.getString("Location"),
             rs.getString("Type"),
-            rs.getString("Start"),
-            rs.getString("End"),
+                    /** This is A lambda for Converting the Time of Appointments pulled from the database. This Lambda Provides a clean execute for Appointment data to be manipulated and helps cut down on clutter when refreshing Lists*/
+            convert.convertTime(rs.getString("Start")),
+                    /** This is A lambda for Converting the Time of Appointments pulled from the database. This Lambda Provides a clean execute for Appointment data to be manipulated and helps cut down on clutter when refreshing Lists*/
+            convert.convertTime(rs.getString("End")),
             rs.getDate("Create_Date"),
             rs.getString("Created_By"),
             rs.getTimestamp("Last_Update"),
@@ -83,7 +113,7 @@ public class AppointmentQs {
         }
     }
 
-
+    /** This is the selectByWeek method. This method selects data from the SQL Database By Week*/
     public static void selectByWeek() throws SQLException {
         String sql = "select * from appointments where Start between current_date() and current_date() + interval 1 week";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -95,8 +125,12 @@ public class AppointmentQs {
                     rs.getString("Description"),
                     rs.getString("Location"),
                     rs.getString("Type"),
-                    rs.getString("Start"),
-                    rs.getString("End"),
+                    //convertStartTime
+                    //convertEndTime
+                    /** This is A lambda for Converting the Time of Appointments pulled from the database. This Lambda Provides a clean execute for Appointment data to be manipulated and helps cut down on clutter when refreshing Lists*/
+                    convert.convertTime(rs.getString("Start")),
+                    /** This is A lambda for Converting the Time of Appointments pulled from the database. This Lambda Provides a clean execute for Appointment data to be manipulated and helps cut down on clutter when refreshing Lists*/
+                    convert.convertTime(rs.getString("End")),
                     rs.getDate("Create_Date"),
                     rs.getString("Created_By"),
                     rs.getTimestamp("Last_Update"),
@@ -107,7 +141,7 @@ public class AppointmentQs {
         }
     }
 
-
+    /** This is the selectByMonth method. This method selects data from the SQL Database By Month*/
     public static void selectByMonth() throws SQLException {
         String sql = "select * from appointments where Start between current_date() and current_date() + interval 1 month";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -119,8 +153,10 @@ public class AppointmentQs {
                     rs.getString("Description"),
                     rs.getString("Location"),
                     rs.getString("Type"),
-                    rs.getString("Start"),
-                    rs.getString("End"),
+                    /** This is A lambda for Converting the Time of Appointments pulled from the database. This Lambda Provides a clean execute for Appointment data to be manipulated and helps cut down on clutter when refreshing Lists*/
+                    convert.convertTime(rs.getString("Start")),
+                    /** This is A lambda for Converting the Time of Appointments pulled from the database. This Lambda Provides a clean execute for Appointment data to be manipulated and helps cut down on clutter when refreshing Lists*/
+                    convert.convertTime(rs.getString("End")),
                     rs.getDate("Create_Date"),
                     rs.getString("Created_By"),
                     rs.getTimestamp("Last_Update"),
@@ -142,8 +178,8 @@ public class AppointmentQs {
                     rs.getString("Description"),
                     rs.getString("Location"),
                     rs.getString("Type"),
-                    rs.getString("Start"),
-                    rs.getString("End"),
+                    convert.convertTime(rs.getString("Start")),
+                    convert.convertTime(rs.getString("End")),
                     rs.getDate("Create_Date"),
                     rs.getString("Created_By"),
                     rs.getTimestamp("Last_Update"),
@@ -165,8 +201,8 @@ public class AppointmentQs {
                     rs.getString("Description"),
                     rs.getString("Location"),
                     rs.getString("Type"),
-                    rs.getString("Start"),
-                    rs.getString("End"),
+                    convert.convertTime(rs.getString("Start")),
+                    convert.convertTime(rs.getString("End")),
                     rs.getDate("Create_Date"),
                     rs.getString("Created_By"),
                     rs.getTimestamp("Last_Update"),
@@ -188,8 +224,8 @@ public class AppointmentQs {
                     rs.getString("Description"),
                     rs.getString("Location"),
                     rs.getString("Type"),
-                    rs.getString("Start"),
-                    rs.getString("End"),
+                    convert.convertTime(rs.getString("Start")),
+                    convert.convertTime(rs.getString("End")),
                     rs.getDate("Create_Date"),
                     rs.getString("Created_By"),
                     rs.getTimestamp("Last_Update"),

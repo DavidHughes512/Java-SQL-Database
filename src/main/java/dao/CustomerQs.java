@@ -5,9 +5,9 @@ import models.Customers;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+/**This Class contains the methods required for connecting to the SQL Database and pulling required data*/
 public abstract class CustomerQs {
-
+    /** This is the insert method. This method inserts data into the SQL Database*/
     public static int insert(int Customer_ID, String name, String address, String postal_Code, String phone, java.sql.Timestamp createDate, String createdBy, java.sql.Timestamp lastUpdate, String lastUpdatedBy, int divisionID) throws SQLException {
         String sql = "INSERT INTO CUSTOMERS (Customer_ID, Customer_Name, Address, Postal_Code, Phone, Create_Date, Created_By, Last_Update, Last_Updated_By, Division_ID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -25,7 +25,7 @@ public abstract class CustomerQs {
         return rowsAffected;
     }
 
-
+    /** This is the update method. This method updates data in the SQL Database*/
     public static int update(int Customer_ID, String name, String address, String postal_Code, String phone, java.sql.Timestamp createDate, String createdBy, java.sql.Timestamp lastUpdate, String lastUpdatedBy, int divisionID) throws SQLException {
         String sql = "UPDATE CUSTOMERS SET Customer_Name = ?, Address = ?, Postal_Code = ?, Phone = ?, Create_Date = ?, Created_By = ?, Last_Update = ?, Last_Updated_By = ?, Division_ID = ? WHERE Customer_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -43,7 +43,7 @@ public abstract class CustomerQs {
         return rowsAffected;
     }
 
-
+    /** This is the delete method. This method deletes data from the SQL Database*/
     public static int delete(int Customer_ID) throws SQLException {
         String sql = "DELETE FROM CUSTOMERS WHERE Customer_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -52,7 +52,7 @@ public abstract class CustomerQs {
         return rowsAffected;
     }
 
-
+    /** This is the select method. This method selects data from the SQL Database*/
     public static void select() throws SQLException {
         String sql = "SELECT * FROM CUSTOMERS";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
@@ -68,7 +68,7 @@ public abstract class CustomerQs {
         }
     }
 
-
+    /** This is the selectByDivision method. This method selects data from the SQL Database By Division*/
     public static void selectByDivision(int divisonID) throws SQLException {
         String sql = "SELECT * FROM CUSTOMERS WHERE Division_ID = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);

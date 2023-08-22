@@ -19,9 +19,9 @@ import models.Users;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
+
+/**This Class contains the methods and items used to edit appointment data and sync properly with the SQL Database*/
 
 public class EAptController {
 
@@ -63,6 +63,7 @@ public class EAptController {
     @FXML
     private ComboBox<Customers> custCombo;
 
+    /** This is the onActionAptBack method. This method returns you to the home screen of the application*/
     @FXML
     void onActionAptBack(ActionEvent event) throws IOException {
         stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
@@ -109,6 +110,7 @@ public class EAptController {
 
     }
 
+    /** This is the onActionSaveApt method. This method takes all the input data of the user and saves and syncs to the database. The local list is then refreshed*/
     @FXML
     void onActionSaveApt(ActionEvent event) throws IOException, SQLException {
 
@@ -169,6 +171,12 @@ public class EAptController {
             LocalTime end = setAptEndTime.getValue();
             LocalDateTime ldtS = LocalDateTime.of(aptDate, start);
             LocalDateTime ldtE = LocalDateTime.of(aptDate, end);
+            ZoneId zID = ZoneId.systemDefault();
+            ZonedDateTime zLdtS = ZonedDateTime.of(ldtS, zID);
+            ZonedDateTime zLdtE = ZonedDateTime.of(ldtE, zID);
+            ZoneId utcID = ZoneId.of("UTC");
+            ZonedDateTime SutcZDT = ZonedDateTime.ofInstant(zLdtS.toInstant(), utcID);
+            ZonedDateTime EutcZDT = ZonedDateTime.ofInstant(zLdtE.toInstant(), utcID);
 
 
 
@@ -180,8 +188,8 @@ public class EAptController {
             String description = descriptionTXT.getText();
             java.sql.Timestamp time = now;
             String create = "Admin";
-            String aptstart = ldtS.toString();
-            String aptend = ldtE.toString();
+            String aptstart = SutcZDT.toLocalDateTime().toString();
+            String aptend = EutcZDT.toLocalDateTime().toString();
             int cust = custCombo.getSelectionModel().getSelectedItem().getCustomer_ID();
             int contact = contactCombo.getSelectionModel().getSelectedItem().getContact_ID();
             int user = userCombo.getSelectionModel().getSelectedItem().getUser_ID();
@@ -227,7 +235,7 @@ public class EAptController {
 
     }
 
-
+    /** This is the sendApt method. This method takes all the data from the home screen table and shares it with the edit page*/
     public void sendApt(Appointments appointment) throws SQLException {
         HomeController.refreshUsers();
         HomeController.refreshContacts();
@@ -267,6 +275,7 @@ public class EAptController {
 
     }
 
+    /** This is the initialize method. This method sets local times and combo box values when the edit page is initialized*/
     @FXML
     void initialize() {
         custCombo.setItems(Customers.CustomerList);

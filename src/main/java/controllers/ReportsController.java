@@ -10,13 +10,16 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import models.Appointments;
+import models.Reports;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 public class ReportsController {
     Stage stage;
     Parent scene;
+
 
     public static void refreshAnikaTable() throws SQLException {
         Appointments.anikaApts.clear();
@@ -36,23 +39,9 @@ public class ReportsController {
     @FXML
     private Button homeButton;
     @FXML
-    private Label CountLbl1;
-
-    @FXML
-    private Label CountLbl2;
-
-    @FXML
-    private Label CountLbl3;
-
-    @FXML
-    private Label CountLbl4;
-
-    @FXML
-    private Label CountLbl5;
-    @FXML
     private TableView<Appointments> anikeTableView;
     @FXML
-    private TableView<Appointments> danileTableView;
+    private TableView<Appointments> danielTableView;
     @FXML
     private TableView<Appointments> leeTableView;
 
@@ -120,68 +109,35 @@ public class ReportsController {
     private TableColumn<Appointments, String> colLiType;
 
     @FXML
-    private Label monthLbl1;
-
-    @FXML
-    private Label monthLbl2;
-
-    @FXML
-    private Label monthLbl3;
-
-    @FXML
-    private Label monthLbl4;
-
-    @FXML
-    private Label monthLbl5;
-
-    @FXML
-    private Label typeLbl1;
-
-    @FXML
-    private Label typeLbl2;
-
-    @FXML
-    private Label typeLbl3;
-
-    @FXML
-    private Label typeLbl4;
-
-    @FXML
-    private Label typeLbl5;
-
-    @FXML
-    private Tab tabAnika;
-
-    @FXML
-    private Tab tabContactSchedule;
-
-    @FXML
-    private Tab tabDaniel;
-
-    @FXML
-    private Tab tabLiLee;
-    @FXML
     private TabPane contactTabPane;
-
+    @FXML
+    private Label aptNumberLabel;
+    @FXML
+    private Button getReportButton;
+    @FXML
+    private ListView<String> monthListView;
 
     @FXML
-    void onActionAnikaSwitch(ActionEvent event) throws SQLException {
+    private ListView<Integer> totalListView;
+
+    @FXML
+    private ListView<String> typreListView;
+
+    @FXML
+    void onActionGetReport(ActionEvent event) throws IOException {
+        int total = 0;
+        java.sql.Date today = java.sql.Date.valueOf(LocalDate.now());
+        for(Appointments appointments : Appointments.allApts){
+            if(appointments.getCreate_Date().equals(today) ){
+             total++;
+                aptNumberLabel.setText(Integer.toString(total));
+            }
+        }
 
     }
 
 
-    @FXML
-    void onActionDanielSwitch(ActionEvent event) throws SQLException {
 
-
-
-    }
-
-    @FXML
-    void onActionLiSwitch(ActionEvent event) throws SQLException {
-
-
-    }
 
     @FXML
     void onActionHome(ActionEvent event) throws IOException {
@@ -192,19 +148,14 @@ public class ReportsController {
     }
 
 
-
-
-
-
-
-
-
-
     @FXML
     void initialize() throws SQLException {
     refreshAnikaTable();
     refreshLiTable();
     refreshDanielTable();
+    Reports.refreshReportsList();
+    Reports.refreshTypeList();
+    Reports.refreshMonthList();
         anikeTableView.setItems(Appointments.anikaApts);
         colAnicolAniAptId.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
         colAniTitle.setCellValueFactory(new PropertyValueFactory<>("Title"));
@@ -214,8 +165,7 @@ public class ReportsController {
         colAniEnd.setCellValueFactory(new PropertyValueFactory<>("End"));
         colAniCustId.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
 
-
-        danileTableView.setItems(Appointments.danielApts);
+        danielTableView.setItems(Appointments.danielApts);
         colDanAptId.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
         colDanTitle.setCellValueFactory(new PropertyValueFactory<>("Title"));
         colDanType.setCellValueFactory(new PropertyValueFactory<>("Type"));
@@ -232,6 +182,31 @@ public class ReportsController {
         colLiStart.setCellValueFactory(new PropertyValueFactory<>("Start"));
         colLiEnd.setCellValueFactory(new PropertyValueFactory<>("End"));
         colLiCustId.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
+
+
+        for(Appointments appointments : Appointments.allApts){
+            int total = 0;
+            System.out.println("This is appointment month:" + appointments.getStartDateTime(appointments.getStart()).toLocalDate().getMonth().toString());
+            System.out.println("================================");
+            String type = appointments.getType();
+            String month = appointments.getStartDateTime(appointments.getStart().toString()).toLocalDate().getMonth().toString();
+            for(Reports reports : Reports.reportsList){
+                String type2 = reports.getType();
+                String month2 = reports.getMonth();
+                if(type.equals(type2) && month.equals(month2)){
+                    total++;
+                    Reports.totalList.add(total);
+                }
+            }
+        }
+        totalListView.setItems(Reports.totalList);
+        monthListView.setItems(Reports.monthList);
+        typreListView.setItems(Reports.typeList);
+
+
     }
+
+
+
 
 }

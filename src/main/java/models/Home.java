@@ -3,6 +3,8 @@ package models;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.time.*;
+/**This Class contains the methods and values required for GUI data manipulation and saving database data locally*/
 public class Home {
 
     //==============================Declaring Cust TableView List==============================
@@ -37,11 +39,35 @@ public class Home {
     private static ObservableList<Appointments> monthApts = FXCollections.observableArrayList();
 
 
+   //======================CREATING DATETIME FOR CONVERSIONS===========================
 
+    public LocalDate myLD = LocalDate.now();
 
+    public LocalTime myLT = LocalTime.now();
 
+    public LocalDateTime myLDT = LocalDateTime.of(myLD, myLT);
 
+    public ZoneId myZID = ZoneId.systemDefault();
 
+    public ZonedDateTime mfZDT = ZonedDateTime.of(myLDT, myZID);
 
+    public LocalDate getMyLD() {
+        return myLD;
+    }
 
+    public LocalTime getMyLT() {
+        return myLT;
+    }
+
+    public LocalDateTime getMyLDT() {
+        return myLDT;
+    }
+
+    public ZoneId getMyZID() {
+        return myZID;
+    }
+
+    public ZonedDateTime getMfZDT() {
+        return mfZDT;
+    }
 }

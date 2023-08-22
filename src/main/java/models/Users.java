@@ -4,7 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.Timestamp;
-
+/**This Class contains the methods and values required for GUI data manipulation and saving database data locally*/
 public class Users {
 
     //==============================Declaring Variables==============================
@@ -17,7 +17,7 @@ public class Users {
     private String Last_Updated_By;
 
     public static ObservableList<Users> users = FXCollections.observableArrayList();
-
+    /** This is the constructor for the Users class*/
     public Users(int user_ID, String user_Name, String password, Timestamp create_Date, String created_By, Timestamp last_Update, String last_Updated_By) {
         User_ID = user_ID;
         User_Name = user_Name;

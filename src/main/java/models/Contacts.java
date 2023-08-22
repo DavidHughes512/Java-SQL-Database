@@ -2,7 +2,7 @@ package models;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
+/**This Class contains the methods and values required for GUI data manipulation and saving database data locally*/
 public class Contacts {
 
     //==============================Declaring Variables==============================
@@ -12,7 +12,7 @@ public class Contacts {
     private String Email;
 
     public static ObservableList<Contacts> Contacts = FXCollections.observableArrayList();
-
+    /** This is the constructor for the Contacts class*/
     public Contacts(int customer_ID, String contact_Name, String email) {
         Contact_ID = customer_ID;
         Contact_Name = contact_Name;

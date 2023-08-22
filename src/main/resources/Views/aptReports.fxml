@@ -2,70 +2,39 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ReportsController">
    <children>
       <TabPane layoutX="6.0" layoutY="42.0" prefHeight="353.0" prefWidth="587.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Total Customer Apts by Type and Month">
+          <Tab closable="false" text="Total Customer Apts by Type and Month">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <GridPane layoutX="14.0" layoutY="14.0" prefHeight="296.0" prefWidth="498.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <Label text="Month" />
-                              <Label fx:id="monthLbl1" text="Month" GridPane.rowIndex="1" />
-                              <Label fx:id="monthLbl2" text="Month" GridPane.rowIndex="2" />
-                              <Label fx:id="monthLbl3" text="Month" GridPane.rowIndex="3" />
-                              <Label fx:id="monthLbl4" text="Month" GridPane.rowIndex="4" />
-                              <Label fx:id="monthLbl5" text="Month" GridPane.rowIndex="5" />
-                              <Label text="Type" GridPane.columnIndex="1" />
-                              <Label fx:id="typeLbl1" text="Type" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                              <Label fx:id="typeLbl2" text="Type" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                              <Label fx:id="typeLbl3" text="Type" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Label fx:id="typeLbl4" text="Type" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                              <Label fx:id="typeLbl5" text="Type" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <Label text="Count" GridPane.columnIndex="2" />
-                              <Label fx:id="CountLbl1" text="Count" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                              <Label fx:id="CountLbl2" text="Count" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                              <Label fx:id="CountLbl3" text="Count" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                              <Label fx:id="CountLbl4" text="Count" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                              <Label fx:id="CountLbl5" text="Count" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                           </children>
-                        </GridPane>
+                        <ListView fx:id="monthListView" layoutX="14.0" layoutY="33.0" prefHeight="279.0" prefWidth="142.0" />
+                        <ListView fx:id="totalListView" layoutX="431.0" layoutY="33.0" prefHeight="279.0" prefWidth="142.0" />
+                        <ListView fx:id="typreListView" layoutX="223.0" layoutY="33.0" prefHeight="279.0" prefWidth="142.0" />
+                        <Label layoutX="71.0" layoutY="6.0" text="Month" />
+                        <Label layoutX="488.0" layoutY="8.0" text="Total" />
+                        <Label layoutX="280.0" layoutY="8.0" text="Type" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Contact Schedule">
+          <Tab closable="false" text="Contact Schedule">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <TabPane fx:id="contactTabPane" layoutX="14.0" layoutY="14.0" prefHeight="311.0" prefWidth="565.0" tabClosingPolicy="UNAVAILABLE">
                           <tabs>
-                            <Tab fx:id="tabAnika" onSelectionChanged="#onActionAnikaSwitch" text="Anika Costa">
+                            <Tab closable="false" text="Anika Costa">
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
@@ -73,10 +42,10 @@
                                             <columns>
                                               <TableColumn fx:id="colAnicolAniAptId" prefWidth="61.0" text="Apt ID" />
                                               <TableColumn fx:id="colAniTitle" prefWidth="66.0" text="Title" />
-                                                <TableColumn fx:id="colAniType" prefWidth="82.0" text="Type" />
-                                                <TableColumn fx:id="colAniDesc" prefWidth="119.0" text="Description" />
-                                                <TableColumn fx:id="colAniStart" prefWidth="84.0" text="Start" />
-                                                <TableColumn fx:id="colAniEnd" prefWidth="91.0" text="End" />
+                                                <TableColumn fx:id="colAniType" prefWidth="63.0" text="Type" />
+                                                <TableColumn fx:id="colAniDesc" prefWidth="73.0" text="Description" />
+                                                <TableColumn fx:id="colAniStart" prefWidth="106.0" text="Start" />
+                                                <TableColumn fx:id="colAniEnd" prefWidth="134.0" text="End" />
                                                 <TableColumn fx:id="colAniCustId" prefWidth="56.0" text="Cust ID" />
                                             </columns>
                                           </TableView>
@@ -84,18 +53,18 @@
                                     </AnchorPane>
                               </content>
                             </Tab>
-                            <Tab fx:id="tabDaniel" onSelectionChanged="#onActionAnikaSwitch" text="Daniel Garcia">
+                            <Tab closable="false" text="Daniel Garcia">
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
-                                          <TableView fx:id="danielTableView" prefHeight="276.0" prefWidth="557.0">
+                                          <TableView fx:id="danielTableView" prefHeight="282.0" prefWidth="557.0">
                                              <columns>
                                                 <TableColumn fx:id="colDanAptId" prefWidth="61.0" text="Apt ID" />
                                                 <TableColumn fx:id="colDanTitle" prefWidth="66.0" text="Title" />
-                                                <TableColumn fx:id="colDanType" prefWidth="82.0" text="Type" />
-                                                <TableColumn fx:id="colDanDesc" prefWidth="119.0" text="Description" />
-                                                <TableColumn fx:id="colDanStart" prefWidth="84.0" text="Start" />
-                                                <TableColumn fx:id="colDanEnd" prefWidth="91.0" text="End" />
+                                                <TableColumn fx:id="colDanType" prefWidth="62.0" text="Type" />
+                                                <TableColumn fx:id="colDanDesc" text="Description" />
+                                                <TableColumn fx:id="colDanStart" prefWidth="108.0" text="Start" />
+                                                <TableColumn fx:id="colDanEnd" prefWidth="126.0" text="End" />
                                                 <TableColumn fx:id="colDanCustId" prefWidth="53.0" text="Cust ID" />
                                              </columns>
                                           </TableView>
@@ -103,7 +72,7 @@
                                     </AnchorPane>
                               </content>
                             </Tab>
-                              <Tab fx:id="tabLiLee" onSelectionChanged="#onActionLiSwitch" text="Li Lee">
+                              <Tab closable="false" text="Li Lee">
                                  <content>
                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
@@ -111,10 +80,10 @@
                                              <columns>
                                                 <TableColumn fx:id="colLiAptId" prefWidth="61.0" text="Apt ID" />
                                                 <TableColumn fx:id="colLiTitle" prefWidth="66.0" text="Title" />
-                                                <TableColumn fx:id="colLiType" prefWidth="82.0" text="Type" />
-                                                <TableColumn fx:id="colLiDesc" prefWidth="119.0" text="Description" />
-                                                <TableColumn fx:id="colLiStart" prefWidth="84.0" text="Start" />
-                                                <TableColumn fx:id="colLiEnd" prefWidth="91.0" text="End" />
+                                                <TableColumn fx:id="colLiType" prefWidth="67.0" text="Type" />
+                                                <TableColumn fx:id="colLiDesc" prefWidth="72.0" text="Description" />
+                                                <TableColumn fx:id="colLiStart" prefWidth="118.0" text="Start" />
+                                                <TableColumn fx:id="colLiEnd" prefWidth="119.0" text="End" />
                                                 <TableColumn fx:id="colLiCustId" prefWidth="53.0" text="Cust ID" />
                                              </columns>
                                           </TableView>
@@ -128,17 +97,17 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="Number of New Appointments">
+            <Tab closable="false" text="Number of New Appointments">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button layoutX="257.0" layoutY="175.0" mnemonicParsing="false" text="Get Report" />
+                        <Button fx:id="getReportButton" layoutX="257.0" layoutY="175.0" mnemonicParsing="false" onAction="#onActionGetReport" text="Get Report" />
                         <Label layoutX="170.0" layoutY="29.0" text="Number of New Appointments Made Today">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </Label>
-                        <Label layoutX="291.0" layoutY="104.0" prefHeight="17.0" prefWidth="0.0" text="0" />
+                        <Label fx:id="aptNumberLabel" layoutX="291.0" layoutY="104.0" prefHeight="17.0" prefWidth="0.0" text="0" />
                      </children>
                   </AnchorPane>
               </content>

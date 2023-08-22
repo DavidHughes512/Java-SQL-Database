@@ -1,5 +1,6 @@
 package controllers;
 
+import Interfaces.DeleteInterface;
 import dao.*;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
@@ -22,46 +23,75 @@ import java.time.Month;
 import java.time.format.DateTimeFormatter;
 
 
+/**This Class contains the methods required for controlling both tableviews and directing you to the proper pages*/
 public class HomeController {
 
 Stage stage;
 Parent scene;
 
+    private boolean Flag = false;
+
+    public void setFlag(){
+        Flag = true;
+    }
+
+    public boolean getFlag(){
+        return Flag;
+    }
+    /** This is the refreshAllApt method. This method refreshes the allApts list*/
     public static void refreshAllApt() throws SQLException {
         Appointments.allApts.clear();
         AppointmentQs.select();
     }
-
+    /** This is the refreshWeekApt method. This method refreshes the weekApts list*/
     public static void refreshWeekApt() throws SQLException {
         Appointments.weekApts.clear();
         AppointmentQs.selectByWeek();
     }
-
+    /** This is the refreshMonthApt method. This method refreshes the monthApts list*/
     public static void refreshMonthApt() throws SQLException {
         Appointments.monthApts.clear();
         AppointmentQs.selectByMonth();
     }
-
+    /** This is the refreshContacts method. This method refreshes the Contacts list*/
     public static void refreshContacts() throws SQLException {
         Contacts.Contacts.clear();
         ContactQs.select();
     }
+    /** This is the refreshCountries method. This method refreshes the Countries list*/
     public static void refreshCountries() throws SQLException {
         Countries.Countries.clear();
         CountryQs.select();
     }
+    /** This is the refreshCLvLDs method. This method refreshes the states list*/
     public static void refreshCLvLDs() throws SQLException {
         FirstLvlDivisions.States.clear();
         LvLDivisionQs.select();
     }
+    /** This is the refreshUsers method. This method refreshes the Users list*/
     public static void refreshUsers() throws SQLException {
         Users.users.clear();
         UserQs.select();
     }
+    /** This is the refreshCustomers method. This method refreshes the Customers list*/
     public static void refreshCustomers() throws SQLException{
         Customers.CustomerList.clear();
         CustomerQs.select();
     }
+    /** This is A lambda for Deletion of customers. This Lambda Provides a clean execute for Customer data to be deleted and helps cut down on clutter when refreshing Lists*/
+    DeleteInterface customers = toDelete -> {
+        CustomerQs.delete(toDelete);
+        refreshCustomers();
+    };
+
+    /** This is A lambda for Deletion of Appointments. This Lambda Provides a clean execute for Appointment data to be deleted and helps cut down on clutter when refreshing Lists*/
+    DeleteInterface Apts = toDelete -> {
+        AppointmentQs.delete(toDelete);
+        refreshAllApt();
+        refreshMonthApt();
+        refreshWeekApt();
+    };
+
 
 
     //==============================Customer Tableview==============================\\
@@ -242,6 +272,7 @@ Parent scene;
 
     //==============================Customer Buttons Actions==============================\\
 
+    /** This is the onActionAddCust method. This method Connects you to the add customers page*/
     @FXML
     void onActionAddCust(ActionEvent event) throws IOException {
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
@@ -253,13 +284,13 @@ Parent scene;
 
 
 
-
+    /** This is the onActionDeleteCust method. This method uses a lambda to delete customers from the list*/
     @FXML
     void onActionDeleteCust(ActionEvent event) throws IOException, SQLException {
 
         try {
-            CustomerQs.delete(custTableView.getSelectionModel().getSelectedItem().getCustomer_ID());
-            refreshCustomers();
+            /** This is A lambda for Deletion of customers. This Lambda Provides a clean execute for Customer data to be deleted and helps cut down on clutter when refreshing Lists*/
+            customers.delete(custTableView.getSelectionModel().getSelectedItem().getCustomer_ID());
         }
         catch(NullPointerException e){
                 Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -300,7 +331,7 @@ Parent scene;
     }
 
     //==============================Appointment Buttons Actions==============================\\
-
+    /** This is the onActionReports method. This method Connects you to the Reports page*/
     @FXML
     void onActionReports(ActionEvent event) throws SQLException, IOException{
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
@@ -308,7 +339,7 @@ Parent scene;
         stage.setScene(new Scene(scene));
         stage.show();
     }
-
+    /** This is the onActionAddApt method. This method Connects you to the add appointments page*/
     @FXML
     void onActionAddApt(ActionEvent event) throws IOException {
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
@@ -317,45 +348,13 @@ Parent scene;
         stage.show();
 
     }
-
+    /** This is the onActionDeleteAllApt method. This method uses a lambda to delete Appointments from the list*/
     @FXML
     void onActionDeleteAllApt(ActionEvent event) throws SQLException, IOException{
 
         try {
-            /*int deleteID = -1;
-
-            if(allAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID() != -1){
-                deleteID = allAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID();
-            }
-            if(weekAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID() != -1){
-                deleteID = weekAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID();
-            }
-            if(weekAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID() != -1){
-                deleteID = weekAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID();
-            }
-
-            AppointmentQs.delete(deleteID);
-            deleteID = -1;
-            refreshAllApt();
-            refreshWeekApt();
-            refreshMonthApt();
-            for (Appointments appointments : Appointments.allApts) {
-                if (appointments.getAppointment_ID() == deleteID) {
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("Warning!");
-                    alert.setContentText("Appointment failed to delete!");
-                    alert.showAndWait();
-                    break;
-                    }
-                }
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning!");
-            alert.setContentText("Appointment deleted!");
-            alert.showAndWait();*/
-            AppointmentQs.delete(allAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
-            refreshAllApt();
-            refreshMonthApt();
-            refreshWeekApt();
+/** This is A lambda for Deletion of Appointments. This Lambda Provides a clean execute for Appointment data to be deleted and helps cut down on clutter when refreshing Lists*/
+            Apts.delete(allAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
 
         }
         catch (NullPointerException e) {
@@ -367,14 +366,13 @@ Parent scene;
         }
     }
 
+    /** This is the onActionDeleteMonthApt method. This method uses a lambda to delete Appointments from the list*/
     @FXML
     void onActionDeleteMonthApt(ActionEvent event) throws SQLException, IOException{
 
         try {
-        AppointmentQs.delete(monthAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
-        refreshAllApt();
-        refreshMonthApt();
-        refreshWeekApt();
+            /** This is A lambda for Deletion of Appointments. This Lambda Provides a clean execute for Appointment data to be deleted and helps cut down on clutter when refreshing Lists*/
+            Apts.delete(monthAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
 
     }
         catch (NullPointerException e) {
@@ -386,14 +384,13 @@ Parent scene;
     }
     }
 
+    /** This is the onActionDeleteWeekApt method. This method uses a lambda to delete Appointments from the list*/
     @FXML
     void onActionDeleteWeekApt(ActionEvent event) throws SQLException, IOException{
 
         try {
-        AppointmentQs.delete(weekAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
-        refreshAllApt();
-        refreshMonthApt();
-        refreshWeekApt();
+            /** This is A lambda for Deletion of Appointments. This Lambda Provides a clean execute for Appointment data to be deleted and helps cut down on clutter when refreshing Lists*/
+            Apts.delete(weekAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
 
     }
         catch (NullPointerException e) {
@@ -405,6 +402,7 @@ Parent scene;
                 }
     }
 
+    /** This is the onActionEdirApt method. This method sends data to the edit appointment page and then switches to the right page*/
     @FXML
     void onActionEdirApt(ActionEvent event) throws IOException, SQLException {
         try {
@@ -442,9 +440,10 @@ Parent scene;
 
 
 
-
+    /** This is the initialize method. This method refreshes all the local lists with data from the SQL database and populates the table views with the appropriate data. This method also displays an alert for appointments within 15 minutes*/
     @FXML
     void initialize() throws SQLException {
+
 
         //======================= GETTING VALUES FOR COMBO BOXES =======================
         refreshContacts();
@@ -518,8 +517,9 @@ Parent scene;
             monthAptCustIdCol.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
             monthAptUserIdCol.setCellValueFactory(new PropertyValueFactory<>("User_ID"));
 
+            //=================DETECTING UPCOMING APPOINTMENTS=======================
+
         int loopLength = 0;
-        int flag = 0;
         for(Appointments appointments : Appointments.allApts) {
             LocalDateTime listAptDT = appointments.getStartDateTime(appointments.getStart().toString());
             LocalTime listAptT = listAptDT.toLocalTime();
@@ -534,23 +534,25 @@ Parent scene;
                 alert.setContentText("Apointment ID: " + appointments.getAppointment_ID() + "   " + "Date: " + listAptDT.toLocalDate().toString() + "    " + "Time: " + listAptDT.toLocalTime().toString());
                 alert.showAndWait();
                 loopLength++;
-                flag++;
+                setFlag();
+
 
             }
             else{
                 loopLength++;
-                System.out.println("This is looplength: " + loopLength);
             }
 
-            if(loopLength == Appointments.allApts.size() && flag != 1){
+            if(loopLength == Appointments.allApts.size() && getFlag() == false){
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning!");
                 alert.setContentText("No Upcoming Appointments!");
                 alert.showAndWait();
+                setFlag();
             }
 
         }
 
+        System.out.println(Appointments.allApts.get(2).getCreate_Date());
     }
 
 }

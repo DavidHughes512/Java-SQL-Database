@@ -4,7 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.Timestamp;
-
+/**This Class contains the methods and values required for GUI data manipulation and saving database data locally*/
 public class FirstLvlDivisions {
 
 
@@ -19,7 +19,7 @@ public class FirstLvlDivisions {
 
     public static ObservableList<FirstLvlDivisions> States = FXCollections.observableArrayList();
     public static ObservableList<FirstLvlDivisions> Divisions = FXCollections.observableArrayList();
-
+    /** This is the constructor for the FirstLvlDivision class*/
     public FirstLvlDivisions(int division_ID, String division, Timestamp create_Date, String created_By, Timestamp last_Updated, String last_Updated_by, int country_ID) {
         Division_ID = division_ID;
         Division = division;

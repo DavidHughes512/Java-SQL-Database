@@ -18,6 +18,8 @@ import java.sql.Timestamp;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+/**This Class contains the methods required for launching the application and connecting to the database*/
+
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
@@ -28,37 +30,21 @@ public class Main extends Application {
         stage.show();
     }
 
+    /** This is the main method. This method launched the application and connects to the database*/
     public static void main(String[] args) throws SQLException, InvocationTargetException {
 
         ResourceBundle rb = ResourceBundle.getBundle("/Languages", Locale.getDefault());
         if (Locale.getDefault().getLanguage().equals("fr")) {
             System.out.println(rb.getString("hello") + " " + rb.getString("world"));
+        }
 
-        }
-        else
-        {
-         System.out.println("ur in english gofy");
-        }
 
         JDBC.openConnection();
 
-
-
         launch();
-
-
-
-
-        //System.out.println(System.currentTimeMillis());
-
-        CustomerQs.selectByDivision(29);
-
-        Customers.CustomerList.clear();
 
         JDBC.closeConnection();
     }
 
-        //Github testing blah blah blah
-        //Locale.setDefault(new Locale("fr"));
 
 }

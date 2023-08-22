@@ -9,8 +9,9 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-
+/**This Class contains the methods and values required for GUI data manipulation and saving database data locally*/
 public class Appointments {
 
     //==============================Declaring Variables==============================
@@ -40,6 +41,7 @@ public class Appointments {
     public static ObservableList<Appointments> danielApts = FXCollections.observableArrayList();
     public static ObservableList<Appointments> liApts = FXCollections.observableArrayList();
 
+    /** This is the constructor for the Appointments class*/
     public Appointments(int appointment_ID, String title, String description, String location, String type, String start, String end, java.sql.Date create_Date, String created_By, java.sql.Timestamp last_updated, String last_Updated_By, int customer_ID, int user_ID, int contact_ID) {
         Appointment_ID = appointment_ID;
         Title = title;
@@ -61,7 +63,7 @@ public class Appointments {
 
 
     public String getStart() {return Start;}
-
+    /** This is the getStartDateTime method. This method Gets the start time and formats it to a different format*/
     public LocalDateTime getStartDateTime(String startDate){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime dateTime = LocalDateTime.parse(startDate, dtf);
@@ -71,7 +73,7 @@ public class Appointments {
     public void setStart(String start) {
         Start = start;
     }
-
+    /** This is the getStartDateTime method. This method Gets the end time and formats it to a different format*/
     public LocalDateTime getEndDateTime(String endDate){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         LocalDateTime endDateTime = LocalDateTime.parse(endDate, dtf);

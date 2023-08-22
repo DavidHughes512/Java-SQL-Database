@@ -4,7 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.Timestamp;
-
+/**This Class contains the methods and values required for GUI data manipulation and saving database data locally*/
 public class Countries {
 
     //==============================Declaring Variables==============================
@@ -17,7 +17,7 @@ public class Countries {
     private String Last_Updated_By;
 
     public static ObservableList<Countries> Countries = FXCollections.observableArrayList();
-
+    /** This is the constructor for the Countries class*/
     public Countries(int country_ID, String country, Timestamp create_Date, String created_By, Timestamp last_Update, String last_Updated_By) {
         Country_ID = country_ID;
         Country = country;

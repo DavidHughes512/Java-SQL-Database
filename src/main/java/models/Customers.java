@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 
 import javafx.collections.ObservableList;
-
+/**This Class contains the methods and values required for GUI data manipulation and saving database data locally*/
 public class Customers {
 
     //==============================Declaring Variables==============================
@@ -27,7 +27,7 @@ public class Customers {
 
     public static ObservableList<Customers> CustomerList = FXCollections.observableArrayList();
     public static ObservableList<Customers> DivisionList = FXCollections.observableArrayList();
-
+    /** This is the constructor for the Customers class*/
     public Customers(int customerId, String customerName, String address, String postalCode, String phone, int divisionId) {
         Customer_ID = customerId;
         Customer_Name = customerName;

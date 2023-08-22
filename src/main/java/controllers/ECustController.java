@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+/**This Class contains the methods required for updating customer information withing the SQL database and updating local lists*/
+
 public class ECustController {
 
     Stage stage;
@@ -63,6 +65,7 @@ public class ECustController {
     @FXML
     private Button saveCust;
 
+    /** This is the onActionBack method. This method returns you to the homescreen*/
     @FXML
     void onActionBack(ActionEvent event) throws IOException {
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
@@ -71,6 +74,7 @@ public class ECustController {
         stage.show();
     }
 
+    /** This is the onActionSaveCust method. This method Saves the input data to the SQL database. Then the local list is refreshed*/
     @FXML
     void onActionSaveCust(ActionEvent event) throws IOException, SQLException {
             Customers cust = Customers.CustomerList.get(Customers.CustomerList.size() - 1);
@@ -132,7 +136,7 @@ public class ECustController {
 
 
     }
-
+    /** This is the onCountrySel method. This method populates the second combo box with proper information based on the first selection*/
     @FXML
     void onCountrySel(ActionEvent event) throws SQLException {
         HomeController.refreshCLvLDs();
@@ -145,7 +149,7 @@ public class ECustController {
     void onStateSel(ActionEvent event){
 
     }
-
+    /** This is the sendCust method. This method shares data from the home tableview to be edited in the Edit Customers page*/
     public void sendCust(Customers eCust) throws SQLException{
 
         for(FirstLvlDivisions states : FirstLvlDivisions.States){
@@ -177,7 +181,7 @@ public class ECustController {
     }
 
 
-
+    /** This is the initialize method. This method sets combo box values when the edit page is initialized*/
     @FXML
     void initialize() throws SQLException {
         Customers cust = Customers.CustomerList.get(Customers.CustomerList.size() - 1);

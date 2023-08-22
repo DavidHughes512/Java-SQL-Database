@@ -1,15 +1,13 @@
 package dao;
 
-import Interfaces.SelectQ;
 import models.Contacts;
-import models.Customers;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+/**This Class contains the methods required for connecting to the SQL Database and pulling required data*/
 public class ContactQs {
-
+    /** This is the select method. This method selects data from the SQL Database*/
     public static void select() throws SQLException {
         String sql = "SELECT * FROM CONTACTS";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
