@@ -552,7 +552,6 @@ Parent scene;
 
         }
 
-        System.out.println(Appointments.allApts.get(2).getCreate_Date());
     }
 
 }

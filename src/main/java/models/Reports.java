@@ -71,4 +71,7 @@ public class Reports {
         }
     }
 
+    public static void refreshTotalList(){
+        totalList.clear();
+    }
 }

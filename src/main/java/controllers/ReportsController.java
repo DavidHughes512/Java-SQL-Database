@@ -138,7 +138,6 @@ public class ReportsController {
 
 
 
-
     @FXML
     void onActionHome(ActionEvent event) throws IOException {
         stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
@@ -156,6 +155,7 @@ public class ReportsController {
     Reports.refreshReportsList();
     Reports.refreshTypeList();
     Reports.refreshMonthList();
+
         anikeTableView.setItems(Appointments.anikaApts);
         colAnicolAniAptId.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
         colAniTitle.setCellValueFactory(new PropertyValueFactory<>("Title"));
@@ -186,8 +186,6 @@ public class ReportsController {
 
         for(Appointments appointments : Appointments.allApts){
             int total = 0;
-            System.out.println("This is appointment month:" + appointments.getStartDateTime(appointments.getStart()).toLocalDate().getMonth().toString());
-            System.out.println("================================");
             String type = appointments.getType();
             String month = appointments.getStartDateTime(appointments.getStart().toString()).toLocalDate().getMonth().toString();
             for(Reports reports : Reports.reportsList){

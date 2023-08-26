@@ -12,6 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import models.Home;
 
 import java.io.*;
 import java.sql.SQLException;
@@ -19,6 +20,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -128,7 +130,7 @@ public class LoginController {
     @FXML
     public void initialize() throws SQLException, IOException {
 
-        currentRegion.setText(String.valueOf(Locale.getDefault()));
+        currentRegion.setText(String.valueOf(Home.getMyZID()));
         /*LocalDateTime nowBF = LocalDateTime.now().plusMinutes(15);
         String now = nowBF.toString();
         java.sql.Timestamp now2 = new Timestamp(System.currentTimeMillis());

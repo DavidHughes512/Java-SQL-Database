@@ -34,9 +34,6 @@ public class Main extends Application {
     public static void main(String[] args) throws SQLException, InvocationTargetException {
 
         ResourceBundle rb = ResourceBundle.getBundle("/Languages", Locale.getDefault());
-        if (Locale.getDefault().getLanguage().equals("fr")) {
-            System.out.println(rb.getString("hello") + " " + rb.getString("world"));
-        }
 
 
         JDBC.openConnection();

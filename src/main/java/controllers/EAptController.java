@@ -91,7 +91,7 @@ public class EAptController {
         while(selTime.isBefore(end.plusSeconds(1))){
             setAptEndTime.setDisable(false);
             setAptEndTime.getItems().add(selTime);
-            selTime = selTime.plusMinutes(15);
+            selTime = selTime.plusMinutes(30);
         }
     }
 

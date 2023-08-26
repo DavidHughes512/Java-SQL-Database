@@ -41,33 +41,33 @@ public class Home {
 
    //======================CREATING DATETIME FOR CONVERSIONS===========================
 
-    public LocalDate myLD = LocalDate.now();
+    public static LocalDate myLD = LocalDate.now();
 
-    public LocalTime myLT = LocalTime.now();
+    public static LocalTime myLT = LocalTime.now();
 
-    public LocalDateTime myLDT = LocalDateTime.of(myLD, myLT);
+    public static LocalDateTime myLDT = LocalDateTime.of(myLD, myLT);
 
-    public ZoneId myZID = ZoneId.systemDefault();
+    public static ZoneId myZID = ZoneId.systemDefault();
 
-    public ZonedDateTime mfZDT = ZonedDateTime.of(myLDT, myZID);
+    public static ZonedDateTime mfZDT = ZonedDateTime.of(myLDT, myZID);
 
-    public LocalDate getMyLD() {
+    public static LocalDate getMyLD() {
         return myLD;
     }
 
-    public LocalTime getMyLT() {
+    public static LocalTime getMyLT() {
         return myLT;
     }
 
-    public LocalDateTime getMyLDT() {
+    public static LocalDateTime getMyLDT() {
         return myLDT;
     }
 
-    public ZoneId getMyZID() {
+    public static ZoneId getMyZID() {
         return myZID;
     }
 
-    public ZonedDateTime getMfZDT() {
+    public static ZonedDateTime getMfZDT() {
         return mfZDT;
     }
 }
