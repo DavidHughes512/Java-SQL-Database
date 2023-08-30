@@ -32,7 +32,7 @@ public class LoginController {
 
     Stage stage;
     Parent scene;
-    ResourceBundle rb = ResourceBundle.getBundle("/Languages", Locale.getDefault());
+    public static ResourceBundle rb = ResourceBundle.getBundle("/Languages", Locale.getDefault());
     @FXML
     private Label currentRegion;
     @FXML
@@ -61,12 +61,18 @@ public class LoginController {
         //check for if login is empty
         if (usernameTXT.getText().isEmpty() || passwordTXT.getText().isEmpty()){
             Alert alert = new Alert(Alert.AlertType.WARNING);
+            if(Locale.getDefault().getLanguage().equals("fr")){
+              alert.setContentText(rb.getString("isEmpty"));
+                alert.showAndWait();
+                return;
+            }
+            else{
             alert.setTitle("Warning!");
             alert.setContentText("Please enter a Username and Password!");
             alert.showAndWait();
             return;
         }
-
+        }
         String username = usernameTXT.getText();
         String password = passwordTXT.getText();
 
@@ -110,6 +116,12 @@ public class LoginController {
         }else{
             //show warning alert for login info
             Alert alert = new Alert(Alert.AlertType.WARNING);
+            if(Locale.getDefault().getLanguage().equals("fr")){
+                alert.setContentText(rb.getString("error"));
+                alert.showAndWait();
+                return;
+            }
+            else{
             alert.setTitle("Warning!");
             alert.setContentText("Please enter correct Username and Password!");
             alert.showAndWait();
@@ -123,7 +135,7 @@ public class LoginController {
             logFile.close();
             return;
         }
-
+        }
 
     }
     /** This is the initialize method. This method Sets the default locale*/

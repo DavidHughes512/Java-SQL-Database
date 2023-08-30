@@ -18,7 +18,10 @@ public class AppointmentQs{
 
     public static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-    /** This is A lambda for Converting the Time of Appointments pulled from the database. This Lambda Provides a clean execute for Appointment data to be manipulated and helps cut down on clutter when refreshing Lists*/
+    /** This is A lambda for Converting the Time of Appointments pulled from the database. This Lambda Provides a clean execute for Appointment data to be manipulated and helps cut down on clutter when refreshing Lists
+     *
+     * This Lambda makes for quick and easy calls that simplify time conversions on all data pulls from the server.
+     * */
     static TimeConversions convert = timeToConvert -> {
         LocalDateTime sDateTime = LocalDateTime.parse(timeToConvert, dtf);
         ZonedDateTime zSDateTIme = ZonedDateTime.of(sDateTime, ZoneId.of("UTC"));

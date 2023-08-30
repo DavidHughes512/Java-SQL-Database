@@ -4,15 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eafdf75b-a631-46be-98ec-b4048cb43867" name="Changes" comment="Change 1 for evaluation">
+    <list default="true" id="eafdf75b-a631-46be-98ec-b4048cb43867" name="Changes" comment="Final Push before Revisions">
+      <change afterPath="$PROJECT_DIR$/src/Log_Activity.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Application/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/EAptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/EAptController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/ECustController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/ECustController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/HomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/ReportsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/ReportsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/Home.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Home.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/AppointmentQs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/AppointmentQs.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/JDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/JDBC.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/models/Reports.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/Reports.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Languages_en.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Languages_en.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Languages_fr.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Languages_fr.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/Views/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/Login.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,14 +30,35 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="b0a68a04-cf2e-448d-a53d-511b72211d2c" />
+        <option name="url" value="https://github.com/WatashiwaToki/WGUScheduleProject.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="workspaceImportEnabled" value="true" />
+      </MavenImportingSettings>
+    </option>
   </component>
   <component name="ProjectId" id="2Qf4m8Ros5msBiTLgNrRfSVtEcL" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -48,15 +75,17 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Owner/Desktop/Extract/mysql-connector-java-8.0.25/mysql-connector-java-8.0.25.jar&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Trama/Desktop/Java Project resources/Lib/mysql-connector-java-8.0.25/mysql-connector-java-8.0.25.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.IDE.editor.colors.Java&quot;
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Trama\IdeaProjects\ScheduleProject\src\main\resources" />
       <recent name="C:\Users\Trama\IdeaProjects\ScheduleProject\target\classes" />
       <recent name="C:\Users\Trama\IdeaProjects\ScheduleProject\target\generated-sources" />
       <recent name="C:\Users\Trama\IdeaProjects\ScheduleProject\src\main\resources\Views" />
@@ -133,7 +162,42 @@
       <option name="project" value="LOCAL" />
       <updated>1687573499852</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added Home class and tableViews. Updated FXML files and screen functions">
+      <created>1688498207347</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1688498207347</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added JDBC Connections and insert method">
+      <created>1690256368584</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1690256368584</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Created Querey files. Uploading for test in Testing enviornment">
+      <created>1690843773344</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1690843773344</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Large update for table edits and time conversions">
+      <created>1692071043054</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1692071043054</updated>
+    </task>
+    <task id="LOCAL-00011" summary="New files for Reports screens. Adjustments to validation as well">
+      <created>1692573630020</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1692573630020</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -155,7 +219,11 @@
     <MESSAGE value="Added Setters and Getters as well as separation comments" />
     <MESSAGE value="Updated fxml files and project structure. Added button functionality and scene changes to Customer page" />
     <MESSAGE value="Added Home class and tableViews. Updated FXML files and screen functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Home class and tableViews. Updated FXML files and screen functions" />
+    <MESSAGE value="Added JDBC Connections and insert method" />
+    <MESSAGE value="Created Querey files. Uploading for test in Testing enviornment" />
+    <MESSAGE value="Large update for table edits and time conversions" />
+    <MESSAGE value="New files for Reports screens. Adjustments to validation as well" />
+    <option name="LAST_COMMIT_MESSAGE" value="New files for Reports screens. Adjustments to validation as well" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -167,6 +235,10 @@
         <breakpoint enabled="true" type="java-exception">
           <properties class="java.lang.reflect.InvocationTargetException" package="java.lang.reflect" />
           <option name="timeStamp" value="2" />
+        </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.RuntimeException" package="java.lang" />
+          <option name="timeStamp" value="3" />
         </breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -139,7 +139,7 @@ public class ECustController {
     /** This is the onCountrySel method. This method populates the second combo box with proper information based on the first selection*/
     @FXML
     void onCountrySel(ActionEvent event) throws SQLException {
-        HomeController.refreshCLvLDs();
+        FirstLvlDivisions.Divisions.clear();
         int countryID = custCountry.getValue().getCountry_ID();
         LvLDivisionQs.selectByCountry(countryID);
         custState.setItems(FirstLvlDivisions.Divisions);

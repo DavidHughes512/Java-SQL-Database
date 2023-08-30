@@ -15,10 +15,13 @@ import models.Reports;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.*;
 
 public class ReportsController {
     Stage stage;
     Parent scene;
+
+    //HashMap<String, Integer> tracking = new HashMap<>();
 
 
     public static void refreshAnikaTable() throws SQLException {
@@ -153,8 +156,9 @@ public class ReportsController {
     refreshLiTable();
     refreshDanielTable();
     Reports.refreshReportsList();
-    Reports.refreshTypeList();
-    Reports.refreshMonthList();
+    /*Reports.refreshTypeList();
+    Reports.refreshMonthList();*/
+    //Reports.refreshReportsMap();
 
         anikeTableView.setItems(Appointments.anikaApts);
         colAnicolAniAptId.setCellValueFactory(new PropertyValueFactory<>("Appointment_ID"));
@@ -184,27 +188,57 @@ public class ReportsController {
         colLiCustId.setCellValueFactory(new PropertyValueFactory<>("Customer_ID"));
 
 
-        for(Appointments appointments : Appointments.allApts){
-            int total = 0;
-            String type = appointments.getType();
-            String month = appointments.getStartDateTime(appointments.getStart().toString()).toLocalDate().getMonth().toString();
-            for(Reports reports : Reports.reportsList){
-                String type2 = reports.getType();
-                String month2 = reports.getMonth();
-                if(type.equals(type2) && month.equals(month2)){
-                    total++;
-                    Reports.totalList.add(total);
-                }
-            }
-        }
+
+        Reports.totalMap.clear();
+        Reports.reportsList.forEach((r) -> Reports.incrementMap(r));
+
+        Reports.monthList.clear();
+        Reports.typeList.clear();
+        Reports.totalList.clear();
+            Reports.totalMap.forEach((k,v)->{
+                String[] arr = k.split(",", 0);
+            String month = arr[0];
+            String type = arr[1];
+            Integer num = v;
+            Reports.monthList.add(month);
+            Reports.typeList.add(type);
+            Reports.totalList.add(num);
+        });
         totalListView.setItems(Reports.totalList);
         monthListView.setItems(Reports.monthList);
         typreListView.setItems(Reports.typeList);
 
 
+
+
+
     }
 
 
+ /*for(Appointments appointments : Appointments.allApts){
+            int total = 0;
+            String month = appointments.getStartDateTime(appointments.getStart()).getMonth().toString();
+            String type = appointments.getType();
 
+                Reports.totalList.add(total);
+           }
+
+
+        }*/
+        /*for(Appointments appointments : Appointments.allApts){
+            List<Integer> countList = new ArrayList<Integer>();
+            for(Reports reports : Reports.reportsList){
+                if(appointments.getType().equals(reports.getType()) && appointments.getStartDateTime(appointments.getStart()).getMonth().toString().equals(reports.getMonth())){
+                    for(int i = 0; i <= countList.size(); i++){
+                        if(appointments.getAppointment_ID() == countList.get(i)){
+
+                        }else{
+                            countList.add(appointments.getAppointment_ID());
+                        }
+                    }
+                }
+            }
+            Reports.totalList.add(appointments.getAppointment_ID());
+        }*/
 
 }

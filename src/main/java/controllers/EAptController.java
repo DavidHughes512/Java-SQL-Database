@@ -198,7 +198,7 @@ public class EAptController {
 
             for(Appointments appointments : Appointments.allApts) {
                LocalDateTime listAptDT = appointments.getStartDateTime(appointments.getStart().toString());
-               if(listAptDT.isEqual(ldtS)){
+               if(listAptDT.isEqual(ldtS) && appointments.getAppointment_ID() != id){
                    Alert alert = new Alert(Alert.AlertType.WARNING);
                    alert.setTitle("Warning!");
                    alert.setContentText("Appointments Can't be Overlapping!");

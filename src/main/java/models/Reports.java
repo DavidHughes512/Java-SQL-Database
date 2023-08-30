@@ -2,9 +2,13 @@ package models;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+
+import java.util.HashMap;
+
 /**This Class contains the methods and values required for GUI data manipulation and saving database data locally*/
 public class Reports {
 
@@ -24,7 +28,10 @@ public class Reports {
     public static ObservableList<String> monthList = FXCollections.observableArrayList();
     public static ObservableList<String> typeList = FXCollections.observableArrayList();
     public static ObservableList<Integer> totalList = FXCollections.observableArrayList();
-    int[] total ={};
+    public static ObservableMap<String, Integer> totalMap = FXCollections.observableMap(new HashMap<>());
+
+    public static HashMap<String, Integer> reportMap = new HashMap<>();
+
 
 
     public String getMonth() {
@@ -51,6 +58,14 @@ public class Reports {
             Reports.reportsList.add(new Reports(month, type));
         }
     }
+
+    /*public static void refreshReportsMap(){
+        for(Reports reports : reportsList){
+            String month = reports.getMonth();
+            String type = reports.getType();
+            reportMap.putIfAbsent(month, type);
+        }
+    }*/
     public static void createTypeList(){
         for(Reports reports : reportsList){
 
@@ -69,6 +84,14 @@ public class Reports {
         for(Reports reports : reportsList){
             typeList.add(reports.getType());
         }
+    }
+
+    public static void incrementMap(Reports report){
+        String month = report.getMonth();
+        String type = report.getType().toLowerCase();
+        String key = month + "," + type;
+        Integer a = totalMap.getOrDefault(key, 0);
+        totalMap.put(key,a+1);
     }
 
     public static void refreshTotalList(){

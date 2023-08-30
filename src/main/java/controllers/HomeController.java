@@ -21,11 +21,14 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 
 /**This Class contains the methods required for controlling both tableviews and directing you to the proper pages*/
 public class HomeController {
 
+    public static ResourceBundle rb = ResourceBundle.getBundle("/Languages", Locale.getDefault());
 Stage stage;
 Parent scene;
 
@@ -37,6 +40,25 @@ Parent scene;
 
     public boolean getFlag(){
         return Flag;
+    }
+
+    public void aptDeleteCheck(int deleteID){
+        for(Appointments apt : Appointments.allApts){
+            if(deleteID == apt.getAppointment_ID()){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning!");
+                alert.setContentText("Appointment not Deleted!");
+                alert.showAndWait();
+                return;
+            }
+            else{
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning!");
+                alert.setContentText("Appointment Deleted!");
+                alert.showAndWait();
+                return;
+            }
+        }
     }
     /** This is the refreshAllApt method. This method refreshes the allApts list*/
     public static void refreshAllApt() throws SQLException {
@@ -84,7 +106,10 @@ Parent scene;
         refreshCustomers();
     };
 
-    /** This is A lambda for Deletion of Appointments. This Lambda Provides a clean execute for Appointment data to be deleted and helps cut down on clutter when refreshing Lists*/
+    /** This is A lambda for Deletion of Appointments. This Lambda Provides a clean execute for Appointment data to be deleted and helps cut down on clutter when refreshing Lists
+     *
+     * This Lambda Allows for multiple calls of the delete method used on separate action buttons in a clean and efficient way.
+     * */
     DeleteInterface Apts = toDelete -> {
         AppointmentQs.delete(toDelete);
         refreshAllApt();
@@ -289,8 +314,39 @@ Parent scene;
     void onActionDeleteCust(ActionEvent event) throws IOException, SQLException {
 
         try {
+            for(Appointments appointments : Appointments.allApts){
+                int id = appointments.getCustomer_ID();
+                if(custTableView.getSelectionModel().getSelectedItem().getCustomer_ID() == id){
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning!");
+                    alert.setContentText("Customer has appointment!");
+                    alert.showAndWait();
+                    return;
+                }
+            }
+
+            int deleteID = custTableView.getSelectionModel().getSelectedItem().getCustomer_ID();
+
             /** This is A lambda for Deletion of customers. This Lambda Provides a clean execute for Customer data to be deleted and helps cut down on clutter when refreshing Lists*/
             customers.delete(custTableView.getSelectionModel().getSelectedItem().getCustomer_ID());
+
+            for(Customers cust : Customers.CustomerList){
+                if(deleteID ==cust.getCustomer_ID()){
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning!");
+                    alert.setContentText("Customer not Deleted!");
+                    alert.showAndWait();
+                    return;
+                }
+                else{
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning!");
+                    alert.setContentText("Customer Deleted!");
+                    alert.showAndWait();
+                    return;
+                }
+            }
+
         }
         catch(NullPointerException e){
                 Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -353,6 +409,7 @@ Parent scene;
     void onActionDeleteAllApt(ActionEvent event) throws SQLException, IOException{
 
         try {
+            aptDeleteCheck(allAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
 /** This is A lambda for Deletion of Appointments. This Lambda Provides a clean execute for Appointment data to be deleted and helps cut down on clutter when refreshing Lists*/
             Apts.delete(allAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
 
@@ -371,6 +428,7 @@ Parent scene;
     void onActionDeleteMonthApt(ActionEvent event) throws SQLException, IOException{
 
         try {
+            aptDeleteCheck(monthAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
             /** This is A lambda for Deletion of Appointments. This Lambda Provides a clean execute for Appointment data to be deleted and helps cut down on clutter when refreshing Lists*/
             Apts.delete(monthAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
 
@@ -389,6 +447,7 @@ Parent scene;
     void onActionDeleteWeekApt(ActionEvent event) throws SQLException, IOException{
 
         try {
+            aptDeleteCheck(weekAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
             /** This is A lambda for Deletion of Appointments. This Lambda Provides a clean execute for Appointment data to be deleted and helps cut down on clutter when refreshing Lists*/
             Apts.delete(weekAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
 
@@ -529,7 +588,12 @@ Parent scene;
 
 
             if(listAptT.isAfter(nowoclock) && listAptT.isBefore(nowoclock.plusMinutes(15))){
-                Alert alert = new Alert(Alert.AlertType.WARNING);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                if(Locale.getDefault().getLanguage().equals("fr")){
+                    alert.setContentText(rb.getString("minutes"));
+                    alert.showAndWait();
+                    return;
+                }
                 alert.setTitle("Upcoming Appointment!");
                 alert.setContentText("Apointment ID: " + appointments.getAppointment_ID() + "   " + "Date: " + listAptDT.toLocalDate().toString() + "    " + "Time: " + listAptDT.toLocalTime().toString());
                 alert.showAndWait();
@@ -543,8 +607,13 @@ Parent scene;
             }
 
             if(loopLength == Appointments.allApts.size() && getFlag() == false){
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning!");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                if(Locale.getDefault().getLanguage().equals("fr")){
+                    alert.setContentText(rb.getString("appointments"));
+                    alert.showAndWait();
+                    return;
+                }
+                alert.setTitle("Appointment Info!");
                 alert.setContentText("No Upcoming Appointments!");
                 alert.showAndWait();
                 setFlag();
