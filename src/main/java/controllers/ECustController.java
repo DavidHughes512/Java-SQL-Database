@@ -77,8 +77,12 @@ public class ECustController {
     /** This is the onActionSaveCust method. This method Saves the input data to the SQL database. Then the local list is refreshed*/
     @FXML
     void onActionSaveCust(ActionEvent event) throws IOException, SQLException {
+        int lastId = 0;
+        if(Customers.CustomerList.size() != 0) {
             Customers cust = Customers.CustomerList.get(Customers.CustomerList.size() - 1);
-            int lastId = cust.getCustomer_ID();
+            lastId = cust.getCustomer_ID();
+        }
+
 
         try {
             java.sql.Timestamp now = new Timestamp(System.currentTimeMillis());
@@ -184,10 +188,14 @@ public class ECustController {
     /** This is the initialize method. This method sets combo box values when the edit page is initialized*/
     @FXML
     void initialize() throws SQLException {
-        Customers cust = Customers.CustomerList.get(Customers.CustomerList.size() - 1);
-        listId = cust.getCustomer_ID();
-        listId++;
-        custID.setText(String.valueOf(listId));
+        if(Customers.CustomerList.size() != 0) {
+            Customers cust = Customers.CustomerList.get(Customers.CustomerList.size() - 1);
+            listId = cust.getCustomer_ID();
+            listId++;
+            custID.setText(String.valueOf(listId));
+        }else{
+            custID.setText(String.valueOf("1"));
+        }
         custCountry.setItems(Countries.Countries);
 
 

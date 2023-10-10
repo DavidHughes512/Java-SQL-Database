@@ -113,9 +113,11 @@ public class EAptController {
     /** This is the onActionSaveApt method. This method takes all the input data of the user and saves and syncs to the database. The local list is then refreshed*/
     @FXML
     void onActionSaveApt(ActionEvent event) throws IOException, SQLException {
-
-        Appointments apt = Appointments.allApts.get(Appointments.allApts.size() - 1);
-        int lastId = apt.getAppointment_ID();
+        int lastId = 0;
+        if(Appointments.allApts.size() != 0) {
+            Appointments apt = Appointments.allApts.get(Appointments.allApts.size() - 1);
+            lastId = apt.getAppointment_ID();
+        }
         java.sql.Timestamp now = new Timestamp(System.currentTimeMillis());
 
 
@@ -289,10 +291,14 @@ public class EAptController {
             start = start.plusMinutes(30);
         }
 
-        Appointments apts = Appointments.allApts.get(Appointments.allApts.size() - 1);
-        int aptId = apts.getAppointment_ID();
-        aptId++;
-        appointmentIDTXT.setText(String.valueOf(aptId));
+        if(Appointments.allApts.size() != 0) {
+            Appointments apts = Appointments.allApts.get(Appointments.allApts.size() - 1);
+            int aptId = apts.getAppointment_ID();
+            aptId++;
+            appointmentIDTXT.setText(String.valueOf(aptId));
+        }else{
+            appointmentIDTXT.setText(String.valueOf("1"));
+        }
 
 
     }

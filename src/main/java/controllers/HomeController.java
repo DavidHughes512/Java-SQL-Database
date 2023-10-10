@@ -22,6 +22,7 @@ import java.time.LocalTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 
@@ -43,23 +44,24 @@ Parent scene;
     }
 
     public void aptDeleteCheck(int deleteID){
-        for(Appointments apt : Appointments.allApts){
-            if(deleteID == apt.getAppointment_ID()){
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning!");
-                alert.setContentText("Appointment not Deleted!");
-                alert.showAndWait();
-                return;
-            }
-            else{
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning!");
-                alert.setContentText("Appointment Deleted!");
-                alert.showAndWait();
-                return;
-            }
+            /*for(Appointments apt : Appointments.allApts){
+                if(deleteID == apt.getAppointment_ID()){
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning!");
+                    alert.setContentText("Appointment with ID of: " + Integer.toString(deleteID) + " And of type: " + apt.getType() + " not Deleted!");
+                    alert.showAndWait();
+                    return;
+                }
+                else {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning!");
+                    alert.setContentText("Appointment with ID of: " + Integer.toString(deleteID) + " And of type: " + apt.getType() + " Deleted!");
+                    alert.showAndWait();
+                    return;
+                }
+            }*/
         }
-    }
+
     /** This is the refreshAllApt method. This method refreshes the allApts list*/
     public static void refreshAllApt() throws SQLException {
         Appointments.allApts.clear();
@@ -111,10 +113,14 @@ Parent scene;
      * This Lambda Allows for multiple calls of the delete method used on separate action buttons in a clean and efficient way.
      * */
     DeleteInterface Apts = toDelete -> {
-        AppointmentQs.delete(toDelete);
-        refreshAllApt();
-        refreshMonthApt();
-        refreshWeekApt();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this Appointment?");
+        Optional<ButtonType> results = alert.showAndWait();
+        if(results.isPresent() && results.get() == ButtonType.OK) {
+            AppointmentQs.delete(toDelete);
+            refreshAllApt();
+            refreshMonthApt();
+            refreshWeekApt();
+        }
     };
 
 
@@ -314,34 +320,41 @@ Parent scene;
     void onActionDeleteCust(ActionEvent event) throws IOException, SQLException {
 
         try {
-            for(Appointments appointments : Appointments.allApts){
-                int id = appointments.getCustomer_ID();
-                if(custTableView.getSelectionModel().getSelectedItem().getCustomer_ID() == id){
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setTitle("Warning!");
-                    alert.setContentText("Customer has appointment!");
-                    alert.showAndWait();
-                    return;
-                }
-            }
 
             int deleteID = custTableView.getSelectionModel().getSelectedItem().getCustomer_ID();
 
-            /** This is A lambda for Deletion of customers. This Lambda Provides a clean execute for Customer data to be deleted and helps cut down on clutter when refreshing Lists*/
-            customers.delete(custTableView.getSelectionModel().getSelectedItem().getCustomer_ID());
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to delete this customer? All Appointments with this customer will be deleted as well!");
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.isPresent() && result.get() == ButtonType.OK){
+                for(int i = 0; i < Appointments.allApts.size(); i++){
+                    int custID = Appointments.allApts.get(i).getCustomer_ID();
 
+                    if(custID == deleteID){
+                        AppointmentQs.delete(Appointments.allApts.get(i).getAppointment_ID());
+                        refreshAllApt();
+                        refreshWeekApt();
+                        refreshMonthApt();
+                    }
+                }
+                /** This is A lambda for Deletion of customers. This Lambda Provides a clean execute for Customer data to be deleted and helps cut down on clutter when refreshing Lists*/
+                CustomerQs.delete(custTableView.getSelectionModel().getSelectedItem().getCustomer_ID());
+            }else{
+                return;
+            }
+
+            refreshCustomers();
             for(Customers cust : Customers.CustomerList){
-                if(deleteID ==cust.getCustomer_ID()){
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                if(deleteID == cust.getCustomer_ID()){
+                    Alert alert2 = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Warning!");
-                    alert.setContentText("Customer not Deleted!");
+                    alert.setContentText("Customer with ID of " + Integer.toString(deleteID) + " not Deleted!");
                     alert.showAndWait();
                     return;
                 }
                 else{
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    Alert alert2 = new Alert(Alert.AlertType.WARNING);
                     alert.setTitle("Warning!");
-                    alert.setContentText("Customer Deleted!");
+                    alert.setContentText("Customer with ID of " + Integer.toString(deleteID) + " Deleted!");
                     alert.showAndWait();
                     return;
                 }
@@ -409,9 +422,34 @@ Parent scene;
     void onActionDeleteAllApt(ActionEvent event) throws SQLException, IOException{
 
         try {
-            aptDeleteCheck(allAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
+            //aptDeleteCheck(allAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
+            int deleteID = allAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID();
+            String deleteType = allAptTableView.getSelectionModel().getSelectedItem().getType();
 /** This is A lambda for Deletion of Appointments. This Lambda Provides a clean execute for Appointment data to be deleted and helps cut down on clutter when refreshing Lists*/
-            Apts.delete(allAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
+            Apts.delete(deleteID);
+            if(Appointments.allApts.isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning!");
+                alert.setContentText("Appointment with ID of: " + Integer.toString(deleteID) + " And of type: " + deleteType + " Deleted!");
+                alert.showAndWait();
+                return;
+            }
+            for(Appointments apt : Appointments.allApts){
+                if(deleteID == apt.getAppointment_ID()){
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning!");
+                    alert.setContentText("Appointment with ID of: " + Integer.toString(deleteID) + " And of type: " + deleteType + " not Deleted!");
+                    alert.showAndWait();
+                    return;
+                }
+                else {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning!");
+                    alert.setContentText("Appointment with ID of: " + Integer.toString(deleteID) + " And of type: " + deleteType  + " Deleted!");
+                    alert.showAndWait();
+                    return;
+                }
+            }
 
         }
         catch (NullPointerException e) {
@@ -428,9 +466,36 @@ Parent scene;
     void onActionDeleteMonthApt(ActionEvent event) throws SQLException, IOException{
 
         try {
-            aptDeleteCheck(monthAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
+            int deleteID = monthAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID();
+            String deleteType = monthAptTableView.getSelectionModel().getSelectedItem().getType();
+
+            //aptDeleteCheck(monthAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
             /** This is A lambda for Deletion of Appointments. This Lambda Provides a clean execute for Appointment data to be deleted and helps cut down on clutter when refreshing Lists*/
             Apts.delete(monthAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
+            if(Appointments.allApts.isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning!");
+                alert.setContentText("Appointment with ID of: " + Integer.toString(deleteID) + " And of type: " + deleteType + " Deleted!");
+                alert.showAndWait();
+                return;
+            }
+            for(Appointments apt : Appointments.allApts){
+                if(deleteID == apt.getAppointment_ID()){
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning!");
+                    alert.setContentText("Appointment with ID of: " + Integer.toString(deleteID) + " And of type: " + deleteType + " not Deleted!");
+                    alert.showAndWait();
+                    return;
+                }
+                else {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning!");
+                    alert.setContentText("Appointment with ID of: " + Integer.toString(deleteID) + " And of type: " + deleteType  + " Deleted!");
+                    alert.showAndWait();
+                    return;
+                }
+            }
+
 
     }
         catch (NullPointerException e) {
@@ -447,9 +512,35 @@ Parent scene;
     void onActionDeleteWeekApt(ActionEvent event) throws SQLException, IOException{
 
         try {
-            aptDeleteCheck(weekAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
+            int deleteID = weekAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID();
+            String deleteType = weekAptTableView.getSelectionModel().getSelectedItem().getType();
+
+            //aptDeleteCheck(weekAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
             /** This is A lambda for Deletion of Appointments. This Lambda Provides a clean execute for Appointment data to be deleted and helps cut down on clutter when refreshing Lists*/
             Apts.delete(weekAptTableView.getSelectionModel().getSelectedItem().getAppointment_ID());
+            if(Appointments.allApts.isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning!");
+                alert.setContentText("Appointment with ID of: " + Integer.toString(deleteID) + " And of type: " + deleteType + " Deleted!");
+                alert.showAndWait();
+                return;
+            }
+            for(Appointments apt : Appointments.allApts){
+                if(deleteID == apt.getAppointment_ID()){
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning!");
+                    alert.setContentText("Appointment with ID of: " + Integer.toString(deleteID) + " And of type: " + deleteType + " not Deleted!");
+                    alert.showAndWait();
+                    return;
+                }
+                else {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setTitle("Warning!");
+                    alert.setContentText("Appointment with ID of: " + Integer.toString(deleteID) + " And of type: " + deleteType  + " Deleted!");
+                    alert.showAndWait();
+                    return;
+                }
+            }
 
     }
         catch (NullPointerException e) {
