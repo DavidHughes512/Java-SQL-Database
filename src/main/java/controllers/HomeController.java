@@ -29,7 +29,7 @@ import java.util.ResourceBundle;
 /**This Class contains the methods required for controlling both tableviews and directing you to the proper pages*/
 public class HomeController {
 
-    public static ResourceBundle rb = ResourceBundle.getBundle("/Languages", Locale.getDefault());
+    //public static ResourceBundle rb = ResourceBundle.getBundle("/Languages", Locale.getDefault());
 Stage stage;
 Parent scene;
 
@@ -680,11 +680,11 @@ Parent scene;
 
             if(listAptT.isAfter(nowoclock) && listAptT.isBefore(nowoclock.plusMinutes(15))){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                if(Locale.getDefault().getLanguage().equals("fr")){
+                /*if(Locale.getDefault().getLanguage().equals("fr")){
                     alert.setContentText(rb.getString("minutes"));
                     alert.showAndWait();
                     return;
-                }
+                }*/
                 alert.setTitle("Upcoming Appointment!");
                 alert.setContentText("Apointment ID: " + appointments.getAppointment_ID() + "   " + "Date: " + listAptDT.toLocalDate().toString() + "    " + "Time: " + listAptDT.toLocalTime().toString());
                 alert.showAndWait();
@@ -699,11 +699,11 @@ Parent scene;
 
             if(loopLength == Appointments.allApts.size() && getFlag() == false){
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                if(Locale.getDefault().getLanguage().equals("fr")){
+                /*if(Locale.getDefault().getLanguage().equals("fr")){
                     alert.setContentText(rb.getString("appointments"));
                     alert.showAndWait();
                     return;
-                }
+                }*/
                 alert.setTitle("Appointment Info!");
                 alert.setContentText("No Upcoming Appointments!");
                 alert.showAndWait();

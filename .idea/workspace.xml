@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="ScheduleProject:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eafdf75b-a631-46be-98ec-b4048cb43867" name="Changes" comment="Finished revisions for testing in Lab">
-      <change afterPath="$PROJECT_DIR$/src/Log_Activity.txt" afterDir="false" />
+    <list default="true" id="eafdf75b-a631-46be-98ec-b4048cb43867" name="Changes" comment="Updates for capstone">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/ScheduleProject_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Application/Launcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/EAptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/EAptController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/ECustController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/ECustController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Log_Activity.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Log_Activity.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Application/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Languages.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Languages_en.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Languages_fr.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Views/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/Login.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +30,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -59,21 +69,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/Trama/Desktop/Java Project resources/Lib/mysql-connector-java-8.0.25/mysql-connector-java-8.0.25.jar",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Trama/Desktop/Java Project resources/Lib/mysql-connector-java-8.0.25/mysql-connector-java-8.0.25.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.3275862&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Trama\IdeaProjects\ScheduleProject\src\main\resources" />
@@ -82,7 +92,7 @@
       <recent name="C:\Users\Trama\IdeaProjects\ScheduleProject\src\main\resources\Views" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JAR Application.Schedule project tesy">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Application.Main" />
       <module name="ScheduleProject" />
@@ -96,6 +106,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Omega Test" type="JarApplication">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/ScheduleProject_jar/ScheduleProject.jar" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\Trama\IdeaProjects\ScheduleProject" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Schedule project tesy" type="JarApplication">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/ScheduleProject_jar/ScheduleProject.jar" />
+      <option name="WORKING_DIRECTORY" value="C:\Users\Trama\IdeaProjects\ScheduleProject" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="JAR Application.Omega Test" />
+      <item itemvalue="JAR Application.Schedule project tesy" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -195,7 +222,14 @@
       <option name="project" value="LOCAL" />
       <updated>1693434337959</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Updates for capstone">
+      <created>1696905871800</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1696905871800</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -222,7 +256,8 @@
     <MESSAGE value="Large update for table edits and time conversions" />
     <MESSAGE value="New files for Reports screens. Adjustments to validation as well" />
     <MESSAGE value="Finished revisions for testing in Lab" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished revisions for testing in Lab" />
+    <MESSAGE value="Updates for capstone" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updates for capstone" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

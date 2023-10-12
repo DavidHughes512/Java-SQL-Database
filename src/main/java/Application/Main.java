@@ -22,10 +22,10 @@ import java.util.ResourceBundle;
 
 public class Main extends Application {
 
-    public static ResourceBundle rb = ResourceBundle.getBundle("/Languages", Locale.getDefault());
+    //public static ResourceBundle rb = ResourceBundle.getBundle("/Languages", Locale.getDefault());
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader (Main.class.getResource("/Views/Login.fxml"), rb);
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/Views/Login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 600, 400);
         stage.setTitle("Omega Database Application");
         stage.setScene(scene);
@@ -35,9 +35,9 @@ public class Main extends Application {
     /** This is the main method. This method launched the application and connects to the database*/
     public static void main(String[] args) throws SQLException, InvocationTargetException {
 
-        if(Locale.getDefault().getLanguage().equals("fr")){
+        /*if(Locale.getDefault().getLanguage().equals("fr")){
             System.out.println(rb.getString("hello") + rb.getString("world"));
-        }
+        }*/
 
         JDBC.openConnection();
 
