@@ -1,284 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ArtifactsWorkspaceSettings">
-    <artifacts-to-build>
-      <artifact name="ScheduleProject:jar" />
-    </artifacts-to-build>
-  </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="eafdf75b-a631-46be-98ec-b4048cb43867" name="Changes" comment="Updates for capstone">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/ScheduleProject_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Application/Launcher.java" afterDir="false" />
+    <list default="true" id="af6dbc86-6d5f-4e2e-a7db-1dba61dfca90" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/ScheduleProject_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.txt" beforeDir="false" afterPath="$PROJECT_DIR$/README.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Log_Activity.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Log_Activity.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Application/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Application/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controllers/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/HomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Languages.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Languages_en.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Languages_fr.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Views/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Views/Login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dao/JDBC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dao/JDBC.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;
-  }
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
 }</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="b0a68a04-cf2e-448d-a53d-511b72211d2c" />
-        <option name="url" value="https://github.com/WatashiwaToki/WGUScheduleProject.git" />
-      </UrlAndAccount>
-    </option>
-  </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
-  <component name="ProjectId" id="2Qf4m8Ros5msBiTLgNrRfSVtEcL" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectId" id="2Zj2WXm4LwaHACpBvTCb0HlKAXy" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Application.Launcher.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Trama/Desktop/Java Project resources/Lib/mysql-connector-java-8.0.25/mysql-connector-java-8.0.25.jar&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.3275862&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;advanced.settings&quot;
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Toki/Desktop/Java Project resources/Lib/mysql-connector-java-8.0.25/mysql-connector-java-8.0.25.jar&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.46206897&quot;
   }
 }</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Trama\IdeaProjects\ScheduleProject\src\main\resources" />
-      <recent name="C:\Users\Trama\IdeaProjects\ScheduleProject\target\classes" />
-      <recent name="C:\Users\Trama\IdeaProjects\ScheduleProject\target\generated-sources" />
-      <recent name="C:\Users\Trama\IdeaProjects\ScheduleProject\src\main\resources\Views" />
-    </key>
-  </component>
-  <component name="RunManager" selected="JAR Application.Schedule project tesy">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Application.Main" />
-      <module name="ScheduleProject" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Application.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Omega Test" type="JarApplication">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/ScheduleProject_jar/ScheduleProject.jar" />
-      <option name="WORKING_DIRECTORY" value="C:\Users\Trama\IdeaProjects\ScheduleProject" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method v="2" />
-    </configuration>
-    <configuration name="Schedule project tesy" type="JarApplication">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/ScheduleProject_jar/ScheduleProject.jar" />
-      <option name="WORKING_DIRECTORY" value="C:\Users\Trama\IdeaProjects\ScheduleProject" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Application.Main" />
-      <item itemvalue="JAR Application.Omega Test" />
-      <item itemvalue="JAR Application.Schedule project tesy" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.Main" />
-      </list>
-    </recent_temporary>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.1-openjdk-21.0.1-249ae16d76d6-a618e4d4" />
+        <option value="jdk-21.0.1-openjdk-21.0.1-f644763e9732-f98dd351" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="eafdf75b-a631-46be-98ec-b4048cb43867" name="Changes" comment="" />
-      <created>1685731457966</created>
+      <changelist id="af6dbc86-6d5f-4e2e-a7db-1dba61dfca90" name="Changes" comment="" />
+      <created>1702921200984</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1685731457966</updated>
+      <updated>1702921200984</updated>
     </task>
-    <task id="LOCAL-00001" summary="Uploading Project for sharing between devices">
-      <created>1685731680894</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1685731680894</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Uploading missing files for sharing between devices">
-      <created>1685732331528</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1685732331528</updated>
-    </task>
-    <task id="LOCAL-00003" summary="early setup of project">
-      <created>1686587477725</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1686587477725</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Added Setters and Getters as well as separation comments">
-      <created>1687038256278</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1687038256278</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Updated fxml files and project structure. Added button functionality and scene changes to Customer page">
-      <created>1687234681220</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1687234681220</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Added Home class and tableViews. Updated FXML files and screen functions">
-      <created>1687573499852</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1687573499852</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Added Home class and tableViews. Updated FXML files and screen functions">
-      <created>1688498207347</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1688498207347</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Added JDBC Connections and insert method">
-      <created>1690256368584</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1690256368584</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Created Querey files. Uploading for test in Testing enviornment">
-      <created>1690843773344</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1690843773344</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Large update for table edits and time conversions">
-      <created>1692071043054</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1692071043054</updated>
-    </task>
-    <task id="LOCAL-00011" summary="New files for Reports screens. Adjustments to validation as well">
-      <created>1692573630020</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1692573630020</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Finished revisions for testing in Lab">
-      <created>1693434337959</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1693434337959</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Updates for capstone">
-      <created>1696905871800</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1696905871800</updated>
-    </task>
-    <option name="localTasksCounter" value="14" />
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Uploading Project for sharing between devices" />
-    <MESSAGE value="Uploading missing files for sharing between devices" />
-    <MESSAGE value="early setup of project" />
-    <MESSAGE value="Added Setters and Getters as well as separation comments" />
-    <MESSAGE value="Updated fxml files and project structure. Added button functionality and scene changes to Customer page" />
-    <MESSAGE value="Added Home class and tableViews. Updated FXML files and screen functions" />
-    <MESSAGE value="Added JDBC Connections and insert method" />
-    <MESSAGE value="Created Querey files. Uploading for test in Testing enviornment" />
-    <MESSAGE value="Large update for table edits and time conversions" />
-    <MESSAGE value="New files for Reports screens. Adjustments to validation as well" />
-    <MESSAGE value="Finished revisions for testing in Lab" />
-    <MESSAGE value="Updates for capstone" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updates for capstone" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.IllegalStateException" package="java.lang" />
-          <option name="timeStamp" value="1" />
-        </breakpoint>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.reflect.InvocationTargetException" package="java.lang.reflect" />
-          <option name="timeStamp" value="2" />
-        </breakpoint>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.RuntimeException" package="java.lang" />
-          <option name="timeStamp" value="3" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>

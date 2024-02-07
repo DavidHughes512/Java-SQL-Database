@@ -78,7 +78,7 @@ public class LoginController {
 
 
         //======================= LOG FILE CREATION AND READING =============================
-        //File Name
+        /*//File Name
         String filename = "src/Log_Activity.txt";
 
         //Creating file to read from
@@ -93,19 +93,19 @@ public class LoginController {
         FileWriter logFileUpdated = new FileWriter(filename, true);
 
         //Create and Open FIle
-        PrintWriter logFile = new PrintWriter(logFileUpdated);
+        PrintWriter logFile = new PrintWriter(logFileUpdated);*/
 
 
         //=============== LOGIN VALIDATION ==============================
 
         if(username.equals(login) && password.equals(login)){
-            //update log file
+            /*//update log file
             logFile.println("Login attempt");
             logFile.println("On: " + date);
             logFile.println("Timestamp: " + now);
             logFile.println("Successful");
             logFile.println("=========");
-            logFile.close();
+            logFile.close();*/
 
             //Load next screen
             stage = (Stage) ((Button)event.getSource()).getScene().getWindow();
@@ -126,13 +126,13 @@ public class LoginController {
             alert.setContentText("Please enter correct Username and Password!");
             alert.showAndWait();
 
-            //update log file
+            /*//update log file
             logFile.println("Login attempt");
             logFile.println("On: " + date);
             logFile.println("Timestamp: " + now);
             logFile.println("Failed");
             logFile.println("=========");
-            logFile.close();
+            logFile.close();*/
             return;
         }
     }

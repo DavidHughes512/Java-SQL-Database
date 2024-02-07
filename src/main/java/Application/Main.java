@@ -30,6 +30,7 @@ public class Main extends Application {
         stage.setTitle("Omega Database Application");
         stage.setScene(scene);
         stage.show();
+        JDBC.openConnection();
     }
 
     /** This is the main method. This method launched the application and connects to the database*/
@@ -39,11 +40,14 @@ public class Main extends Application {
             System.out.println(rb.getString("hello") + rb.getString("world"));
         }*/
 
-        JDBC.openConnection();
+        System.out.println("this is in the main method before JDBC.OpenConnection");
+
+        System.out.println("this is in the main method after JDBC.OpenConnection");
 
         launch();
 
         JDBC.closeConnection();
+
     }
 
 
