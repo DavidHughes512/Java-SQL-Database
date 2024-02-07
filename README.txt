@@ -17,6 +17,7 @@ JDK: 17 (Oracle OpenJDK version 17.0.6)
 JAVAFX:javafx-sdk-19.0.2.1
 
 The following project requires a localhost MYSQL server with a user labeled "sqlUser" and the password set to Passw0rd!. The driver version used during development is below.
+Test data is provided in the file labled "test data". These SQL commands will need to be run in the SQL server to establish a database connection.
 
 DIRECTIONS:Launch the program and login. Username is "test". Password is "test".
 Application can make and edit appointments as well as customers and sync with 
