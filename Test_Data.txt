@@ -1,4 +1,4 @@
-This test data is a modified version of SQL commands and sample data provided to me by course instructors at WGU. This was not fully written by me.
+This test data is a modified version of SQL commands and sample data provided to me by course instructors at WGU to meet test criteria. This was not fully written by me.
 
 
 USE client_schedule;
